@@ -29,7 +29,13 @@ const handlers = {
     const [_, ts, message] = contents.content.match(logMessageRegex)
 
     entryElement.querySelector('.log-entry__ts').textContent = ts
-    entryElement.querySelector('.log-entry__content').textContent = message
+    const contentEl = entryElement.querySelector('.log-entry__content')
+    contentEl.textContent = message
+
+    if (message.indexOf('WARNING:') === 0) {
+      contentEl.classList.add('text-d-orange')
+    }
+
     document.getElementById('log').appendChild(entryElement)
   }
 }
