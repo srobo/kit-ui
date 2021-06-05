@@ -9,8 +9,27 @@ const options = {
   rejectUnauthorized: false,
 }
 
-const client = mqtt.connect('ws://192.168.1.250:9001', options)
+const client = mqtt.connect(`ws://${location.hostname}:9001`, options)
 const logMessageRegex = /\[(\d+:\d{2}:\d{2}\.\d+)] (.*)/
+let $ = {}
+
+window.addEventListener('DOMContentLoaded', event => {
+  $ = {
+    status: document.getElementById('status'),
+    log: document.getElementById('log'),
+    templates: {
+      logEntry: document.getElementById('tpl-log-entry'),
+    },
+  }
+})
+
+const status_labels = {
+  'code_crashed': '💣 Crashed',
+  'code_finished': '🏁 Finished',
+  'code_killed': '💀 Killed',
+  'code_running': '▶️ Running',
+  'code_starting': '⏩ Starting',
+}
 
 client.on('connect', function () {
   console.log('Connected!')
@@ -24,7 +43,7 @@ client.on('error', function (err) {
 
 const handlers = {
   'astoria/broadcast/usercode_log': contents => {
-    const template = document.getElementById('tpl-log-entry')
+    const template = $.templates.logEntry
     const entryElement = template.content.cloneNode(true)
     const [_, ts, message] = contents.content.match(logMessageRegex)
 
@@ -36,12 +55,15 @@ const handlers = {
       contentEl.classList.add('text-d-orange')
     }
 
-    document.getElementById('log').appendChild(entryElement)
+    $.log.appendChild(entryElement)
   },
   'astoria/astdiskd': contents => {
     document.querySelectorAll('.controls button')
       .forEach(el => el.disabled = Object.values(contents.disks).filter(d => d.disk_type === 'USERCODE').length === 0)
   },
+  'astoria/astprocd': contents => {
+    $.status.textContent = status_labels[contents.code_status]
+  }
 }
 
 const ack = {
@@ -77,7 +99,7 @@ function createPlainLogEntry (text, ...classes) {
     entry.classList.add(className)
   }
   entry.textContent = text
-  document.getElementById('log').appendChild(entry)
+  $.log.appendChild(entry)
 }
 
 function sendProcessRequest (type) {
@@ -97,5 +119,3 @@ function sendProcessRequest (type) {
     uuid: requestUuid,
   }))
 }
-
-
