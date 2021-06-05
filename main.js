@@ -9,7 +9,7 @@ const options = {
   rejectUnauthorized: false,
 }
 
-const client = mqtt.connect("ws://192.168.1.250:9001", options)
+const client = mqtt.connect('ws://192.168.1.250:9001', options)
 const logMessageRegex = /\[(\d+:\d{2}:\d{2}\.\d+)] (.*)/
 
 client.on('connect', function () {
@@ -23,7 +23,7 @@ client.on('error', function (err) {
 })
 
 const handlers = {
-  "astoria/broadcast/usercode_log": contents => {
+  'astoria/broadcast/usercode_log': contents => {
     const template = document.getElementById('tpl-log-entry')
     const entryElement = template.content.cloneNode(true)
     const [_, ts, message] = contents.content.match(logMessageRegex)
@@ -37,7 +37,11 @@ const handlers = {
     }
 
     document.getElementById('log').appendChild(entryElement)
-  }
+  },
+  'astoria/astdiskd': contents => {
+    document.querySelectorAll('.controls button')
+      .forEach(el => el.disabled = Object.values(contents.disks).filter(d => d.disk_type === 'USERCODE').length === 0)
+  },
 }
 
 const ack = {
@@ -53,23 +57,22 @@ const ack = {
 
 client.on('message', function (topic, payload) {
   const contents = JSON.parse(payload.toString())
+  console.log(isOwnPayload(contents) ? '🦝' : '🤖', topic, contents)
   if (topic in handlers) {
     handlers[topic](contents)
-  } else {
-    console.log(isOwnPayload(contents) ? '🦝' : '🤖', topic, contents)
   }
 })
 
 const isOwnPayload = contents => contents.hasOwnProperty('sender_name') && contents.sender_name === options.clientId
 
-function uuid4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+function uuid4 () {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8)
     return v.toString(16)
   })
 }
 
-function createPlainLogEntry(text, ...classes) {
+function createPlainLogEntry (text, ...classes) {
   const entry = document.createElement('div')
   entry.classList.add('log-entry')
   for (const className of classes) {
@@ -79,7 +82,7 @@ function createPlainLogEntry(text, ...classes) {
   document.getElementById('log').appendChild(entry)
 }
 
-function sendProcessRequest(type) {
+function sendProcessRequest (type) {
   const requestUuid = uuid4()
   handlers[`astoria/astprocd/request/${type}/${requestUuid}`] = ack[type]
   client.publish(`astoria/astprocd/request/${type}`, JSON.stringify({
