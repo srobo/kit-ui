@@ -1,0 +1,23 @@
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.log-entry__content, .log-entry__ts {
+  display: inline;
+}
+
+.log-entry__ts {
+  font-family: 'Iosevka SS07', monospace;
+}
+
+.text-d-blue {
+  color: #1A237E;
+}
+
+.text-d-red {
+  color: #B71C1C;
+}
+
+.text-bold {
+  font-weight: 700;
+}

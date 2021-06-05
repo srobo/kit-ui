@@ -1,0 +1,27 @@
+<!doctype HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Astoria UI Test</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<div class="controls">
+    <button onclick="sendProcessRequest('restart')">Restart code</button>
+    <button onclick="sendProcessRequest('kill')">Kill</button>
+</div>
+<div id="log">
+
+</div>
+
+<template id="tpl-log-entry">
+    <div class="log-entry">
+        <div class="log-entry__ts"></div>
+        <div class="log-entry__content"></div>
+    </div>
+</template>
+
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
