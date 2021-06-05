@@ -47,11 +47,9 @@ const handlers = {
 const ack = {
   kill: payload => {
     createPlainLogEntry('💀 Killed', 'text-d-red', 'text-bold')
-    delete handlers[payload.uuid]
   },
   restart: payload => {
     createPlainLogEntry('🔄 Restart', 'text-d-blue', 'text-bold')
-    delete handlers[payload.uuid]
   }
 }
 
@@ -78,13 +76,22 @@ function createPlainLogEntry (text, ...classes) {
   for (const className of classes) {
     entry.classList.add(className)
   }
-  entry.textContent = 'Restart'
+  entry.textContent = text
   document.getElementById('log').appendChild(entry)
 }
 
 function sendProcessRequest (type) {
   const requestUuid = uuid4()
-  handlers[`astoria/astprocd/request/${type}/${requestUuid}`] = ack[type]
+  handlers[`astoria/astprocd/request/${type}/${requestUuid}`] = payload => {
+    if (payload.success) {
+      ack[type](payload)
+    } else {
+      const requestTypeName = type.charAt(0).toUpperCase() + type.slice(1)
+      const entryText = `💣 ${requestTypeName} failed - ${payload.reason}`
+      createPlainLogEntry(entryText, 'text-d-red', 'text-bold')
+    }
+    delete handlers[payload.uuid]
+  }
   client.publish(`astoria/astprocd/request/${type}`, JSON.stringify({
     sender_name: options.clientId,
     uuid: requestUuid,
