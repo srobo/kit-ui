@@ -7,8 +7,10 @@
 </head>
 <body>
 <div class="controls">
+    <button onclick="broadcast('start_button')">Start</button>
     <button onclick="sendProcessRequest('restart')">Restart code</button>
     <button onclick="sendProcessRequest('kill')">Kill</button>
+    <button onclick="clearLog()">Clear log</button>
     <span id="status"></span>
 </div>
 <div id="log">

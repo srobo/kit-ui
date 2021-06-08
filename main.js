@@ -58,6 +58,9 @@ const handlers = {
 
     $.log.appendChild(entryFragment)
   },
+  'astoria/broadcast/start_button': contents => {
+    createPlainLogEntry('▶️ Start button pressed', 'text-d-blue', 'text-bold')
+  },
   'astoria/astdiskd': contents => {
     document.querySelectorAll('.controls button')
       .forEach(el => el.disabled = Object.values(contents.disks).filter(d => d.disk_type === 'USERCODE').length === 0)
@@ -119,4 +122,16 @@ function sendProcessRequest (type) {
     sender_name: options.clientId,
     uuid: requestUuid,
   }))
+}
+
+function broadcast(eventName) {
+  client.publish(`astoria/broadcast/${eventName}`, JSON.stringify({
+    sender_name: options.clientId,
+    event_name: eventName,
+    priority: 0,
+  }))
+}
+
+function clearLog() {
+  $.log.innerHTML = ''
 }
