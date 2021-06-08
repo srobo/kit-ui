@@ -44,18 +44,19 @@ client.on('error', function (err) {
 const handlers = {
   'astoria/broadcast/usercode_log': contents => {
     const template = $.templates.logEntry
-    const entryElement = template.content.cloneNode(true)
+    const entryFragment = template.content.cloneNode(true)
     const [_, ts, message] = contents.content.match(logMessageRegex)
 
-    entryElement.querySelector('.log-entry__ts').textContent = ts
-    const contentEl = entryElement.querySelector('.log-entry__content')
+    entryFragment.querySelector('.log-entry').dataset.source = contents.source
+    entryFragment.querySelector('.log-entry__ts').textContent = ts
+    const contentEl = entryFragment.querySelector('.log-entry__content')
     contentEl.textContent = message
 
     if (message.indexOf('WARNING:') === 0) {
       contentEl.classList.add('text-d-orange')
     }
 
-    $.log.appendChild(entryElement)
+    $.log.appendChild(entryFragment)
   },
   'astoria/astdiskd': contents => {
     document.querySelectorAll('.controls button')
