@@ -20,6 +20,7 @@ window.addEventListener('DOMContentLoaded', event => {
     templates: {
       logEntry: document.getElementById('tpl-log-entry'),
     },
+    mode_select: document.getElementById('mode_select')
   }
 })
 
@@ -65,6 +66,9 @@ const handlers = {
     document.querySelectorAll('.controls button')
       .forEach(el => el.disabled = Object.values(contents.disks).filter(d => d.disk_type === 'USERCODE').length === 0)
   },
+  'astoria/astmetad': contents => {
+    $.mode_select.value = contents.metadata.mode
+  },
   'astoria/astprocd': contents => {
     $.status.textContent = status_labels[contents.code_status]
   }
@@ -106,7 +110,7 @@ function createPlainLogEntry (text, ...classes) {
   $.log.appendChild(entry)
 }
 
-function sendProcessRequest (type) {
+function sendProcessRequest(type) {
   const requestUuid = uuid4()
   handlers[`astoria/astprocd/request/${type}/${requestUuid}`] = payload => {
     if (payload.success) {
@@ -121,6 +125,20 @@ function sendProcessRequest (type) {
   client.publish(`astoria/astprocd/request/${type}`, JSON.stringify({
     sender_name: options.clientId,
     uuid: requestUuid,
+  }))
+}
+
+function sendMutateRequest(attr, value) {
+  const requestUuid = uuid4()
+  handlers[`astoria/astmetad/request/mutate/${requestUuid}`] = payload => {
+    if (!payload.success) {
+      createPlainLogEntry(`⚠️ ${payload.reason}`, 'text-d-orange', 'text-bold')
+    }
+  }
+  client.publish('astoria/astmetad/request/mutate', JSON.stringify({
+    sender_name: options.clientId,
+    uuid: requestUuid,
+    attr, value
   }))
 }
 

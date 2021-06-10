@@ -2,6 +2,11 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
 .log-entry[data-source="stderr"] > .log-entry__content {
   color: #B71C1C;
 }

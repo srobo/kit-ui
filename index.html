@@ -2,20 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astoria UI Test</title>
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
 <div class="controls">
-    <button onclick="broadcast('start_button')">Start</button>
-    <button onclick="sendProcessRequest('restart')">Restart code</button>
-    <button onclick="sendProcessRequest('kill')">Kill</button>
-    <button onclick="clearLog()">Clear log</button>
-    <span id="status"></span>
+    <div class="controls__block">
+        <button onclick="broadcast('start_button')">Start</button>
+        <button onclick="sendProcessRequest('restart')">Restart code</button>
+        <button onclick="sendProcessRequest('kill')">Kill</button>
+        <button onclick="clearLog()">Clear log</button>
+        <span id="status"></span>
+    </div>
+    <div class="controls__block">
+        <select name="mode" id="mode_select" onchange="sendMutateRequest(this.name, this.value)">
+            <option value="DEV">Development mode</option>
+            <option value="COMP">Competition mode</option>
+        </select>
+        <select name="zone" id="zone_select" onchange="sendMutateRequest(this.name, this.value)">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
 </div>
-<div id="log">
-
-</div>
+<div id="log"></div>
 
 <template id="tpl-log-entry">
     <div class="log-entry">
