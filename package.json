@@ -1,0 +1,30 @@
+{
+  "name": "astoria-ui-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raccube/astoria-ui-test.git"
+  },
+  "author": "Karina Kwiatek <kkwiatek@studentrobotics.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raccube/astoria-ui-test/issues"
+  },
+  "homepage": "https://github.com/raccube/astoria-ui-test#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.1",
+    "parcel": "^2.0.1"
+  },
+  "dependencies": {
+    "@mdi/font": "^6.5.95",
+    "bulma": "^0.9.3",
+    "mqtt": "^4.2.8"
+  }
+}

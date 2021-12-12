@@ -1,0 +1,30 @@
+$primary: #3270ed;
+$family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Cantarell", "Ubuntu", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+$navbar-breakpoint: 1px;
+
+@import "node_modules/bulma";
+
+.controls {
+  display: flex;
+  padding: 4px;
+  background: $light;
+  border: 1px solid $border-light;
+
+  & > .field {
+    margin-bottom: 0;
+  }
+}
+
+#status {
+  margin: .5em 4px;
+  flex-grow: 1;
+}
+
+.plain-log-entry {
+  text-align: center;
+  font-family: $family-sans-serif;
+}
+
+.button > .icon {
+  pointer-events: none;
+}

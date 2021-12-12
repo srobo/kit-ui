@@ -1,0 +1,91 @@
+<!doctype HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#3270ed">
+    <title>Robot</title>
+    <link rel="stylesheet" href="../node_modules/@mdi/font/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="style.scss">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+<div class="controls">
+    <div class="field has-addons">
+        <p class="control">
+            <button class="button" data-action="start" title="Start">
+            <span class="icon has-text-success">
+                <span class="mdi mdi-24px mdi-play"></span>
+            </span>
+            </button>
+        </p>
+        <p class="control">
+            <button class="button" data-action="restart" title="Restart">
+            <span class="icon has-text-success">
+                <span class="mdi mdi-24px mdi-restart"></span>
+            </span>
+            </button>
+        </p>
+        <p class="control">
+            <button class="button" data-action="kill" title="Kill">
+            <span class="icon has-text-danger">
+                <span class="mdi mdi-24px mdi-close-octagon"></span>
+            </span>
+            </button>
+        </p>
+        <p class="control">
+            <button class="button" data-action="clearLog" title="Clear log">
+            <span class="icon has-text-link">
+                <span class="mdi mdi-24px mdi-delete-sweep"></span>
+            </span>
+            </button>
+        </p>
+    </div>
+    <p id="status"></p>
+    <div class="field is-grouped metadata-selectors">
+        <div class="control">
+            <div class="select">
+                <select id="mode_select" data-property="mode" class="sends-mutate-request">
+                    <option value="DEV">Development mode</option>
+                    <option value="COMP">Competition mode</option>
+                </select>
+            </div>
+        </div>
+        <div class="control">
+            <div class="select">
+                <select id="zone_select" data-property="zone" class="sends-mutate-request">
+                    <option value="0">Zone 0</option>
+                    <option value="1">Zone 1</option>
+                    <option value="2">Zone 2</option>
+                    <option value="3">Zone 3</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table is-striped is-narrow is-hoverable is-fullwidth is-family-monospace">
+    <tbody id="log"></tbody>
+</table>
+
+<div class="modal is-active" id="modal-disconnected">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <section class="modal-card-body">
+            <h1 class="title">Connecting to robot&hellip;</h1>
+            <p>If you find this is taking longer than a minute to connect, try refreshing the page or power cycling your robot. If issues persist, send us a message in the #kit channel in Discord.</p>
+
+            <progress id="serviceProgress" class="progress is-primary" max="4"></progress>
+        </section>
+    </div>
+</div>
+
+<template id="tpl-log-entry">
+    <tr class="log-entry">
+        <td class="log-entry__ts is-narrow"></td>
+        <td class="log-entry__content"></td>
+    </tr>
+</template>
+
+<script src="main.js" type="module"></script>
+</body>
+</html>
