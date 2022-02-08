@@ -19,6 +19,13 @@ let connectedServices = {
   'astprocd': false,
 }
 let $ = {}
+let shouldAutoScroll = true
+
+window.addEventListener('scroll', function(e) {
+  shouldAutoScroll = window.scrollY + window.innerHeight >= document.body.scrollHeight
+}, {
+  passive: true,
+})
 
 function updateServiceState() {
   const runningServiceCount = Object.values(connectedServices).filter(val => val).length
@@ -116,6 +123,7 @@ const handlers = {
     }
 
     $.log.appendChild(entryFragment)
+    if(shouldAutoScroll) contentEl.scrollIntoView()
   },
   'astoria/broadcast/start_button': contents => {
     createPlainLogEntry('▶️ Start button pressed', 'text-d-blue', 'text-bold')
