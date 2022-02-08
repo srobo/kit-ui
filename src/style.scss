@@ -12,7 +12,6 @@ $navbar-breakpoint: 1px;
   position: fixed;
   width: 100%;
   top:0;
-  max-height: 50px;
 
   & > .field {
     margin-bottom: 0;
@@ -20,7 +19,8 @@ $navbar-breakpoint: 1px;
 }
 
 .log-table{
-  margin-top: 50px;
+  // button height + (4px padding * 2) + (1px border * 2)
+  margin-top: calc(2.5em + 8px + 2px);
 }
 
 #status {
