@@ -2,17 +2,25 @@ $primary: #3270ed;
 $family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Cantarell", "Ubuntu", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 $navbar-breakpoint: 1px;
 
-@import "node_modules/bulma";
+@import "node_modules/bulma/bulma";
 
 .controls {
   display: flex;
   padding: 4px;
   background: $light;
   border: 1px solid $border-light;
+  position: fixed;
+  width: 100%;
+  top:0;
+  max-height: 50px;
 
   & > .field {
     margin-bottom: 0;
   }
+}
+
+.log-table{
+  margin-top: 50px;
 }
 
 #status {
