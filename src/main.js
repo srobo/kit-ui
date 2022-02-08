@@ -116,6 +116,7 @@ const handlers = {
     }
 
     $.log.appendChild(entryFragment)
+    contentEl.scrollIntoView()
   },
   'astoria/broadcast/start_button': contents => {
     createPlainLogEntry('▶️ Start button pressed', 'text-d-blue', 'text-bold')
