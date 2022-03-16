@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import { MqttTopics, LogMessageRegex } from "constants/astoria";
+import React from "react";
+import { MqttTopics } from "constants/astoria";
 import { useMqttSubscription } from "modules/mqtt";
 import { ControlButton } from "components/Shared";
+import { useDispatch, useSelector } from "react-redux";
+import { getLogsState } from "./selectors";
+import { addUserCodeLogEntry } from "./logsSlice";
 
 const LogTable = ({ client }) => {
-  const [logs, setLogs] = useState([]);
+  const { logs } = useSelector(getLogsState);
+  const dispatch = useDispatch();
   useMqttSubscription(client, MqttTopics.UserCodeLog, (contents) => {
-    setLogs((oldLogs) => [...oldLogs, contents.content]);
+    dispatch(addUserCodeLogEntry(contents.content));
   });
 
   return (
@@ -25,8 +29,7 @@ const LogTable = ({ client }) => {
   );
 };
 
-const LogEntry = ({ log }) => {
-  const [_, ts, message] = log.match(LogMessageRegex);
+const LogEntry = ({ log: { ts, message } }) => {
   return (
     <tr>
       <td>

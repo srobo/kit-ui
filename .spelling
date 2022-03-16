@@ -9,3 +9,6 @@ xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
 
 # config
 lcov
+
+# node_modules
+reduxjs
