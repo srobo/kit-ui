@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { MqttTopics, LogMessageRegex } from "constants/astoria";
 import { useMqttSubscription } from "modules/mqtt";
 import { ControlButton } from "components/Shared";
 
 const LogTable = ({ client }) => {
-  const [logs, setLogs] = React.useState([]);
+  const [logs, setLogs] = useState([]);
   useMqttSubscription(client, MqttTopics.UserCodeLog, (contents) => {
     setLogs((oldLogs) => [...oldLogs, contents.content]);
   });
