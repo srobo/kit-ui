@@ -27,6 +27,18 @@ module.exports = (env, argv) => {
       usedExports: true,
       sideEffects: true,
       innerGraph: true,
+      splitChunks: {
+        chunks: "all",
+        name: "vendors",
+        cacheGroups: {
+          // "common" packages change versions rarely to make caching the bundle more effective
+          common: {
+            test: /[\\/]node_modules[\\/](buffer|core-js|lodash|lodash-es|luxon|moment|react|react-dom|mqtt|whatwg-fetch)[\\/]/,
+            name: "common",
+            chunks: "all",
+          },
+        },
+      },
     },
     devServer: {
       port: config.devServerPort,

@@ -7,7 +7,7 @@ module.exports = function (api) {
         "@babel/preset-env",
         {
           targets: {
-            browsers: [">0.25%"],
+            browsers: [">1%", "not ie 11", "not op_mini all"],
           },
         },
       ],
@@ -18,6 +18,8 @@ module.exports = function (api) {
         },
       ],
     ],
-    plugins: ["@babel/plugin-proposal-class-properties"],
+    targets: {
+      browsers: [">1%", "not ie 11", "not op_mini all"],
+    },
   };
 };
