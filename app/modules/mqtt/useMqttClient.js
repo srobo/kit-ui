@@ -5,7 +5,7 @@ import { MqttOptions, MqttUrl } from "constants/mqtt";
 const useMqttClient = () => {
   const [client, setClient] = useState(null);
   useEffect(() => {
-    const clientId = "mqttjs_" + Math.random().toString(16).substring(2, 8);
+    const clientId = "mqtt_js_" + Math.random().toString(16).substring(2, 8);
     const isOwnPayload = (contents) =>
       Object.prototype.hasOwnProperty.call(contents, "sender_name") &&
       contents.sender_name === clientId;

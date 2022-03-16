@@ -1,6 +1,5 @@
 export const MqttOptions = {
   keepalive: 30,
-  clientId: "mqttjs_" + Math.random().toString(16).substring(2, 8),
   protocolId: "MQTT",
   protocolVersion: 4,
   clean: true,
