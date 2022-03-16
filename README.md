@@ -16,7 +16,7 @@ A browser based interface for [Astoria](https://github.com/srobo/astoria) based 
 
 2. Create a `robot.zip` and place it in astoria's `docker/usb` directory.
 
-   To create a `robot.zip` zip up a `robot.py` file. Some exmaple code you could use can be found below
+   To create a `robot.zip` zip up a `robot.py` file. Some example code you could use can be found below
 
    ```python
     from time import sleep
