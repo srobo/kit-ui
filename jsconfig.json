@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./app",
+    "paths": {
+      "components/*": [
+        "./components/*"
+      ],
+      "constants/*": [
+        "./constants/*"
+      ],
+      "modules/*": [
+        "./modules/*"
+      ]
+    }
+  },
+  "exclude": [
+    "build",
+    "node_modules"
+  ]
+}

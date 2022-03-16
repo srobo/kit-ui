@@ -1,0 +1,75 @@
+{
+  "name": "kit-ui",
+  "version": "0.1.0",
+  "description": "SR Kit UI",
+  "author": "Student Robotics",
+  "license": "MIT",
+  "main": "app/index.js",
+  "private": "true",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srobo/kit-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/srobo/kit-ui/issues"
+  },
+  "homepage": "https://github.com/srobo/kit-ui#readme",
+  "engines": {
+    "node": ">=12.22.0"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --mode development",
+    "build": "webpack --mode production --progress",
+    "start": "node ./express-server.js",
+    "lint": "eslint app/",
+    "lint-staged": "lint-staged",
+    "test": "jest --passWithNoTests",
+    "test:watch": "npm test -- --watch",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,css,scss}": [
+      "prettier --write --tab-width 2"
+    ]
+  },
+  "dependencies": {
+    "core-js": "^3.21.1",
+    "mqtt": "^4.3.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.2",
+    "whatwg-fetch": "^3.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/eslint-parser": "^7.17.0",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-jest": "^27.5.1",
+    "babel-loader": "^8.2.3",
+    "buffer": "^6.0.3",
+    "css-loader": "^6.7.1",
+    "eslint": "^8.11.0",
+    "eslint-import-resolver-webpack": "^0.13.2",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "html-webpack-plugin": "^5.5.0",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "js-yaml": "^4.1.0",
+    "lint-staged": "^12.3.5",
+    "mini-css-extract-plugin": "^2.6.0",
+    "path-browserify": "^1.0.1",
+    "prettier": "^2.5.1",
+    "process": "^0.11.10",
+    "sass": "^1.49.9",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "url": "^0.11.0",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}
