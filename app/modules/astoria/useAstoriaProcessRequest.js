@@ -1,9 +1,12 @@
+import { addPlainLogEntry } from "components/LogViewer";
 import { MqttTopics } from "constants/astoria";
 import { uuid4 } from "modules/utils";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 const useAstoriaProcessRequest = (client, type, handler) => {
   const [uuid, setUuid] = useState(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     const wrappedHandler = (topic, payload) => {
       if (topic != MqttTopics.ProcessRequestIndividual(type, uuid)) return;
@@ -11,8 +14,9 @@ const useAstoriaProcessRequest = (client, type, handler) => {
       if (contents.success) {
         handler(contents);
       } else {
-        console.error(contents.reason);
-        //TODO: Add Error to log table
+        const requestTypeName = topic.charAt(0).toUpperCase() + topic.slice(1);
+        const entryText = `💣 ${requestTypeName} failed - ${payload.reason}`;
+        dispatch(addPlainLogEntry(entryText));
       }
     };
 
@@ -23,7 +27,7 @@ const useAstoriaProcessRequest = (client, type, handler) => {
     return () => {
       client?.off("message", wrappedHandler);
     };
-  }, [client, handler, type, uuid]);
+  }, [dispatch, client, handler, type, uuid]);
 
   return () => {
     const uuid = uuid4();
