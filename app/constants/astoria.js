@@ -12,4 +12,4 @@ export const MqttTopics = {
   EventBroadcast: (eventType) => `astoria/broadcast/${eventType}`,
 };
 
-export const LogMessageRegex = /\[(\d+:\d{2}:\d{2}\.\d+)] (.*)/;
+export const LogMessageRegex = /\[(\d+:\d{2}:\d{2}\.?\d*)] (.*)/;
