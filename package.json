@@ -39,7 +39,7 @@
     "core-js": "^3.23.1",
     "mqtt": "^4.3.7",
     "react": "^18.2.0",
-    "react-dom": "^18.1.0",
+    "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "whatwg-fetch": "^3.6.2"
