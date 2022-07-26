@@ -1,12 +1,14 @@
+import RobotControls from "./RobotControls";
 import React from "react";
 import LogTable from "./LogTable";
 
 const LogViewer = ({ client }) => {
   return (
-    <React.Fragment>
+    <main>
       <h1>Logs</h1>
+      <RobotControls client={client} />
       <LogTable client={client} />
-    </React.Fragment>
+    </main>
   );
 };
 

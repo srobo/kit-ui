@@ -1,2 +1,4 @@
-export { default as useAstoriaProcessRequest } from "./useAstoriaProcessRequest";
-export { default as useAstoriaMutateRequest } from "./useAstoriaMutateRequest";
+export {
+  default as useAstoriaRequest,
+  wrapHandler as wrapProcessRequestHandler,
+} from "./useAstoriaRequest";

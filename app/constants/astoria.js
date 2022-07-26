@@ -1,3 +1,9 @@
+export const MqttRequestTypes = {
+  Request: "request",
+  Broadcast: "broadcast",
+  Mutate: "mutate",
+};
+
 export const MqttTopics = {
   UserCodeLog: "astoria/broadcast/usercode_log",
   StartButton: "astoria/broadcast/start_button",
