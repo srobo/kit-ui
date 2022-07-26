@@ -1,5 +1,5 @@
 import React from "react";
-import { wrapProcessRequestHandler } from "modules/astoria";
+import { wrapRequestHandler } from "modules/astoria";
 import { MqttRequestTypes, MqttTopics } from "constants/astoria";
 import { uuid4 } from "modules/utils";
 import { useDispatch } from "react-redux";
@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 const generateHandler = (request, uuid, actions, uuids, client, dispatch) => {
   const nextRequest = actions.shift();
   const nextUuid = uuids.shift();
-  const handler = wrapProcessRequestHandler(
+  const handler = wrapRequestHandler(
     () => {
       if (nextRequest) {
         const nextHandler = generateHandler(

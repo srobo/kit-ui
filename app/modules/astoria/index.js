@@ -1,4 +1,4 @@
 export {
   default as useAstoriaRequest,
-  wrapHandler as wrapProcessRequestHandler,
+  wrapHandler as wrapRequestHandler,
 } from "./useAstoriaRequest";
