@@ -35,7 +35,7 @@
     ]
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.8.3",
+    "@reduxjs/toolkit": "^1.8.4",
     "core-js": "^3.24.1",
     "mqtt": "^4.3.7",
     "react": "^18.2.0",
