@@ -52,7 +52,7 @@
     "babel-jest": "^29.0.3",
     "babel-loader": "^8.2.5",
     "buffer": "^6.0.3",
-    "cspell": "^6.8.2",
+    "cspell": "^6.9.0",
     "css-loader": "^6.7.1",
     "eslint": "^8.23.1",
     "eslint-import-resolver-webpack": "^0.13.2",
