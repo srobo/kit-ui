@@ -1,7 +1,6 @@
 import React from "react";
 import { MqttTopics } from "constants/astoria";
 import { useMqttSubscription } from "modules/mqtt";
-import { ControlButton } from "components/Shared";
 import { useDispatch, useSelector } from "react-redux";
 import { getLogsState } from "./selectors";
 import { addUserCodeLogEntry } from "./logsSlice";
@@ -14,18 +13,13 @@ const LogTable = ({ client }) => {
   });
 
   return (
-    <React.Fragment>
-      <div>
-        <ControlButton client={client} action="kill" content="Kill" />
-      </div>
-      <table>
-        <tbody>
-          {logs.map((log, index) => (
-            <LogEntry key={index} log={log} />
-          ))}
-        </tbody>
-      </table>
-    </React.Fragment>
+    <table>
+      <tbody>
+        {logs.map((log, index) => (
+          <LogEntry key={index} log={log} />
+        ))}
+      </tbody>
+    </table>
   );
 };
 

@@ -10,9 +10,10 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended",
   ],
   parser: "@babel/eslint-parser",
-  plugins: ["react", "react-hooks", "import"],
+  plugins: ["react", "react-hooks", "import", "jsx-a11y"],
   rules: {
     "react/prop-types": [0],
     "react/display-name": [0],
@@ -56,6 +57,6 @@ module.exports = {
       // Components used as alternatives to <a> for linking, eg. <Link to={ url } />
       { name: "Link", linkAttribute: "to" },
     ],
-    "import/resolver": "webpack",
+    "import/resolver": ["webpack", "node"],
   },
 };

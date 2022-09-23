@@ -1,3 +1,9 @@
+export const MqttRequestTypes = {
+  Request: "request",
+  Broadcast: "broadcast",
+  Mutate: "mutate",
+};
+
 export const MqttTopics = {
   UserCodeLog: "astoria/broadcast/usercode_log",
   StartButton: "astoria/broadcast/start_button",
@@ -12,4 +18,4 @@ export const MqttTopics = {
   EventBroadcast: (eventType) => `astoria/broadcast/${eventType}`,
 };
 
-export const LogMessageRegex = /\[(\d+:\d{2}:\d{2}\.\d+)] (.*)/;
+export const LogMessageRegex = /\[(\d+:\d{2}:\d{2}\.?\d*)] (.*)/;
