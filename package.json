@@ -18,16 +18,16 @@
   },
   "homepage": "https://github.com/srobo/kit-ui-basic#readme",
   "devDependencies": {
-    "@parcel/transformer-sass": "2.0.1",
+    "@parcel/transformer-sass": "2.7.0",
     "events": "3.3.0",
-    "parcel": "2.0.1",
+    "parcel": "2.7.0",
     "process": "0.11.10",
     "querystring-es3": "0.2.1",
     "url": "0.11.0"
   },
   "dependencies": {
-    "@mdi/font": "6.5.95",
-    "bulma": "0.9.3",
-    "mqtt": "4.2.8"
+    "@mdi/font": "7.0.96",
+    "bulma": "0.9.4",
+    "mqtt": "4.3.7"
   }
 }
