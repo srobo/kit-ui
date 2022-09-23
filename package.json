@@ -45,7 +45,7 @@
     "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
-    "@axe-core/react": "^4.4.3",
+    "@axe-core/react": "^4.4.4",
     "@babel/core": "^7.19.1",
     "@babel/eslint-parser": "^7.19.1",
     "@babel/preset-env": "^7.19.1",
