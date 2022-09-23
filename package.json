@@ -28,6 +28,6 @@
   "dependencies": {
     "@mdi/font": "^6.5.95",
     "bulma": "^0.9.3",
-    "mqtt": "^4.2.8"
+    "mqtt": "^4.3.7"
   }
 }
