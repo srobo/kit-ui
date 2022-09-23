@@ -12,7 +12,7 @@ const options = {
 };
 
 const client = mqtt.connect(`ws://${location.hostname}:9001`, options);
-const logMessageRegex = /\[(\d+:\d{2}:\d{2}\.\d+)] (.*)/;
+const logMessageRegex = /\[(\d+:\d{2}:\d{2}\.?\d*)] (.*)/;
 let connectedServices = {
   astdiskd: false,
   astmetad: false,
