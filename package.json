@@ -1,8 +1,7 @@
 {
-  "name": "astoria-ui-test",
+  "name": "kit-ui-basic",
   "version": "1.0.0",
   "description": "",
-  "main": "src/main.js",
   "source": "src/index.html",
   "scripts": {
     "start": "parcel",
@@ -10,17 +9,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/raccube/astoria-ui-test.git"
+    "url": "git+https://github.com/srobo/kit-ui-basic.git"
   },
   "author": "Karina Kwiatek <kkwiatek@studentrobotics.org>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/raccube/astoria-ui-test/issues"
+    "url": "https://github.com/srobo/kit-ui-basic/issues"
   },
-  "homepage": "https://github.com/raccube/astoria-ui-test#readme",
+  "homepage": "https://github.com/srobo/kit-ui-basic#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.1",
-    "parcel": "^2.0.1"
+    "events": "^3.3.0",
+    "parcel": "^2.0.1",
+    "process": "^0.11.10",
+    "querystring-es3": "^0.2.1",
+    "url": "^0.11.0"
   },
   "dependencies": {
     "@mdi/font": "^6.5.95",
