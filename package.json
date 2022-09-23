@@ -25,6 +25,9 @@
     "querystring-es3": "0.2.1",
     "url": "0.11.0"
   },
+  "optionalDependencies": {
+    "lightningcss-linux-x64-gnu": "1.16.0"
+  },
   "dependencies": {
     "@mdi/font": "7.0.96",
     "bulma": "0.9.4",
