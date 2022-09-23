@@ -144,15 +144,6 @@ const handlers = {
   "astoria/astdiskd": (contents) => {
     connectedServices["astdiskd"] = contents.status === "RUNNING";
     updateServiceState();
-    document
-      .querySelectorAll(".controls button")
-      .forEach(
-        (el) =>
-          (el.disabled =
-            Object.values(contents.disks).filter(
-              (d) => d.disk_type === "USERCODE"
-            ).length === 0)
-      );
   },
   "astoria/astmetad": (contents) => {
     connectedServices["astmetad"] = contents.status === "RUNNING";
