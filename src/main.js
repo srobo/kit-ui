@@ -2,7 +2,7 @@ import mqtt from "mqtt";
 
 const options = {
   keepalive: 30,
-  clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),
+  clientId: "mqttjs_" + Math.random().toString(16).substring(2, 8),
   protocolId: "MQTT",
   protocolVersion: 4,
   clean: true,
@@ -12,7 +12,7 @@ const options = {
 };
 
 const client = mqtt.connect(`ws://${location.hostname}:9001`, options);
-const logMessageRegex = /\[(\d+:\d{2}:\d{2}\.\d+)] (.*)/;
+const logMessageRegex = /\[(\d+:\d{2}:\d{2}\.?\d*)] (.*)/;
 let connectedServices = {
   astdiskd: false,
   astmetad: false,
@@ -144,15 +144,6 @@ const handlers = {
   "astoria/astdiskd": (contents) => {
     connectedServices["astdiskd"] = contents.status === "RUNNING";
     updateServiceState();
-    document
-      .querySelectorAll(".controls button")
-      .forEach(
-        (el) =>
-          (el.disabled =
-            Object.values(contents.disks).filter(
-              (d) => d.disk_type === "USERCODE"
-            ).length === 0)
-      );
   },
   "astoria/astmetad": (contents) => {
     connectedServices["astmetad"] = contents.status === "RUNNING";

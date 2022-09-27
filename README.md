@@ -14,9 +14,9 @@ A browser based interface for [Astoria](https://github.com/srobo/astoria) based 
 
 1. Clone [Astoria](https://github.com/srobo/astoria) and follow their docs on running in [Docker](https://srobo.github.io/astoria/development/index.html#running-in-docker).
 
-2. Create a `robot.zip` and place it in astoria's `docker/usb` directory.
+2. Create a `robot.py` and place it in astoria's `docker/usb` directory.
 
-   To create a `robot.zip` zip up a `robot.py` file. Some example code you could use can be found below
+   Some example code you could use can be found below
 
    ```python
     from time import sleep
