@@ -34,6 +34,17 @@ body {
     bottom: 0;
     top: initial;
     position: fixed;
+    flex-direction: row-reverse;
+
+    .control-buttons {
+        flex-direction: row-reverse;
+    }
+
+    #status {
+      display: flex;
+      justify-content: flex-end;
+    }
+
   }
 
   & > .field {
