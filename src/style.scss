@@ -1,8 +1,25 @@
 $primary: #3270ed;
 $family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Cantarell", "Ubuntu", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 $navbar-breakpoint: 1px;
+$mobile-breakpoint: 640px;
 
 @import "node_modules/bulma/bulma";
+
+body {
+  @media screen and (max-width: $mobile-breakpoint) {
+    display: flex;
+    flex-direction: column-reverse;
+    // justify-content: space-between; // Uncomment to scroll from top of screen down
+    min-height: 100vh;
+  }
+
+  // In the rendered DOM there is an empty div with the inline style
+  // "position: static !important;" at the end of the body.
+  // This workaround stops it interfering with the flexbox layout.
+  > div:last-of-type {
+    display: none;
+  }
+}
 
 .controls {
   display: flex;
@@ -13,14 +30,34 @@ $navbar-breakpoint: 1px;
   width: 100%;
   top:0;
 
+  @media screen and (max-width: $mobile-breakpoint) {
+    bottom: 0;
+    top: initial;
+    position: fixed;
+  }
+
   & > .field {
     margin-bottom: 0;
   }
 }
 
+.metadata-selectors {
+ @media screen and (max-width: $mobile-breakpoint) {
+    display: none !important; // Override Bulma .field.is-grouped
+  }
+  display: initial;
+}
+
 .log-table{
   // button height + (4px padding * 2) + (1px border * 2)
-  margin-top: calc(2.5em + 8px + 2px);
+  $controls-height: calc(2.5em + 8px + 2px);
+  margin-top: $controls-height;
+  margin-bottom: 0 !important; // Override Bulma .table:not(:last-child)
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    margin-bottom: $controls-height !important; // Override Bulma .table:not(:last-child)
+    margin-top: 0;
+  }
 }
 
 #status {

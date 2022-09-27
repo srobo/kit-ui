@@ -161,7 +161,14 @@ const handlers = {
 
 const ack = {
   kill: (payload) => {
-    createPlainLogEntry("💀 Killed", "text-d-red", "text-bold");
+    const logEntry = createPlainLogEntry(
+      "💀 Killed",
+      "text-d-red",
+      "text-bold"
+    );
+    if (shouldAutoScroll) {
+      logEntry.scrollIntoView();
+    }
   },
   restart: (payload) => {
     createPlainLogEntry("🔄 Restart", "text-d-blue", "text-bold");
@@ -196,6 +203,7 @@ function createPlainLogEntry(text, ...classes) {
   entryContentElement.setAttribute("colspan", 2);
   entry.appendChild(entryContentElement);
   $.log.appendChild(entry);
+  return entry;
 }
 
 function sendProcessRequest(type) {
