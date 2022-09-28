@@ -22,11 +22,20 @@ body {
   width: 100%;
   top:0;
 
+  .mobile-metadata-toggle {
+    display: none;
+  }
+
+  #mobile-metadata-controls {
+    display: none;
+  }
+
   @media screen and (max-width: $mobile-breakpoint) {
     bottom: 0;
     top: initial;
     position: fixed;
     flex-direction: row-reverse;
+    flex-wrap: wrap-reverse;
 
     .control-buttons {
         flex-direction: row-reverse;
@@ -37,10 +46,80 @@ body {
       justify-content: flex-end;
     }
 
+    .mobile-metadata-toggle {
+      display: flex;
+      flex-basis: 100%;
+      height: 0;
+    }
+
+    #mobile-metadata-controls{
+      &.is-active {
+        display: flex;
+        padding-bottom: 0.5rem;
+        flex-direction: column;
+      }
+    }
+
+    .mobile-control {
+      display: flex;
+      align-items: center;
+
+      .mobile-control-label {
+        font-weight: bold;
+        margin-right: 0.5rem;
+        &:after {
+          content: ":";
+        }
+      }
+    }
   }
 
   & > .field {
     margin-bottom: 0;
+  }
+
+  .radio-buttons {
+    list-style-type: none;
+
+    & li {
+      float: left;
+      width: 128px;
+      height: 2rem;
+      position: relative;
+      margin-right: 0;
+      padding-right: 0;
+    }
+
+    & li.compact {
+      width: 64px;
+    }
+
+    & label,input{
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    & input[type="radio"] {
+      opacity: 0;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    & input[type="radio"]:checked + label {
+      background-color: $primary;
+      color: $white;
+    }
+
+    & label {
+      background-color: $white;
+      color: $dark;
+      text-align: center;
+      line-height: 2rem;
+    }
   }
 }
 
