@@ -12,13 +12,6 @@ body {
     // justify-content: space-between; // Uncomment to scroll from top of screen down
     min-height: 100vh;
   }
-
-  // In the rendered DOM there is an empty div with the inline style
-  // "position: static !important;" at the end of the body.
-  // This workaround stops it interfering with the flexbox layout.
-  > div:last-of-type {
-    display: none;
-  }
 }
 
 .controls {
