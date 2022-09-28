@@ -9,7 +9,6 @@ body {
   @media screen and (max-width: $mobile-breakpoint) {
     display: flex;
     flex-direction: column-reverse;
-    // justify-content: space-between; // Uncomment to scroll from top of screen down
     min-height: 100vh;
   }
 }
