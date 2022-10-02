@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="controls">
-    <div class="field has-addons">
+    <div class="field has-addons control-buttons">
         <p class="control">
             <button class="button" data-action="start" title="Start">
             <span class="icon has-text-success">
@@ -61,6 +61,51 @@
                 </select>
             </div>
         </div>
+    </div>
+    <div class="mobile-metadata-toggle">
+        <p class="control">
+            <span id="mobile-metadata-toggle" tabindex="0" class="button">
+                <span class="icon has-text-link">
+                    <span class="mdi mdi-24px mdi-cog" />
+                </span>
+            </span>
+        </p>
+    </div>
+    <div id="mobile-metadata-controls">
+        <div class="mobile-control">
+            <span class="mobile-control-label">Mode</span>
+            <ul class="radio-buttons">
+                <li>
+                    <input type="radio" name="mode" id="mode-dev" value="DEV" class="sends-mutate-request" checked>
+                    <label for="mode-dev">Development</label>
+                </li>
+                <li>
+                    <input type="radio" name="mode" id="mode-comp" value="COMP" class="sends-mutate-request">
+                    <label for="mode-comp">Competition</label>
+                </li>
+            </ul>
+        </div>
+        <div class="mobile-control">
+            <span class="mobile-control-label" style="margin-right: 0.85rem;">Zone</span>
+            <ul class="radio-buttons">
+                <li class="compact">
+                    <input type="radio" name="zone" id="zone-0" value="0" class="sends-mutate-request" checked>
+                    <label for="zone-0">0</label>
+                </li>
+                <li class="compact">
+                    <input type="radio" name="zone" id="zone-1" value="1" class="sends-mutate-request">
+                    <label for="zone-1">1</label>
+                </li>
+                <li class="compact">
+                    <input type="radio" name="zone" id="zone-2" value="2" class="sends-mutate-request">
+                    <label for="zone-2">2</label>
+                </li>
+                <li class="compact">
+                    <input type="radio" name="zone" id="zone-3" value="3" class="sends-mutate-request">
+                    <label for="zone-3">3</label>
+                </li>
+            </ul>
+    </div>
     </div>
 </div>
 <table class="log-table table is-striped is-narrow is-hoverable is-fullwidth is-family-monospace">
