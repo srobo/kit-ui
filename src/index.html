@@ -108,9 +108,8 @@
     </div>
     </div>
 </div>
-<table class="log-table table is-striped is-narrow is-hoverable is-fullwidth is-family-monospace">
-    <tbody id="log"></tbody>
-</table>
+<div class="log-list" id="log">
+</div>
 
 <div class="modal is-active" id="modal-disconnected">
     <div class="modal-background"></div>
@@ -125,10 +124,10 @@
 </div>
 
 <template id="tpl-log-entry">
-    <tr class="log-entry">
-        <td class="log-entry__ts is-narrow"></td>
-        <td class="log-entry__content"></td>
-    </tr>
+    <div class="log-entry">
+        <div class="log-entry__ts is-narrow"></div>
+        <div class="log-entry__content"></div>
+    </div>
 </template>
 
 <script src="main.js" type="module"></script>
