@@ -204,12 +204,9 @@ function uuid4() {
 }
 
 function createPlainLogEntry(text, ...classes) {
-  const entry = document.createElement("tr");
-  const entryContentElement = document.createElement("td");
+  const entry = document.createElement("div");
   entry.classList.add("plain-log-entry", ...classes);
-  entryContentElement.textContent = text;
-  entryContentElement.setAttribute("colspan", 2);
-  entry.appendChild(entryContentElement);
+  entry.textContent = text;
   $.log.appendChild(entry);
   return entry;
 }
