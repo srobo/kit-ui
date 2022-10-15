@@ -84,6 +84,10 @@ body {
       display: flex;
       align-items: center;
 
+      &:not(:last-child) {
+        margin-bottom: 0.25rem;
+      }
+
       .mobile-control-label {
         font-weight: bold;
         margin-right: 0.5rem;
@@ -108,10 +112,22 @@ body {
       position: relative;
       margin-right: 0;
       padding-right: 0;
-    }
 
-    & li.compact {
-      width: 64px;
+      &.compact {
+        width: 64px;
+      }
+
+      &:first-child {
+        label{
+          border-radius: 4px 0 0 4px;
+        }
+      }
+
+      &:last-child {
+        label{
+          border-radius: 0 4px 4px 0;
+        }
+      }
     }
 
     & label,input{
@@ -127,11 +143,11 @@ body {
       opacity: 0;
       z-index: 1;
       cursor: pointer;
-    }
 
-    & input[type="radio"]:checked + label {
-      background-color: $primary;
-      color: $white;
+      &:checked + label {
+        background-color: $primary;
+        color: $white;
+      }
     }
 
     & label {
