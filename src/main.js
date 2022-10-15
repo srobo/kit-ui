@@ -157,6 +157,12 @@ const handlers = {
     connectedServices["astmetad"] = contents.status === "RUNNING";
     updateServiceState();
     document.getElementById("mode_select").value = contents.metadata.mode;
+    document.getElementById("zone_select").value = contents.metadata.zone;
+
+    document.getElementById(
+      `mode-${contents.metadata.mode.toLowerCase()}`
+    ).checked = true;
+    document.getElementById(`zone-${contents.metadata.zone}`).checked = true;
   },
   "astoria/astprocd": (contents) => {
     connectedServices["astprocd"] = contents.status === "RUNNING";
