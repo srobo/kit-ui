@@ -24,8 +24,12 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build
+    - name: Move dist for artifacts
+      run: |
+        mkdir artifacts
+        mv dist artifacts/
     - name: Upload build as artifact
       uses: actions/upload-artifact@v3.1.0
       with:
         name: kit-ui
-        path: dist/
+        path: artifacts/
