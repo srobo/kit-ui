@@ -26,7 +26,7 @@
     "url": "0.11.0"
   },
   "optionalDependencies": {
-    "@lmdb/lmdb-darwin-arm64": "2.6.8",
+    "@lmdb/lmdb-darwin-arm64": "2.6.9",
     "lightningcss-darwin-arm64": "1.16.1",
     "lightningcss-linux-x64-gnu": "1.16.1",
     "lightningcss-win32-x64-msvc": "1.16.1"
