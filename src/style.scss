@@ -3,9 +3,66 @@ $family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", 
 $navbar-breakpoint: 1px;
 $mobile-breakpoint: 640px;
 
+// button height + (4px padding * 2)
+$controls-height: calc(2.5em + 8px);
+
 @import "node_modules/bulma/bulma";
 
+html{
+  height: 100%;
+}
+
 body {
+  --bg-color: #{$white};
+  --text-color: #{$black};
+  --content-bg-color: #{$light};
+  --control-bg-color: #{$white};
+  --control-border-color: #{$white};
+
+
+  &.dark-theme {
+    --bg-color: #{$grey-darker};
+    --text-color: #{$white};
+    --content-bg-color: #{$grey-dark};
+    --control-bg-color: #{$grey-darker};
+    --control-border-color: #{$grey-dark};
+  }
+
+  @media (prefers-color-scheme: dark) {
+    --bg-color: #{$grey-darker};
+    --text-color: #{$white};
+    --content-bg-color: #{$grey-dark};
+    --control-bg-color: #{$grey-darker};
+    --control-border-color: #{$grey-dark};
+
+    &.light-theme {
+      --bg-color: #{$white};
+      --text-color: #{$black};
+      --content-bg-color: #{$light};
+      --control-bg-color: #{$white};
+      --control-border-color: #{$white};
+    }
+  }
+}
+
+.button {
+  background-color: var(--control-bg-color);
+  border-color: var(--control-border-color);
+}
+
+.select{
+  select {
+    background-color: var(--control-bg-color);
+    border-color: var(--control-border-color);
+    color: var(--text-color);
+  }
+}
+
+body {
+  min-height: calc(100% - $controls-height);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+
   @media screen and (max-width: $mobile-breakpoint) {
     display: flex;
     flex-direction: column-reverse;
@@ -16,8 +73,7 @@ body {
 .controls {
   display: flex;
   padding: 4px;
-  background: $light;
-  border: 1px solid $border-light;
+  background: var(--content-bg-color);
   position: fixed;
   width: 100%;
   top:0;
@@ -151,8 +207,8 @@ body {
     }
 
     & label {
-      background-color: $white;
-      color: $dark;
+      background-color: var(--control-bg-color);
+      color: var(--text-color);
       text-align: center;
       line-height: 2rem;
     }
@@ -167,8 +223,6 @@ body {
 }
 
 .log-list{
-  // button height + (4px padding * 2) + (1px border * 2)
-  $controls-height: calc(2.5em + 8px + 2px);
   margin-top: $controls-height;
   margin-bottom: 0 !important; // Override Bulma .table:not(:last-child)
   font-family: monospace;
@@ -185,7 +239,7 @@ body {
     display: contents;
     &:nth-child(even){
       div {
-        background-color: $light;
+        background-color: var(--content-bg-color);
       }
     }
 
