@@ -23,8 +23,9 @@ let shouldAutoScroll = true;
 window.addEventListener(
   "scroll",
   function (e) {
+    const logTable = document.getElementById("log");
     shouldAutoScroll =
-      window.scrollY + window.innerHeight >= document.body.scrollHeight;
+      window.scrollY + window.innerHeight >= logTable.scrollHeight;
   },
   {
     passive: true,
