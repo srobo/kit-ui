@@ -48,6 +48,18 @@
       <p id="status"></p>
       <div class="field is-grouped metadata-selectors">
         <div class="control">
+          <span
+            id="theme-toggle"
+            tabindex="0"
+            class="button"
+            style="display: none"
+          >
+            <span class="icon has-text-link">
+              <span id="toggle-theme-icon" class="mdi mdi-24px"></span>
+            </span>
+          </span>
+        </div>
+        <div class="control">
           <div class="select">
             <select
               id="mode_select"
@@ -75,13 +87,25 @@
         </div>
       </div>
       <div class="mobile-metadata-toggle">
-        <p class="control">
+        <div class="control">
           <span id="mobile-metadata-toggle" tabindex="0" class="button">
             <span class="icon has-text-link">
               <span class="mdi mdi-24px mdi-cog" />
             </span>
           </span>
-        </p>
+        </div>
+        <div class="control">
+          <span
+            id="mobile-theme-toggle"
+            tabindex="0"
+            class="button"
+            style="display: none"
+          >
+            <span class="icon has-text-link">
+              <span id="mobile-toggle-theme-icon" class="mdi mdi-24px"></span>
+            </span>
+          </span>
+        </div>
       </div>
       <div id="mobile-metadata-controls">
         <div class="mobile-control">
