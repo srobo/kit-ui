@@ -70,6 +70,14 @@ body {
   }
 }
 
+.modal-card-body {
+  background-color: var(--content-bg-color);
+
+  h1.title {
+    color: var(--text-color);
+  }
+}
+
 .controls {
   display: flex;
   padding: 4px;
