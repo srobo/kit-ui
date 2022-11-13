@@ -1,135 +1,222 @@
-<!doctype HTML>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#3270ed">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#3270ed" />
     <title>Robot</title>
-    <link rel="stylesheet" href="../node_modules/@mdi/font/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="style.scss">
-    <link rel="shortcut icon" href="favicon.ico">
-</head>
-<body>
-<div class="controls">
-    <div class="field has-addons control-buttons">
+    <link
+      rel="stylesheet"
+      href="../node_modules/@mdi/font/css/materialdesignicons.min.css"
+    />
+    <link rel="stylesheet" href="style.scss" />
+    <link rel="shortcut icon" href="favicon.ico" />
+  </head>
+
+  <body>
+    <div class="controls" id="controls">
+      <div class="field has-addons control-buttons">
         <p class="control">
-            <button class="button" data-action="start" title="Start">
+          <button class="button" data-action="start" title="Start">
             <span class="icon has-text-success">
-                <span class="mdi mdi-24px mdi-play"></span>
+              <span class="mdi mdi-24px mdi-play"></span>
             </span>
-            </button>
+          </button>
         </p>
         <p class="control">
-            <button class="button" data-action="restart" title="Restart">
+          <button class="button" data-action="restart" title="Restart">
             <span class="icon has-text-success">
-                <span class="mdi mdi-24px mdi-restart"></span>
+              <span class="mdi mdi-24px mdi-restart"></span>
             </span>
-            </button>
+          </button>
         </p>
         <p class="control">
-            <button class="button" data-action="kill" title="Kill">
+          <button class="button" data-action="kill" title="Kill">
             <span class="icon has-text-danger">
-                <span class="mdi mdi-24px mdi-close-octagon"></span>
+              <span class="mdi mdi-24px mdi-close-octagon"></span>
             </span>
-            </button>
+          </button>
         </p>
         <p class="control">
-            <button class="button" data-action="clearLog" title="Clear log">
+          <button class="button" data-action="clearLog" title="Clear log">
             <span class="icon has-text-link">
-                <span class="mdi mdi-24px mdi-delete-sweep"></span>
+              <span class="mdi mdi-24px mdi-delete-sweep"></span>
             </span>
-            </button>
+          </button>
         </p>
-    </div>
-    <p id="status"></p>
-    <div class="field is-grouped metadata-selectors">
+      </div>
+      <p id="status"></p>
+      <div class="field is-grouped metadata-selectors">
         <div class="control">
-            <div class="select">
-                <select id="mode_select" data-property="mode" class="sends-mutate-request">
-                    <option value="DEV">Development mode</option>
-                    <option value="COMP">Competition mode</option>
-                </select>
-            </div>
-        </div>
-        <div class="control">
-            <div class="select">
-                <select id="zone_select" data-property="zone" class="sends-mutate-request">
-                    <option value="0">Zone 0</option>
-                    <option value="1">Zone 1</option>
-                    <option value="2">Zone 2</option>
-                    <option value="3">Zone 3</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="mobile-metadata-toggle">
-        <p class="control">
-            <span id="mobile-metadata-toggle" tabindex="0" class="button">
-                <span class="icon has-text-link">
-                    <span class="mdi mdi-24px mdi-cog" />
-                </span>
+          <span
+            id="theme-toggle"
+            tabindex="0"
+            class="button"
+            style="display: none"
+          >
+            <span class="icon has-text-link">
+              <span id="toggle-theme-icon" class="mdi mdi-24px"></span>
             </span>
-        </p>
-    </div>
-    <div id="mobile-metadata-controls">
+          </span>
+        </div>
+        <div class="control">
+          <div class="select">
+            <select
+              id="mode_select"
+              data-property="mode"
+              class="sends-mutate-request"
+            >
+              <option value="DEV">Development mode</option>
+              <option value="COMP">Competition mode</option>
+            </select>
+          </div>
+        </div>
+        <div class="control">
+          <div class="select">
+            <select
+              id="zone_select"
+              data-property="zone"
+              class="sends-mutate-request"
+            >
+              <option value="0">Zone 0</option>
+              <option value="1">Zone 1</option>
+              <option value="2">Zone 2</option>
+              <option value="3">Zone 3</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-metadata-toggle">
+        <div class="control">
+          <span id="mobile-metadata-toggle" tabindex="0" class="button">
+            <span class="icon has-text-link">
+              <span class="mdi mdi-24px mdi-cog" />
+            </span>
+          </span>
+        </div>
+        <div class="control">
+          <span
+            id="mobile-theme-toggle"
+            tabindex="0"
+            class="button"
+            style="display: none"
+          >
+            <span class="icon has-text-link">
+              <span id="mobile-toggle-theme-icon" class="mdi mdi-24px"></span>
+            </span>
+          </span>
+        </div>
+      </div>
+      <div id="mobile-metadata-controls">
         <div class="mobile-control">
-            <span class="mobile-control-label">Mode</span>
-            <ul class="radio-buttons">
-                <li>
-                    <input type="radio" data-property="mode" name="mode" id="mode-dev" value="DEV" class="sends-mutate-request">
-                    <label for="mode-dev">Development</label>
-                </li>
-                <li>
-                    <input type="radio" data-property="mode" name="mode" id="mode-comp" value="COMP" class="sends-mutate-request">
-                    <label for="mode-comp">Competition</label>
-                </li>
-            </ul>
+          <span class="mobile-control-label">Mode</span>
+          <ul class="radio-buttons">
+            <li>
+              <input
+                type="radio"
+                data-property="mode"
+                name="mode"
+                id="mode-dev"
+                value="DEV"
+                class="sends-mutate-request"
+              />
+              <label for="mode-dev">Development</label>
+            </li>
+            <li>
+              <input
+                type="radio"
+                data-property="mode"
+                name="mode"
+                id="mode-comp"
+                value="COMP"
+                class="sends-mutate-request"
+              />
+              <label for="mode-comp">Competition</label>
+            </li>
+          </ul>
         </div>
         <div class="mobile-control">
-            <span class="mobile-control-label" style="margin-right: 0.85rem;">Zone</span>
-            <ul class="radio-buttons">
-                <li class="compact">
-                    <input type="radio" data-property="zone" name="zone" id="zone-0" value="0" class="sends-mutate-request">
-                    <label for="zone-0">0</label>
-                </li>
-                <li class="compact">
-                    <input type="radio" data-property="zone" name="zone" id="zone-1" value="1" class="sends-mutate-request">
-                    <label for="zone-1">1</label>
-                </li>
-                <li class="compact">
-                    <input type="radio" data-property="zone" name="zone" id="zone-2" value="2" class="sends-mutate-request">
-                    <label for="zone-2">2</label>
-                </li>
-                <li class="compact">
-                    <input type="radio" data-property="zone" name="zone" id="zone-3" value="3" class="sends-mutate-request">
-                    <label for="zone-3">3</label>
-                </li>
-            </ul>
+          <span class="mobile-control-label" style="margin-right: 0.85rem"
+            >Zone</span
+          >
+          <ul class="radio-buttons">
+            <li class="compact">
+              <input
+                type="radio"
+                data-property="zone"
+                name="zone"
+                id="zone-0"
+                value="0"
+                class="sends-mutate-request"
+              />
+              <label for="zone-0">0</label>
+            </li>
+            <li class="compact">
+              <input
+                type="radio"
+                data-property="zone"
+                name="zone"
+                id="zone-1"
+                value="1"
+                class="sends-mutate-request"
+              />
+              <label for="zone-1">1</label>
+            </li>
+            <li class="compact">
+              <input
+                type="radio"
+                data-property="zone"
+                name="zone"
+                id="zone-2"
+                value="2"
+                class="sends-mutate-request"
+              />
+              <label for="zone-2">2</label>
+            </li>
+            <li class="compact">
+              <input
+                type="radio"
+                data-property="zone"
+                name="zone"
+                id="zone-3"
+                value="3"
+                class="sends-mutate-request"
+              />
+              <label for="zone-3">3</label>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    </div>
-</div>
-<div class="log-list" id="log">
-</div>
+    <div class="log-list" id="log"></div>
 
-<div class="modal is-active" id="modal-disconnected">
-    <div class="modal-background"></div>
-    <div class="modal-card">
+    <div class="modal is-active" id="modal-disconnected">
+      <div class="modal-background"></div>
+      <div class="modal-card">
         <section class="modal-card-body">
-            <h1 class="title">Connecting to robot&hellip;</h1>
-            <p>If you find this is taking longer than a minute to connect, try refreshing the page or power cycling your robot. If issues persist, send us a message in the support forum in Discord under the Kit tag.</p>
+          <h1 class="title">Connecting to robot&hellip;</h1>
+          <p>
+            If you find this is taking longer than a minute to connect, try
+            refreshing the page or power cycling your robot. If issues persist,
+            send us a message in the support forum in Discord under the Kit tag.
+          </p>
 
-            <progress id="serviceProgress" class="progress is-primary" max="4"></progress>
+          <progress
+            id="serviceProgress"
+            class="progress is-primary"
+            max="4"
+          ></progress>
         </section>
+      </div>
     </div>
-</div>
 
-<template id="tpl-log-entry">
-    <div class="log-entry">
+    <template id="tpl-log-entry">
+      <div class="log-entry">
         <div class="log-entry__ts is-narrow"></div>
         <div class="log-entry__content"></div>
-    </div>
-</template>
+      </div>
+    </template>
 
-<script src="main.js" type="module"></script>
-</body>
+    <script src="main.js" type="module"></script>
+  </body>
 </html>

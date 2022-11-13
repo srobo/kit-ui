@@ -23,8 +23,9 @@ let shouldAutoScroll = true;
 window.addEventListener(
   "scroll",
   function (e) {
+    const logTable = document.getElementById("log");
     shouldAutoScroll =
-      window.scrollY + window.innerHeight >= document.body.scrollHeight;
+      window.scrollY + window.innerHeight >= logTable.scrollHeight;
   },
   {
     passive: true,
@@ -49,7 +50,55 @@ window.addEventListener("DOMContentLoaded", (event) => {
     templates: {
       logEntry: document.getElementById("tpl-log-entry"),
     },
+    themeToggles: [
+      document.getElementById("theme-toggle"),
+      document.getElementById("mobile-theme-toggle"),
+    ],
+    themeToggleIcons: [
+      document.getElementById("toggle-theme-icon"),
+      document.getElementById("mobile-toggle-theme-icon"),
+    ],
   };
+
+  const systemIsDark = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+  const documentClassList = [...document.body.classList].filter((className) =>
+    className.endsWith("-theme")
+  );
+  if (documentClassList.length === 0) {
+    const theme =
+      localStorage.getItem("theme") ?? (systemIsDark ? "dark" : "light");
+
+    document.body.classList.add(`${theme}-theme`);
+    localStorage.setItem("theme", theme);
+
+    $.themeToggles.forEach((el) => {
+      el.style.display = "block";
+    });
+    $.themeToggleIcons.forEach((el) => {
+      el.classList.add(
+        theme === "dark" ? "mdi-white-balance-sunny" : "mdi-weather-night"
+      );
+    });
+  }
+
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (event) => {
+      const newTheme = event.matches ? "dark" : "light";
+
+      document.body.classList.remove("dark-theme", "light-theme");
+      document.body.classList.add(`${newTheme}-theme`);
+      localStorage.setItem("theme", newTheme);
+
+      $.themeToggleIcons.forEach((el) => {
+        el.classList.remove("mdi-weather-night", "mdi-white-balance-sunny");
+        el.classList.add(
+          newTheme === "dark" ? "mdi-white-balance-sunny" : "mdi-weather-night"
+        );
+      });
+    });
 
   document.querySelectorAll("[data-action]").forEach((el) =>
     el.addEventListener("click", function (e) {
@@ -74,6 +123,24 @@ window.addEventListener("DOMContentLoaded", (event) => {
   document.querySelectorAll(".sends-mutate-request").forEach((el) =>
     el.addEventListener("change", function (e) {
       sendMutateRequest(e.target.dataset.property, e.target.value);
+    })
+  );
+
+  $.themeToggles.forEach((el) =>
+    el.addEventListener("click", function (e) {
+      const currentTheme = localStorage.getItem("theme");
+      const newTheme = currentTheme === "light" ? "dark" : "light";
+
+      document.body.classList.remove("dark-theme", "light-theme");
+      document.body.classList.add(`${newTheme}-theme`);
+      localStorage.setItem("theme", newTheme);
+
+      $.themeToggleIcons.forEach((el) => {
+        el.classList.remove("mdi-weather-night", "mdi-white-balance-sunny");
+        el.classList.add(
+          newTheme === "dark" ? "mdi-white-balance-sunny" : "mdi-weather-night"
+        );
+      });
     })
   );
 
