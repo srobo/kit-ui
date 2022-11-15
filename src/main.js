@@ -1,4 +1,5 @@
 import mqtt from "mqtt";
+import { version } from "../package.json";
 
 const options = {
   keepalive: 30,
@@ -38,7 +39,7 @@ function updateServiceState() {
   ).length;
   if (runningServiceCount === Object.values(connectedServices).length) {
     document.body.classList.add("is-connected");
-    document.getElementById("modal-disconnected").classList.remove("is-active");
+    $.modals.disconnected.classList.remove("is-active");
   } else {
     document.getElementById("serviceProgress").value = runningServiceCount + 1;
   }
@@ -58,8 +59,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
       document.getElementById("toggle-theme-icon"),
       document.getElementById("mobile-toggle-theme-icon"),
     ],
+    modals: {
+      disconnected: document.getElementById("modal-disconnected"),
+      info: document.getElementById("modal-info"),
+    }
   };
 
+  document.getElementById("info-kit-ui-version").textContent = version;
+
+  /// Theme Toggle
   const systemIsDark = window.matchMedia(
     "(prefers-color-scheme: dark)"
   ).matches;
@@ -100,6 +108,28 @@ window.addEventListener("DOMContentLoaded", (event) => {
       });
     });
 
+  /// Modals
+
+  // Add a click event on modal triggers
+  document.querySelectorAll('.modal-trigger').forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+
+    $trigger.addEventListener('click', () => {
+      $target.classList.add("is-active")
+    });
+  });
+
+  // Add a click event on various child elements to close the parent modal
+  document.querySelectorAll('.modal-background-close, .modal-close, .modal-card-head .delete, .modal-card-foot .button').forEach(($close) => {
+    const $target = $close.closest('.modal');
+
+    $close.addEventListener('click', () => {
+      $target.classList.remove("is-active")
+    });
+  });
+
+  /// Buttons
   document.querySelectorAll("[data-action]").forEach((el) =>
     el.addEventListener("click", function (e) {
       e.preventDefault();
@@ -154,6 +184,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
   );
 });
 
+function updateInformationModal(metadata) {
+  if(metadata.wifi_ssid != null && metadata.wifi_enabled){
+    ssid = metadata.wifi_ssid;
+    psk = metadata.wifi_psk;
+  } else {
+    ssid = "Disabled";
+    psk = "Disabled";
+  }
+  document.getElementById("info-wifi-ssid").textContent = ssid;
+  document.getElementById("info-wifi-secret").textContent = psk;
+}
+
 const status_labels = {
   code_crashed: "Crashed",
   code_finished: "Finished",
@@ -171,7 +213,7 @@ client.on("connect", function () {
 const disconnected = function () {
   document.getElementById("serviceProgress").removeAttribute("value");
   document.body.classList.remove("is-connected");
-  document.getElementById("modal-disconnected").classList.add("is-active");
+  $.modals.disconnected.classList.add("is-active");
   connectedServices = {
     astdiskd: false,
     astmetad: false,
@@ -223,6 +265,7 @@ const handlers = {
   "astoria/astmetad": (contents) => {
     connectedServices["astmetad"] = contents.status === "RUNNING";
     updateServiceState();
+    updateInformationModal(contents.metadata);
     document.getElementById("mode_select").value = contents.metadata.mode;
     document.getElementById("zone_select").value = contents.metadata.zone;
 

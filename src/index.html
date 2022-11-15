@@ -60,6 +60,13 @@
           </span>
         </div>
         <div class="control">
+          <span class="modal-trigger button" data-target="modal-info" tabindex="0">
+            <span class="icon has-text-link">
+              <span class="mdi mdi-24px mdi-information"></span>
+            </span>
+          </span>
+        </div>
+        <div class="control">
           <div class="select">
             <select
               id="mode_select"
@@ -91,6 +98,13 @@
           <span id="mobile-metadata-toggle" tabindex="0" class="button">
             <span class="icon has-text-link">
               <span class="mdi mdi-24px mdi-cog" />
+            </span>
+          </span>
+        </div>
+        <div class="control">
+          <span tabindex="0" class="button modal-trigger" data-target="modal-info">
+            <span class="icon has-text-link">
+              <span class="mdi mdi-24px mdi-information" />
             </span>
           </span>
         </div>
@@ -207,6 +221,24 @@
             max="4"
           ></progress>
         </section>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-info">
+      <div class="modal-background modal-background-close"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Robot Information</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <p>OS Version: <span id="info-os-version"></span></p>
+          <p>Kit UI Version: <span id="info-kit-ui-version"></span></p>
+          <p>WiFi Network: <span id="info-wifi-ssid"></span></p>
+          <p>WiFi Password: <span id="info-wifi-secret"></span></p>
+        </section>
+        <footer class="modal-card-foot">
+        </footer>
       </div>
     </div>
 
