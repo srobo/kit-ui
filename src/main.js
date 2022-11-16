@@ -1,4 +1,5 @@
 import mqtt from "mqtt";
+import QRCode from "qrcode";
 import { version } from "../package.json";
 
 const options = {
@@ -48,6 +49,7 @@ function updateServiceState() {
 window.addEventListener("DOMContentLoaded", (event) => {
   $ = {
     log: document.getElementById("log"),
+    wifiQRCode: document.getElementById("qrcode-wifi"),
     templates: {
       logEntry: document.getElementById("tpl-log-entry"),
     },
@@ -188,10 +190,15 @@ function updateInformationModal(metadata) {
   if(metadata.wifi_ssid != null && metadata.wifi_enabled){
     ssid = metadata.wifi_ssid;
     psk = metadata.wifi_psk;
+    QRCode.toCanvas($.wifiQRCode, `WIFI:T:WPA;S:${ssid};P:${psk};;`)
   } else {
     ssid = "Disabled";
     psk = "Disabled";
+    $.wifiQRCode.getContext('2d').clearRect(0, 0, $.wifiQRCode.width, $.wifiQRCode.height);
   }
+  document.getElementById("info-os-version").textContent = metadata.os_pretty_name;
+  document.getElementById("info-python-version").textContent = metadata.python_version;
+  document.getElementById("info-entrypoint").textContent = metadata.usercode_entrypoint;
   document.getElementById("info-wifi-ssid").textContent = ssid;
   document.getElementById("info-wifi-secret").textContent = psk;
 }
@@ -210,15 +217,19 @@ client.on("connect", function () {
   client.subscribe("astoria/#");
 });
 
-const disconnected = function () {
+const disconnected = function (reset = true) {
   document.getElementById("serviceProgress").removeAttribute("value");
   document.body.classList.remove("is-connected");
   $.modals.disconnected.classList.add("is-active");
-  connectedServices = {
-    astdiskd: false,
-    astmetad: false,
-    astprocd: false,
-  };
+
+  // Reset the state of all services if needed.
+  if(reset) {
+    connectedServices = {
+      astdiskd: false,
+      astmetad: false,
+      astprocd: false,
+    };
+  }
 };
 
 client.on("error", function (err) {
@@ -260,10 +271,14 @@ const handlers = {
   },
   "astoria/astdiskd": (contents) => {
     connectedServices["astdiskd"] = contents.status === "RUNNING";
+    if(!connectedServices["astdiskd"]) disconnected(false);
+
     updateServiceState();
   },
   "astoria/astmetad": (contents) => {
     connectedServices["astmetad"] = contents.status === "RUNNING";
+    if(!connectedServices["astmetad"]) disconnected(false);
+
     updateServiceState();
     updateInformationModal(contents.metadata);
     document.getElementById("mode_select").value = contents.metadata.mode;
@@ -276,6 +291,8 @@ const handlers = {
   },
   "astoria/astprocd": (contents) => {
     connectedServices["astprocd"] = contents.status === "RUNNING";
+    if(!connectedServices["astprocd"]) disconnected(false);
+
     updateServiceState();
     const statusLabel = status_labels[contents.code_status];
     document.getElementById("status").textContent = statusLabel;

@@ -70,12 +70,24 @@ body {
   }
 }
 
-.modal-card-body {
+.modal-card-body, .modal-card-head, .modal-card-foot{
   background-color: var(--content-bg-color);
 
-  h1.title {
+  h1.title, .modal-card-title {
     color: var(--text-color);
   }
+
+  code {
+    background-color: var(--content-bg-color);
+  }
+}
+
+.modal-card-head, .modal-card-foot {
+  border-color: var(--content-bg-color);
+}
+
+#qrcode-wifi {
+  margin-top: 1em;
 }
 
 .controls {
