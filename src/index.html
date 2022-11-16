@@ -240,21 +240,18 @@
           <button class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
-          <div class="columns is-flex is-vcentered">
-            <div class="column">
-              <p>Kit UI Version: <code id="info-kit-ui-version"></code></p>
-              <p>Python Version: <code id="info-python-version"></code></p>
-              <p>Entrypoint: <code id="info-entrypoint"></code></p>
-              <p>WiFi Network: <code id="info-wifi-ssid"></code></p>
-              <p>WiFi Password: <code id="info-wifi-secret"></code></p>
-            </div>
-            <div class="column has-text-centered">
-              <p>
-                Join other devices to the WiFi network by scanning the QR Code
-                below:
-              </p>
-              <canvas id="qrcode-wifi"></canvas>
-            </div>
+          <div class="column">
+            <p>Kit UI Version: <code id="info-kit-ui-version"></code></p>
+            <p>Python Version: <code id="info-python-version"></code></p>
+            <p>Entrypoint: <code id="info-entrypoint"></code></p>
+            <p>WiFi Network: <code id="info-wifi-ssid"></code></p>
+            <p>WiFi Password: <code id="info-wifi-secret"></code></p>
+          </div>
+          <div class="column wifi-details">
+            <p>
+              Join other devices to the WiFi network by scanning the QR Code
+            </p>
+            <canvas id="qrcode-wifi"></canvas>
           </div>
         </section>
         <footer class="modal-card-foot"></footer>
