@@ -64,7 +64,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     modals: {
       disconnected: document.getElementById("modal-disconnected"),
       info: document.getElementById("modal-info"),
-    }
+    },
   };
 
   document.getElementById("info-kit-ui-version").textContent = version;
@@ -113,23 +113,27 @@ window.addEventListener("DOMContentLoaded", (event) => {
   /// Modals
 
   // Add a click event on modal triggers
-  document.querySelectorAll('.modal-trigger').forEach(($trigger) => {
+  document.querySelectorAll(".modal-trigger").forEach(($trigger) => {
     const modal = $trigger.dataset.target;
     const $target = document.getElementById(modal);
 
-    $trigger.addEventListener('click', () => {
-      $target.classList.add("is-active")
+    $trigger.addEventListener("click", () => {
+      $target.classList.add("is-active");
     });
   });
 
   // Add a click event on various child elements to close the parent modal
-  document.querySelectorAll('.modal-background-close, .modal-close, .modal-card-head .delete, .modal-card-foot .button').forEach(($close) => {
-    const $target = $close.closest('.modal');
+  document
+    .querySelectorAll(
+      ".modal-background-close, .modal-close, .modal-card-head .delete, .modal-card-foot .button"
+    )
+    .forEach(($close) => {
+      const $target = $close.closest(".modal");
 
-    $close.addEventListener('click', () => {
-      $target.classList.remove("is-active")
+      $close.addEventListener("click", () => {
+        $target.classList.remove("is-active");
+      });
     });
-  });
 
   /// Buttons
   document.querySelectorAll("[data-action]").forEach((el) =>
@@ -187,18 +191,23 @@ window.addEventListener("DOMContentLoaded", (event) => {
 });
 
 function updateInformationModal(metadata) {
-  if(metadata.wifi_ssid != null && metadata.wifi_enabled){
+  if (metadata.wifi_ssid != null && metadata.wifi_enabled) {
     ssid = metadata.wifi_ssid;
     psk = metadata.wifi_psk;
-    QRCode.toCanvas($.wifiQRCode, `WIFI:T:WPA;S:${ssid};P:${psk};;`)
+    QRCode.toCanvas($.wifiQRCode, `WIFI:T:WPA;S:${ssid};P:${psk};;`);
   } else {
     ssid = "Disabled";
     psk = "Disabled";
-    $.wifiQRCode.getContext('2d').clearRect(0, 0, $.wifiQRCode.width, $.wifiQRCode.height);
+    $.wifiQRCode
+      .getContext("2d")
+      .clearRect(0, 0, $.wifiQRCode.width, $.wifiQRCode.height);
   }
-  document.getElementById("info-os-version").textContent = metadata.os_pretty_name;
-  document.getElementById("info-python-version").textContent = metadata.python_version;
-  document.getElementById("info-entrypoint").textContent = metadata.usercode_entrypoint;
+  document.getElementById("info-os-version").textContent =
+    metadata.os_pretty_name;
+  document.getElementById("info-python-version").textContent =
+    metadata.python_version;
+  document.getElementById("info-entrypoint").textContent =
+    metadata.usercode_entrypoint;
   document.getElementById("info-wifi-ssid").textContent = ssid;
   document.getElementById("info-wifi-secret").textContent = psk;
 }
@@ -223,7 +232,7 @@ const disconnected = function (reset = true) {
   $.modals.disconnected.classList.add("is-active");
 
   // Reset the state of all services if needed.
-  if(reset) {
+  if (reset) {
     connectedServices = {
       astdiskd: false,
       astmetad: false,
@@ -271,13 +280,13 @@ const handlers = {
   },
   "astoria/astdiskd": (contents) => {
     connectedServices["astdiskd"] = contents.status === "RUNNING";
-    if(!connectedServices["astdiskd"]) disconnected(false);
+    if (!connectedServices["astdiskd"]) disconnected(false);
 
     updateServiceState();
   },
   "astoria/astmetad": (contents) => {
     connectedServices["astmetad"] = contents.status === "RUNNING";
-    if(!connectedServices["astmetad"]) disconnected(false);
+    if (!connectedServices["astmetad"]) disconnected(false);
 
     updateServiceState();
     updateInformationModal(contents.metadata);
@@ -291,7 +300,7 @@ const handlers = {
   },
   "astoria/astprocd": (contents) => {
     connectedServices["astprocd"] = contents.status === "RUNNING";
-    if(!connectedServices["astprocd"]) disconnected(false);
+    if (!connectedServices["astprocd"]) disconnected(false);
 
     updateServiceState();
     const statusLabel = status_labels[contents.code_status];
