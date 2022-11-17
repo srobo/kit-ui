@@ -305,7 +305,7 @@ const handlers = {
     updateServiceState();
     const statusLabel = status_labels[contents.code_status];
     document.getElementById("status").textContent = statusLabel;
-    document.title = `Robot - ${statusLabel}`;
+    document.title = `Robot - ${statusLabel || "Ready"}`;
   },
 };
 
