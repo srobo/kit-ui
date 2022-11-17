@@ -1,11 +1,13 @@
 {
   "name": "kit-ui-basic",
-  "version": "1.0.0",
+  "version": "2023.1.1",
   "description": "",
   "source": "src/index.html",
   "scripts": {
     "start": "parcel",
-    "build": "parcel build"
+    "build": "parcel build",
+    "format": "npx prettier --write src/",
+    "lint": "npx prettier --check src/"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
     "@parcel/transformer-sass": "2.8.0",
     "events": "3.3.0",
     "parcel": "2.8.0",
+    "prettier": "2.7.1",
     "process": "0.11.10",
     "punycode": "2.1.1",
     "querystring-es3": "0.2.1",
@@ -35,6 +38,7 @@
   "dependencies": {
     "@mdi/font": "7.0.96",
     "bulma": "0.9.4",
-    "mqtt": "4.3.7"
+    "mqtt": "4.3.7",
+    "qrcode": "^1.5.1"
   }
 }

@@ -1,5 +1,7 @@
 $primary: #3270ed;
-$family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Cantarell", "Ubuntu", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+$family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+  "Cantarell", "Ubuntu", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji";
 $navbar-breakpoint: 1px;
 $mobile-breakpoint: 640px;
 
@@ -8,7 +10,7 @@ $controls-height: calc(2.5em + 8px);
 
 @import "node_modules/bulma/bulma";
 
-html{
+html {
   height: 100%;
 }
 
@@ -18,7 +20,7 @@ body {
   --content-bg-color: #{$light};
   --control-bg-color: #{$white};
   --control-border-color: #{$white};
-
+  --code-text-color: #da1039;
 
   &.dark-theme {
     --bg-color: #{$grey-darker};
@@ -26,6 +28,7 @@ body {
     --content-bg-color: #{$grey-dark};
     --control-bg-color: #{$grey-darker};
     --control-border-color: #{$grey-dark};
+    --code-text-color: #b8efff;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -34,6 +37,7 @@ body {
     --content-bg-color: #{$grey-dark};
     --control-bg-color: #{$grey-darker};
     --control-border-color: #{$grey-dark};
+    --code-text-color: #b8efff;
 
     &.light-theme {
       --bg-color: #{$white};
@@ -41,6 +45,7 @@ body {
       --content-bg-color: #{$light};
       --control-bg-color: #{$white};
       --control-border-color: #{$white};
+      --code-text-color: #da1039;
     }
   }
 }
@@ -50,12 +55,16 @@ body {
   border-color: var(--control-border-color);
 }
 
-.select{
+.select {
   select {
     background-color: var(--control-bg-color);
     border-color: var(--control-border-color);
     color: var(--text-color);
   }
+}
+
+code {
+  color: var(--code-text-color);
 }
 
 body {
@@ -70,12 +79,54 @@ body {
   }
 }
 
-.modal-card-body {
+.modal-card-body,
+.modal-card-head,
+.modal-card-foot {
   background-color: var(--content-bg-color);
 
-  h1.title {
+  h1.title,
+  .modal-card-title {
     color: var(--text-color);
   }
+
+  code {
+    background-color: var(--content-bg-color);
+  }
+}
+
+.modal-card-head,
+.modal-card-foot {
+  border-color: var(--content-bg-color);
+}
+
+#modal-info {
+  .modal-card-body {
+    display: flex;
+    align-items: center;
+
+    font-size: 1.25rem;
+    white-space: nowrap;
+
+    .wifi-details {
+      text-align: center;
+      font-size: 1rem;
+      white-space: initial;
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      flex-direction: column;
+      .wifi-details {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 1rem;
+      }
+    }
+  }
+}
+
+#qrcode-wifi {
+  margin-top: 1em;
 }
 
 .controls {
@@ -84,7 +135,7 @@ body {
   background: var(--content-bg-color);
   position: fixed;
   width: 100%;
-  top:0;
+  top: 0;
 
   .mobile-metadata-toggle {
     display: none;
@@ -102,27 +153,27 @@ body {
     flex-wrap: wrap-reverse;
 
     .control-buttons {
-        flex-direction: row-reverse;
+      flex-direction: row-reverse;
 
-        &.field.has-addons {
-          .control:last-child {
-            margin-right: -1px;
-            .button {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-                border-top-left-radius: 4px;
-                border-bottom-left-radius: 4px;
-            }
-          }
-          .control:first-child {
-            .button {
-                border-top-right-radius: 4px;
-                border-bottom-right-radius: 4px;
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-            }
+      &.field.has-addons {
+        .control:last-child {
+          margin-right: -1px;
+          .button {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
           }
         }
+        .control:first-child {
+          .button {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+      }
     }
 
     #status {
@@ -136,7 +187,7 @@ body {
       height: 0;
     }
 
-    #mobile-metadata-controls{
+    #mobile-metadata-controls {
       &.is-active {
         display: flex;
         padding-bottom: 0.5rem;
@@ -182,19 +233,20 @@ body {
       }
 
       &:first-child {
-        label{
+        label {
           border-radius: 4px 0 0 4px;
         }
       }
 
       &:last-child {
-        label{
+        label {
           border-radius: 0 4px 4px 0;
         }
       }
     }
 
-    & label,input{
+    & label,
+    input {
       display: block;
       position: absolute;
       top: 0;
@@ -224,13 +276,13 @@ body {
 }
 
 .metadata-selectors {
- @media screen and (max-width: $mobile-breakpoint) {
+  @media screen and (max-width: $mobile-breakpoint) {
     display: none !important; // Override Bulma .field.is-grouped
   }
   display: initial;
 }
 
-.log-list{
+.log-list {
   margin-top: $controls-height;
   margin-bottom: 0 !important; // Override Bulma .table:not(:last-child)
   font-family: monospace;
@@ -245,7 +297,7 @@ body {
 
   .log-entry {
     display: contents;
-    &:nth-child(even){
+    &:nth-child(even) {
       div {
         background-color: var(--content-bg-color);
       }
@@ -271,7 +323,7 @@ body {
 }
 
 #status {
-  margin: .5em 4px;
+  margin: 0.5em 4px;
   flex-grow: 1;
 }
 
