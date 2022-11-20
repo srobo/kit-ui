@@ -65,6 +65,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       disconnected: document.getElementById("modal-disconnected"),
       info: document.getElementById("modal-info"),
     },
+    lastAnnotatedImage: document.getElementById("last-annotated-image"),
   };
 
   document.getElementById("info-kit-ui-version").textContent = version;
@@ -225,6 +226,7 @@ client.on("connect", function () {
   document.getElementById("serviceProgress").value = 1;
   console.log("Connected!");
   client.subscribe("astoria/#");
+  client.subscribe("camera/#");
 });
 
 const disconnected = function (reset = true) {
@@ -308,6 +310,9 @@ const handlers = {
     const statusLabel = status_labels[contents.code_status];
     document.getElementById("status").textContent = statusLabel;
     document.title = `Robot - ${statusLabel || "Ready"}`;
+  },
+  "camera/annotated": (contents) => {
+    $.lastAnnotatedImage.src = contents;
   },
 };
 

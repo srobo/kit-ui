@@ -61,6 +61,17 @@
         </div>
         <div class="control">
           <span
+            tabindex="0"
+            class="button modal-trigger"
+            data-target="modal-camera"
+          >
+            <span class="icon has-text-link">
+              <span class="mdi mdi-24px mdi-camera" />
+            </span>
+          </span>
+        </div>
+        <div class="control">
+          <span
             class="modal-trigger button"
             data-target="modal-info"
             tabindex="0"
@@ -113,6 +124,17 @@
           >
             <span class="icon has-text-link">
               <span class="mdi mdi-24px mdi-information" />
+            </span>
+          </span>
+        </div>
+        <div class="control">
+          <span
+            tabindex="0"
+            class="button modal-trigger"
+            data-target="modal-camera"
+          >
+            <span class="icon has-text-link">
+              <span class="mdi mdi-24px mdi-camera" />
             </span>
           </span>
         </div>
@@ -255,6 +277,19 @@
           </div>
         </section>
         <footer class="modal-card-foot"></footer>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-camera">
+      <div class="modal-background modal-background-close"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Last Image</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <img id="last-annotated-image" />
+        </section>
       </div>
     </div>
 
