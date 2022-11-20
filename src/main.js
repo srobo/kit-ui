@@ -330,8 +330,19 @@ const ack = {
 };
 
 client.on("message", function (topic, payload) {
-  const contents = JSON.parse(payload.toString());
-  console.log(isOwnPayload(contents) ? "🦝" : "🤖", topic, contents);
+  let contents = null;
+  try {
+    contents = JSON.parse(payload.toString());
+    console.log(isOwnPayload(contents) ? "🦝" : "🤖", topic, contents);
+  } catch {
+    // If we can't parse the payload, just use the raw string.
+    contents = payload.toString();
+    console.log(
+      isOwnPayload(contents) ? "🦝" : "🤖",
+      topic,
+      contents.substring(0, 100)
+    );
+  }
   if (topic in handlers) {
     handlers[topic](contents);
   }
