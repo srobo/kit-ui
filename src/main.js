@@ -191,6 +191,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 });
 
 function updateInformationModal(metadata) {
+  let ssid, psk;
   if (metadata.wifi_ssid != null && metadata.wifi_enabled) {
     ssid = metadata.wifi_ssid;
     psk = metadata.wifi_psk;
