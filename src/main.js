@@ -318,9 +318,6 @@ const ack = {
       "text-d-red",
       "text-bold"
     );
-    if (shouldAutoScroll) {
-      logEntry.scrollIntoView();
-    }
   },
   restart: (payload) => {
     createPlainLogEntry("🔄 Restart", "text-d-blue", "text-bold");
@@ -352,6 +349,12 @@ function createPlainLogEntry(text, ...classes) {
   entry.classList.add("plain-log-entry", ...classes);
   entry.textContent = text;
   $.log.appendChild(entry);
+
+
+  if (shouldAutoScroll) {
+    entry.scrollIntoView();
+  }
+
   return entry;
 }
 
