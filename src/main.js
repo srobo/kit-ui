@@ -228,6 +228,7 @@ client.on("connect", function () {
 });
 
 const disconnected = function (reset = true) {
+  document.title = "Robot";
   document.getElementById("serviceProgress").removeAttribute("value");
   document.body.classList.remove("is-connected");
   $.modals.disconnected.classList.add("is-active");
