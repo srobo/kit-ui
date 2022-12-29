@@ -94,9 +94,17 @@ body {
   }
 }
 
+.modal-card {
+  border-radius: 6px;
+}
+
 .modal-card-head,
 .modal-card-foot {
   border-color: var(--content-bg-color);
+}
+
+.modal-card-body {
+  padding-top: 0;
 }
 
 #modal-info {

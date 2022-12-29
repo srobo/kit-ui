@@ -276,7 +276,6 @@
             <canvas id="qrcode-wifi"></canvas>
           </div>
         </section>
-        <footer class="modal-card-foot"></footer>
       </div>
     </div>
 
@@ -284,10 +283,15 @@
       <div class="modal-background modal-background-close"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">Last Image</p>
+          <p class="modal-card-title">Last Image Captured</p>
           <button class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
+          <p id="no-annotated-image-instructions">
+            Use <code>R.camera.see()</code> or
+            <code>R.camera.see_ids()</code> in your robot code to see an
+            annotated image.
+          </p>
           <img id="last-annotated-image" />
         </section>
       </div>

@@ -66,6 +66,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
       info: document.getElementById("modal-info"),
     },
     lastAnnotatedImage: document.getElementById("last-annotated-image"),
+    noAnnotatedImageInstructions: document.getElementById(
+      "no-annotated-image-instructions"
+    ),
   };
 
   document.getElementById("info-kit-ui-version").textContent = version;
@@ -130,7 +133,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     )
     .forEach(($close) => {
       const $target = $close.closest(".modal");
-
+      if (!$target) return;
       $close.addEventListener("click", () => {
         $target.classList.remove("is-active");
       });
@@ -312,6 +315,7 @@ const handlers = {
     document.title = `Robot - ${statusLabel || "Ready"}`;
   },
   "camera/annotated": (contents) => {
+    $.noAnnotatedImageInstructions.style.display = "none";
     $.lastAnnotatedImage.src = contents;
   },
 };
