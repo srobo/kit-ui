@@ -350,7 +350,6 @@ function createPlainLogEntry(text, ...classes) {
   entry.textContent = text;
   $.log.appendChild(entry);
 
-
   if (shouldAutoScroll) {
     entry.scrollIntoView();
   }
