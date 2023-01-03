@@ -335,11 +335,11 @@ const ack = {
 
 client.on("message", function (topic, payload) {
   let contents = null;
-  try {
+  if (topic.startsWith("astoria/")) {
     contents = JSON.parse(payload.toString());
     console.log(isOwnPayload(contents) ? "🦝" : "🤖", topic, contents);
-  } catch {
-    // If we can't parse the payload, just use the raw string.
+  } else {
+    // If the payload is not from astoria, just use the raw string.
     contents = payload.toString();
     console.log(
       isOwnPayload(contents) ? "🦝" : "🤖",
