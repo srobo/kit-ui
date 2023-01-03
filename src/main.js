@@ -65,6 +65,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
       disconnected: document.getElementById("modal-disconnected"),
       info: document.getElementById("modal-info"),
     },
+    lastAnnotatedImage: document.getElementById("last-annotated-image"),
+    noAnnotatedImageInstructions: document.getElementById(
+      "no-annotated-image-instructions"
+    ),
   };
 
   document.getElementById("info-kit-ui-version").textContent = version;
@@ -129,7 +133,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     )
     .forEach(($close) => {
       const $target = $close.closest(".modal");
-
+      if (!$target) return;
       $close.addEventListener("click", () => {
         $target.classList.remove("is-active");
       });
@@ -225,6 +229,7 @@ client.on("connect", function () {
   document.getElementById("serviceProgress").value = 1;
   console.log("Connected!");
   client.subscribe("astoria/#");
+  client.subscribe("camera/#");
 });
 
 const disconnected = function (reset = true) {
@@ -309,6 +314,10 @@ const handlers = {
     document.getElementById("status").textContent = statusLabel;
     document.title = `Robot - ${statusLabel || "Ready"}`;
   },
+  "camera/annotated": (contents) => {
+    $.noAnnotatedImageInstructions.style.display = "none";
+    $.lastAnnotatedImage.src = contents;
+  },
 };
 
 const ack = {
@@ -325,8 +334,19 @@ const ack = {
 };
 
 client.on("message", function (topic, payload) {
-  const contents = JSON.parse(payload.toString());
-  console.log(isOwnPayload(contents) ? "🦝" : "🤖", topic, contents);
+  let contents = null;
+  if (topic.startsWith("astoria/")) {
+    contents = JSON.parse(payload.toString());
+    console.log(isOwnPayload(contents) ? "🦝" : "🤖", topic, contents);
+  } else {
+    // If the payload is not from astoria, just use the raw string.
+    contents = payload.toString();
+    console.log(
+      isOwnPayload(contents) ? "🦝" : "🤖",
+      topic,
+      contents.substring(0, 100)
+    );
+  }
   if (topic in handlers) {
     handlers[topic](contents);
   }
