@@ -1,6 +1,6 @@
 {
   "name": "kit-ui-basic",
-  "version": "2023.2.0",
+  "version": "2023.3.0",
   "description": "",
   "source": "src/index.html",
   "scripts": {
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/srobo/kit-ui-basic.git"
+    "url": "git+https://github.com/srobo/kit-ui.git"
   },
   "author": "Karina Kwiatek <kkwiatek@studentrobotics.org>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/srobo/kit-ui-basic/issues"
+    "url": "https://github.com/srobo/kit-ui/issues"
   },
-  "homepage": "https://github.com/srobo/kit-ui-basic#readme",
+  "homepage": "https://github.com/srobo/kit-ui#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "2.8.0",
     "events": "3.3.0",
