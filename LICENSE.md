@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2022 Student Robotics
+Copyright (c) 2022-23 Student Robotics
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
