@@ -265,7 +265,7 @@ const handlers = {
     entryFragment.querySelector(".log-entry").dataset.source = contents.source;
     entryFragment.querySelector(".log-entry__ts").textContent = ts;
     const contentEl = entryFragment.querySelector(".log-entry__content");
-    contentEl.innerHTML = message.replaceAll(" ", String.fromCharCode(0xa0));
+    contentEl.innerText = message.replaceAll(" ", String.fromCharCode(0xa0));
 
     if (contents.source === "astoria") {
       contentEl.classList.add(
