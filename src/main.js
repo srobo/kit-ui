@@ -316,7 +316,7 @@ const handlers = {
   },
   "camera/annotated": (contents) => {
     $.noAnnotatedImageInstructions.style.display = "none";
-    $.lastAnnotatedImage.src = contents;
+    $.lastAnnotatedImage.src = contents.data;
   },
 };
 
@@ -335,12 +335,11 @@ const ack = {
 
 client.on("message", function (topic, payload) {
   let contents = null;
+  contents = JSON.parse(payload.toString());
   if (topic.startsWith("astoria/")) {
-    contents = JSON.parse(payload.toString());
     console.log(isOwnPayload(contents) ? "🦝" : "🤖", topic, contents);
   } else {
-    // If the payload is not from astoria, just use the raw string.
-    contents = payload.toString();
+    // Truncate the logged image data
     console.log(
       isOwnPayload(contents) ? "🦝" : "🤖",
       topic,
