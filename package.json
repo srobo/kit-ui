@@ -20,26 +20,26 @@
   },
   "homepage": "https://github.com/srobo/kit-ui#readme",
   "devDependencies": {
-    "@parcel/transformer-sass": "2.8.0",
+    "@parcel/transformer-sass": "2.9.3",
     "events": "3.3.0",
-    "parcel": "2.8.0",
-    "prettier": "2.8.1",
+    "parcel": "2.9.3",
+    "prettier": "3.0.3",
     "process": "0.11.10",
-    "punycode": "2.1.1",
+    "punycode": "1.4.1",
     "querystring-es3": "0.2.1",
-    "url": "0.11.0"
+    "url": "0.11.1"
   },
   "optionalDependencies": {
-    "@lmdb/lmdb-darwin-arm64": "2.7.2",
-    "lightningcss-darwin-arm64": "1.17.1",
-    "lightningcss-linux-x64-gnu": "1.17.1",
-    "lightningcss-win32-x64-msvc": "1.17.1",
-    "lightningcss-linux-arm64-gnu": "1.17.1"
+    "@lmdb/lmdb-darwin-arm64": "2.8.5",
+    "lightningcss-darwin-arm64": "1.21.7",
+    "lightningcss-linux-x64-gnu": "1.21.7",
+    "lightningcss-win32-x64-msvc": "1.21.7",
+    "lightningcss-linux-arm64-gnu": "1.21.7"
   },
   "dependencies": {
-    "@mdi/font": "7.1.96",
+    "@mdi/font": "7.2.96",
     "bulma": "0.9.4",
     "mqtt": "4.3.7",
-    "qrcode": "^1.5.1"
+    "qrcode": "1.5.3"
   }
 }
