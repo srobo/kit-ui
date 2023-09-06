@@ -31,12 +31,12 @@ window.addEventListener(
   },
   {
     passive: true,
-  }
+  },
 );
 
 function updateServiceState() {
   const runningServiceCount = Object.values(connectedServices).filter(
-    (val) => val
+    (val) => val,
   ).length;
   if (runningServiceCount === Object.values(connectedServices).length) {
     document.body.classList.add("is-connected");
@@ -67,7 +67,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     },
     lastAnnotatedImage: document.getElementById("last-annotated-image"),
     noAnnotatedImageInstructions: document.getElementById(
-      "no-annotated-image-instructions"
+      "no-annotated-image-instructions",
     ),
   };
 
@@ -75,10 +75,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   /// Theme Toggle
   const systemIsDark = window.matchMedia(
-    "(prefers-color-scheme: dark)"
+    "(prefers-color-scheme: dark)",
   ).matches;
   const documentClassList = [...document.body.classList].filter((className) =>
-    className.endsWith("-theme")
+    className.endsWith("-theme"),
   );
   if (documentClassList.length === 0) {
     const theme =
@@ -92,7 +92,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
     $.themeToggleIcons.forEach((el) => {
       el.classList.add(
-        theme === "dark" ? "mdi-white-balance-sunny" : "mdi-weather-night"
+        theme === "dark" ? "mdi-white-balance-sunny" : "mdi-weather-night",
       );
     });
   }
@@ -109,7 +109,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       $.themeToggleIcons.forEach((el) => {
         el.classList.remove("mdi-weather-night", "mdi-white-balance-sunny");
         el.classList.add(
-          newTheme === "dark" ? "mdi-white-balance-sunny" : "mdi-weather-night"
+          newTheme === "dark" ? "mdi-white-balance-sunny" : "mdi-weather-night",
         );
       });
     });
@@ -129,7 +129,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   // Add a click event on various child elements to close the parent modal
   document
     .querySelectorAll(
-      ".modal-background-close, .modal-close, .modal-card-head .delete, .modal-card-foot .button"
+      ".modal-background-close, .modal-close, .modal-card-head .delete, .modal-card-foot .button",
     )
     .forEach(($close) => {
       const $target = $close.closest(".modal");
@@ -157,13 +157,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
           clearLog();
           break;
       }
-    })
+    }),
   );
 
   document.querySelectorAll(".sends-mutate-request").forEach((el) =>
     el.addEventListener("change", function (e) {
       sendMutateRequest(e.target.dataset.property, e.target.value);
-    })
+    }),
   );
 
   $.themeToggles.forEach((el) =>
@@ -178,10 +178,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
       $.themeToggleIcons.forEach((el) => {
         el.classList.remove("mdi-weather-night", "mdi-white-balance-sunny");
         el.classList.add(
-          newTheme === "dark" ? "mdi-white-balance-sunny" : "mdi-weather-night"
+          newTheme === "dark" ? "mdi-white-balance-sunny" : "mdi-weather-night",
         );
       });
-    })
+    }),
   );
 
   document.querySelectorAll("#mobile-metadata-toggle").forEach((el) =>
@@ -190,7 +190,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       document
         .getElementById("mobile-metadata-controls")
         .classList.toggle("is-active");
-    })
+    }),
   );
 });
 
@@ -271,7 +271,7 @@ const handlers = {
       contentEl.classList.add(
         "has-text-weight-bold",
         "has-text-centered",
-        "is-family-sans-serif"
+        "is-family-sans-serif",
       );
     } else if (contents.source === "stderr") {
       contentEl.classList.add("has-text-danger");
@@ -301,7 +301,7 @@ const handlers = {
     document.getElementById("zone_select").value = contents.metadata.zone;
 
     document.getElementById(
-      `mode-${contents.metadata.mode.toLowerCase()}`
+      `mode-${contents.metadata.mode.toLowerCase()}`,
     ).checked = true;
     document.getElementById(`zone-${contents.metadata.zone}`).checked = true;
   },
@@ -325,7 +325,7 @@ const ack = {
     const logEntry = createPlainLogEntry(
       "💀 Killed",
       "text-d-red",
-      "text-bold"
+      "text-bold",
     );
   },
   restart: (payload) => {
@@ -343,7 +343,7 @@ client.on("message", function (topic, payload) {
     console.log(
       isOwnPayload(contents) ? "🦝" : "🤖",
       topic,
-      contents.substring(0, 100)
+      contents.substring(0, 100),
     );
   }
   if (topic in handlers) {
@@ -393,7 +393,7 @@ function sendProcessRequest(type) {
     JSON.stringify({
       sender_name: options.clientId,
       uuid: requestUuid,
-    })
+    }),
   );
 }
 
@@ -411,7 +411,7 @@ function sendMutateRequest(attr, value) {
       uuid: requestUuid,
       attr,
       value,
-    })
+    }),
   );
 }
 
@@ -422,7 +422,7 @@ function broadcast(eventName) {
       sender_name: options.clientId,
       event_name: eventName,
       priority: 0,
-    })
+    }),
   );
 }
 
