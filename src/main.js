@@ -343,7 +343,7 @@ client.on("message", function (topic, payload) {
     console.log(
       isOwnPayload(contents) ? "🦝" : "🤖",
       topic,
-      contents.substring(0, 100),
+      JSON.stringify(contents).substring(0, 100),
     );
   }
   if (topic in handlers) {
