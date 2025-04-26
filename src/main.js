@@ -91,9 +91,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       el.style.display = "block";
     });
     $.themeToggleIcons.forEach((el) => {
-      el.classList.add(
-        theme === "dark" ? "mdi-white-balance-sunny" : "mdi-weather-night",
-      );
+      el.textContent = `${theme}_mode`;
     });
   }
 
@@ -107,10 +105,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       localStorage.setItem("theme", newTheme);
 
       $.themeToggleIcons.forEach((el) => {
-        el.classList.remove("mdi-weather-night", "mdi-white-balance-sunny");
-        el.classList.add(
-          newTheme === "dark" ? "mdi-white-balance-sunny" : "mdi-weather-night",
-        );
+        el.textContent = `${newTheme}_mode`;
       });
     });
 
@@ -283,7 +278,13 @@ const handlers = {
     if (shouldAutoScroll) contentEl.scrollIntoView();
   },
   "astoria/broadcast/start_button": (contents) => {
-    createPlainLogEntry("▶️ Start button pressed", "text-d-blue", "text-bold");
+    createPlainLogEntry(
+      "Start button pressed",
+      "play_arrow",
+      "has-text-success",
+      "text-d-blue",
+      "text-bold",
+    );
   },
   "astoria/astdiskd": (contents) => {
     connectedServices["astdiskd"] = contents.status === "RUNNING";
@@ -322,14 +323,22 @@ const handlers = {
 
 const ack = {
   kill: (payload) => {
-    const logEntry = createPlainLogEntry(
-      "💀 Killed",
+    createPlainLogEntry(
+      "Killed",
+      "dangerous",
+      "has-text-danger",
       "text-d-red",
       "text-bold",
     );
   },
   restart: (payload) => {
-    createPlainLogEntry("🔄 Restart", "text-d-blue", "text-bold");
+    createPlainLogEntry(
+      "Restart",
+      "restart_alt",
+      "has-text-success",
+      "text-d-blue",
+      "text-bold",
+    );
   },
 };
 
@@ -363,10 +372,19 @@ function uuid4() {
   });
 }
 
-function createPlainLogEntry(text, ...classes) {
+function createPlainLogEntry(text, icon = null, icon_class = null, ...classes) {
   const entry = document.createElement("div");
   entry.classList.add("plain-log-entry", ...classes);
   entry.textContent = text;
+
+  if (icon) {
+    const iconElement = document.createElement("span");
+    iconElement.classList.add("material-symbols-outlined");
+    icon_class && iconElement.classList.add(icon_class);
+    iconElement.textContent = icon;
+    entry.prepend(iconElement);
+  }
+
   $.log.appendChild(entry);
 
   if (shouldAutoScroll) {
@@ -383,8 +401,14 @@ function sendProcessRequest(type) {
       ack[type](payload);
     } else {
       const requestTypeName = type.charAt(0).toUpperCase() + type.slice(1);
-      const entryText = `💣 ${requestTypeName} failed - ${payload.reason}`;
-      createPlainLogEntry(entryText, "text-d-red", "text-bold");
+      const entryText = `${requestTypeName} failed - ${payload.reason}`;
+      createPlainLogEntry(
+        entryText,
+        "error",
+        "has-text-danger",
+        "text-d-red",
+        "text-bold",
+      );
     }
     delete handlers[payload.uuid];
   };
@@ -401,7 +425,13 @@ function sendMutateRequest(attr, value) {
   const requestUuid = uuid4();
   handlers[`astoria/astmetad/request/mutate/${requestUuid}`] = (payload) => {
     if (!payload.success) {
-      createPlainLogEntry(`⚠️ ${payload.reason}`, "text-d-orange", "text-bold");
+      createPlainLogEntry(
+        payload.reason,
+        "warning",
+        "has-text-warning",
+        "text-d-orange",
+        "text-bold",
+      );
     }
   };
   client.publish(
