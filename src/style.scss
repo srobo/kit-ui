@@ -1,14 +1,11 @@
-$primary: #3270ed;
-$family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
-  "Cantarell", "Ubuntu", Helvetica, Arial, sans-serif, "Apple Color Emoji",
-  "Segoe UI Emoji";
-$navbar-breakpoint: 1px;
-$mobile-breakpoint: 640px;
-
-// button height + (4px padding * 2)
-$controls-height: calc(2.5em + 8px);
-
-@import "../node_modules/bulma/bulma";
+@use "../node_modules/bulma/sass" with (
+  $primary: #3270ed,
+  $family-sans-serif: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Cantarell", "Ubuntu", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
+  $navbar-breakpoint: 1px,
+  $mobile-breakpoint: 640px,
+  // button height + (4px padding * 2)
+  $controls-height: calc(2.5em + 8px)
+);
 
 html {
   height: 100%;
