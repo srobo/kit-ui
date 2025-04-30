@@ -8,7 +8,7 @@ $mobile-breakpoint: 640px;
 // button height + (4px padding * 2)
 $controls-height: calc(2.5em + 8px);
 
-@import "~bulma";
+@import "../node_modules/bulma/bulma";
 
 html {
   height: 100%;

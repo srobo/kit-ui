@@ -2,12 +2,12 @@
   "name": "kit-ui-basic",
   "version": "2024.0.1",
   "description": "",
-  "source": "src/index.html",
   "scripts": {
-    "start": "parcel",
-    "build": "parcel build",
-    "format": "npx prettier --write src/",
-    "lint": "npx prettier --check src/"
+    "start": "vite --open",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write src/",
+    "lint": "prettier --check src/"
   },
   "repository": {
     "type": "git",
@@ -22,12 +22,13 @@
   "devDependencies": {
     "@parcel/transformer-sass": "2.14.4",
     "events": "3.3.0",
-    "parcel": "2.14.4",
     "prettier": "3.0.3",
     "process": "0.11.10",
     "punycode": "1.4.1",
     "querystring-es3": "0.2.1",
-    "url": "0.11.1"
+    "sass": "^1.87.0",
+    "url": "0.11.1",
+    "vite": "^6.3.3"
   },
   "optionalDependencies": {
     "@lmdb/lmdb-darwin-arm64": "2.8.5",
