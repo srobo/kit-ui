@@ -78,17 +78,17 @@ window.addEventListener("DOMContentLoaded", (event) => {
     "(prefers-color-scheme: dark)",
   ).matches;
   const documentClassList = [...document.body.classList].filter((className) =>
-    className.endsWith("-theme"),
+    className.startsWith("theme-"),
   );
   if (documentClassList.length === 0) {
     const theme =
       localStorage.getItem("theme") ?? (systemIsDark ? "dark" : "light");
 
-    document.body.classList.add(`${theme}-theme`);
+    document.body.classList.add(`theme-${theme}`);
     localStorage.setItem("theme", theme);
 
     $.themeToggles.forEach((el) => {
-      el.style.display = "block";
+      el.classList.remove('is-hidden');
     });
     $.themeToggleIcons.forEach((el) => {
       el.textContent = `${theme}_mode`;
@@ -100,8 +100,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     .addEventListener("change", (event) => {
       const newTheme = event.matches ? "dark" : "light";
 
-      document.body.classList.remove("dark-theme", "light-theme");
-      document.body.classList.add(`${newTheme}-theme`);
+      document.body.classList.remove("theme-dark", "theme-light");
+      document.body.classList.add(`theme-${newTheme}`);
       localStorage.setItem("theme", newTheme);
 
       $.themeToggleIcons.forEach((el) => {
@@ -166,8 +166,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
       const currentTheme = localStorage.getItem("theme");
       const newTheme = currentTheme === "light" ? "dark" : "light";
 
-      document.body.classList.remove("dark-theme", "light-theme");
-      document.body.classList.add(`${newTheme}-theme`);
+      document.body.classList.remove("theme-dark", "theme-light");
+      document.body.classList.add(`theme-${newTheme}`);
       localStorage.setItem("theme", newTheme);
 
       $.themeToggleIcons.forEach((el) => {

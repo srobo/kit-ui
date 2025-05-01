@@ -6,7 +6,8 @@
     <meta name="theme-color" content="#3270ed" />
     <title>Robot</title>
     <link rel="stylesheet" href="node_modules/material-symbols/index.css" />
-    <link rel="stylesheet" href="src/style.scss" />
+    <link rel="stylesheet" href="node_modules/bulma/css/bulma.css" />
+    <link rel="stylesheet" href="src/style.css" />
     <link rel="shortcut icon" href="src/favicon.ico" />
   </head>
 
@@ -48,8 +49,7 @@
           <span
             id="theme-toggle"
             tabindex="0"
-            class="button"
-            style="display: none"
+            class="button is-hidden"
           >
             <span class="icon has-text-link">
               <span
@@ -142,8 +142,7 @@
           <span
             id="mobile-theme-toggle"
             tabindex="0"
-            class="button"
-            style="display: none"
+            class="button is-hidden"
           >
             <span class="icon has-text-link">
               <span
@@ -265,18 +264,20 @@
           <button class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
-          <div class="column">
-            <p>Kit UI Version: <code id="info-kit-ui-version"></code></p>
-            <p>Python Version: <code id="info-python-version"></code></p>
-            <p>Entrypoint: <code id="info-entrypoint"></code></p>
-            <p>WiFi Network: <code id="info-wifi-ssid"></code></p>
-            <p>WiFi Password: <code id="info-wifi-secret"></code></p>
-          </div>
-          <div class="column wifi-details">
-            <p>
-              Join other devices to the WiFi network by scanning the QR Code
-            </p>
-            <canvas id="qrcode-wifi"></canvas>
+          <div class="grid">
+            <div class="cell">
+              <p>Kit UI Version: <code id="info-kit-ui-version"></code></p>
+              <p>Python Version: <code id="info-python-version"></code></p>
+              <p>Entrypoint: <code id="info-entrypoint"></code></p>
+              <p>WiFi Network: <code id="info-wifi-ssid"></code></p>
+              <p>WiFi Password: <code id="info-wifi-secret"></code></p>
+            </div>
+            <div class="cell wifi-details">
+              <p>
+                Join other devices to the WiFi network by scanning the QR Code
+              </p>
+              <canvas id="qrcode-wifi"></canvas>
+            </div>
           </div>
         </section>
       </div>

@@ -1,0 +1,226 @@
+:root {
+    --bulma-primary: #3270ed;
+    --controls-height: calc(2.5em + 8px);
+}
+
+body {
+    background: var(--bulma-background);
+    color: var(--bulma-text);
+    min-block-size: 100lvb;
+}
+
+.controls {
+    display: flex;
+    padding: 4px;
+    background: var(--bulma-background);
+    position: sticky;
+    width: 100%;
+    top: 0;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--bulma-background-active);
+
+    .mobile-metadata-toggle {
+        display: none;
+    }
+
+    #mobile-metadata-controls {
+        display: none;
+    }
+
+    @media screen and (max-width: 640px) {
+        bottom: 0;
+        top: initial;
+        flex-direction: row-reverse;
+        flex-wrap: wrap-reverse;
+
+        .control-buttons {
+            flex-direction: row-reverse;
+
+            .field.has-addons {
+                .control:last-child {
+                    margin-right: -1px;
+                    .button {
+                        border-radius: 4px 0 0 4px;
+                    }
+                }
+                .control:first-child {
+                    .button {
+                        border-radius: 0 4px 4px 0;
+                    }
+                }
+            }
+        }
+
+        #status {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .mobile-metadata-toggle {
+            display: flex;
+            flex-basis: 100%;
+            height: 0;
+        }
+
+        #mobile-metadata-controls {
+            .is-active {
+                display: flex;
+                padding-bottom: 0.5rem;
+                flex-direction: column;
+            }
+        }
+
+        .mobile-control {
+            display: flex;
+            align-items: center;
+
+            :not(:last-child) {
+                margin-bottom: 0.25rem;
+            }
+
+            .mobile-control-label {
+                font-weight: bold;
+                margin-right: 0.5rem;
+                :after {
+                    content: ":";
+                }
+            }
+        }
+    }
+
+     > .field {
+        margin-bottom: 0;
+    }
+
+    .radio-buttons {
+        list-style-type: none;
+
+         li {
+            float: left;
+            width: 128px;
+            height: 2rem;
+            position: relative;
+            margin-right: 0;
+            padding-right: 0;
+
+            .compact {
+                width: 64px;
+            }
+
+            :first-child {
+                label {
+                    border-radius: 4px 0 0 4px;
+                }
+            }
+
+            :last-child {
+                label {
+                    border-radius: 0 4px 4px 0;
+                }
+            }
+        }
+
+        label,
+        input {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        input[type="radio"] {
+            opacity: 0;
+            z-index: 1;
+            cursor: pointer;
+
+            :checked + label {
+                background-color: var(--bulma-primary);
+                color: var(--bulma-text);
+            }
+        }
+
+        label {
+            color: var(--bulma-text);
+            text-align: center;
+            line-height: 2rem;
+        }
+    }
+}
+
+.metadata-selectors {
+    @media screen and (max-width: 640px) {
+        display: none !important; /* Override Bulma .field.is-grouped */
+    }
+    display: initial;
+}
+
+.log-list {
+    font-family: monospace;
+    display: grid;
+    grid-template-columns: 5fr 95fr;
+    row-gap: 0.25rem;
+    font-size: 1rem;
+    color: var(--bulma-text);
+
+    @media screen and (max-width: 640px) {
+        margin-bottom: var(--controls-height) !important; /* Override Bulma .table:not(:last-child) */
+        margin-top: 0;
+    }
+
+    .log-entry {
+        display: contents;
+        height: var(--controls-height);
+        &:nth-child(even) {
+            div {
+                background-color: color-mix(in oklab, var(--bulma-background), currentColor 10%);
+            }
+        }
+
+        .log-entry__ts {
+            grid-column: 1;
+            padding-right: 0.5rem;
+            padding-left: 0.5rem;
+        }
+
+        .log-entry__content {
+            grid-column: 2;
+            word-break: break-word;
+        }
+    }
+
+    .plain-log-entry {
+        text-align: center;
+        font-family: var(--bulma-body-family), sans-serif;
+        grid-column: 2 / 3;
+    }
+}
+
+.button > .icon {
+    pointer-events: none;
+}
+
+#modal-info {
+    .modal-card-body {
+        font-size: 1.25rem;
+        white-space: nowrap;
+
+        .wifi-details {
+            text-align: center;
+            font-size: 1rem;
+            white-space: initial;
+        }
+
+        @media screen and (max-width: 640px) {
+            flex-direction: column;
+            .wifi-details {
+                display: flex;
+                flex-direction: column-reverse;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    }
+}
