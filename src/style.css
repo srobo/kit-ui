@@ -6,19 +6,29 @@
 body {
     background: var(--bulma-background);
     color: var(--bulma-text);
-    min-block-size: 100lvb;
+    block-size: 100lvb;
+    display: grid;
+    grid-template:
+            "controls" auto
+            "logs" 1fr / 1fr;
+}
+
+@media screen and (max-width: 640px) {
+    body {
+        grid-template:
+            "logs" 1fr
+            "controls" auto / 1fr;
+    }
 }
 
 .controls {
     display: flex;
     padding: 4px;
     background: var(--bulma-background);
-    position: sticky;
-    width: 100%;
-    top: 0;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--bulma-background-active);
+    grid-area: controls;
 
     .mobile-metadata-toggle {
         display: none;
@@ -29,10 +39,13 @@ body {
     }
 
     @media screen and (max-width: 640px) {
-        bottom: 0;
-        top: initial;
+        order: 1;
         flex-direction: row-reverse;
         flex-wrap: wrap-reverse;
+        margin-top: auto;
+
+        border-bottom: none;
+        border-top: 1px solid var(--bulma-background-active);
 
         .control-buttons {
             flex-direction: row-reverse;
@@ -160,10 +173,13 @@ body {
 .log-list {
     font-family: monospace;
     display: grid;
-    grid-template-columns: 5fr 95fr;
-    row-gap: 0.25rem;
     font-size: 1rem;
     color: var(--bulma-text);
+    overflow: auto;
+    grid-area: logs;
+    align-content: start;
+    width: 100%;
+    height: 100%;
 
     @media screen and (max-width: 640px) {
         margin-bottom: var(--controls-height) !important; /* Override Bulma .table:not(:last-child) */
@@ -171,12 +187,20 @@ body {
     }
 
     .log-entry {
-        display: contents;
-        height: var(--controls-height);
+        display: grid;
+        contain: strict;
+        content-visibility: auto;
+        height: 1.4rlh;
+        grid-template-columns: 5fr 95fr;
         &:nth-child(even) {
             div {
                 background-color: color-mix(in oklab, var(--bulma-background), currentColor 10%);
             }
+        }
+
+        &:last-child {
+            /* Without this, the autoscroll will not work */
+            content-visibility: visible;
         }
 
         .log-entry__ts {
@@ -191,16 +215,27 @@ body {
         }
     }
 
+    .log-list-scroll {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 2;
+    }
+
+    &[data-autoscroll="true"] .log-list-scroll {
+        display: none;
+    }
+
+    .button > .icon {
+        pointer-events: none;
+    }
+
     .plain-log-entry {
         text-align: center;
         font-family: var(--bulma-body-family), sans-serif;
-        grid-column: 2 / 3;
     }
 }
 
-.button > .icon {
-    pointer-events: none;
-}
 
 #modal-info {
     .modal-card-body {

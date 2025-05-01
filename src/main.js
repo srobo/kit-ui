@@ -22,18 +22,7 @@ let connectedServices = {
 };
 let $ = {};
 let shouldAutoScroll = true;
-
-window.addEventListener(
-  "scroll",
-  function (e) {
-    const logTable = document.getElementById("log");
-    shouldAutoScroll =
-      window.scrollY + window.innerHeight >= logTable.scrollHeight;
-  },
-  {
-    passive: true,
-  },
-);
+let generatedScrollEvent = false;
 
 function updateServiceState() {
   const runningServiceCount = Object.values(connectedServices).filter(
@@ -70,7 +59,31 @@ window.addEventListener("DOMContentLoaded", (event) => {
     noAnnotatedImageInstructions: document.getElementById(
       "no-annotated-image-instructions",
     ),
+    scrollToBottom: document.getElementById("scroll-to-bottom"),
   };
+
+  /// Autoscroll
+  $.log.addEventListener(
+    "scroll",
+    function (e) {
+      if (generatedScrollEvent) {
+        generatedScrollEvent = false;
+      } else {
+        shouldAutoScroll = false;
+        $.log.dataset.autoscroll = "false";
+      }
+    },
+    {
+      passive: true,
+    },
+  );
+
+  $.scrollToBottom.addEventListener("click", function (e) {
+    shouldAutoScroll = true;
+    generatedScrollEvent = true;
+    $.log.dataset.autoscroll = "true";
+    $.log.scrollTop = $.log.scrollHeight;
+  });
 
   document.getElementById("info-kit-ui-version").textContent = version;
 
@@ -276,7 +289,9 @@ const handlers = {
     }
 
     $.log.appendChild(entryFragment);
-    if (shouldAutoScroll) contentEl.scrollIntoView();
+    console.debug('shouldAutoScroll', shouldAutoScroll);
+    generatedScrollEvent = true;
+    if (shouldAutoScroll) contentEl.scrollIntoView({ block: "end" });
   },
   "astoria/broadcast/start_button": (contents) => {
     createPlainLogEntry(
@@ -389,6 +404,7 @@ function createPlainLogEntry(text, icon = null, icon_class = null, ...classes) {
   $.log.appendChild(entry);
 
   if (shouldAutoScroll) {
+    generatedScrollEvent = true;
     entry.scrollIntoView();
   }
 
