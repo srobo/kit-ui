@@ -12,7 +12,8 @@ const options = {
   rejectUnauthorized: false,
 };
 
-const client = mqtt.connect(`ws://${location.hostname}:9001`, options);
+const brokerHost = localStorage.getItem("brokerHost") ?? location.hostname;
+const client = mqtt.connect(`ws://${brokerHost}:9001`, options);
 const logMessageRegex = /\[(\d+:\d{2}:\d{2}\.?\d*)] (.*)/;
 let connectedServices = {
   astdiskd: false,
