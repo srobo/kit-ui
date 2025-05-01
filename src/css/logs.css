@@ -1,0 +1,61 @@
+.log-list {
+    font-family: monospace;
+    display: grid;
+    font-size: 1rem;
+    color: var(--bulma-text);
+    overflow: auto;
+    grid-area: logs;
+    align-content: start;
+    width: 100%;
+    height: 100%;
+
+    @media screen and (max-width: 640px) {
+        margin-bottom: var(--controls-height) !important; /* Override Bulma .table:not(:last-child) */
+        margin-top: 0;
+    }
+
+    .log-entry {
+        display: grid;
+        contain: strict;
+        content-visibility: auto;
+        height: 1.4rlh;
+        grid-template-columns: 5fr 95fr;
+        &:nth-child(even) {
+            div {
+                background-color: color-mix(in oklab, var(--bulma-background), currentColor 10%);
+            }
+        }
+
+        &:last-child {
+            /* Without this, the autoscroll will not work */
+            content-visibility: visible;
+        }
+
+        .log-entry__ts {
+            grid-column: 1;
+            padding-right: 0.5rem;
+            padding-left: 0.5rem;
+        }
+
+        .log-entry__content {
+            grid-column: 2;
+            word-break: break-word;
+        }
+    }
+
+    .log-list-scroll {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 2;
+    }
+
+    &[data-autoscroll="true"] .log-list-scroll {
+        display: none;
+    }
+
+    .plain-log-entry {
+        text-align: center;
+        font-family: var(--bulma-body-family), sans-serif;
+    }
+}

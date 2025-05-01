@@ -1,0 +1,22 @@
+:root {
+    --bulma-primary: #3270ed;
+    --controls-height: calc(2.5em + 8px);
+}
+
+body {
+    background: var(--bulma-background);
+    color: var(--bulma-text);
+    block-size: 100lvb;
+    display: grid;
+    grid-template:
+            "controls" auto
+            "logs" 1fr / 1fr;
+}
+
+@media screen and (max-width: 640px) {
+    body {
+        grid-template:
+            "logs" 1fr
+            "controls" auto / 1fr;
+    }
+}
