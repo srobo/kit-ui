@@ -226,10 +226,6 @@ body {
         display: none;
     }
 
-    .button > .icon {
-        pointer-events: none;
-    }
-
     .plain-log-entry {
         text-align: center;
         font-family: var(--bulma-body-family), sans-serif;
