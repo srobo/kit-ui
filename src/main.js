@@ -289,7 +289,6 @@ const handlers = {
     }
 
     $.log.appendChild(entryFragment);
-    console.debug('shouldAutoScroll', shouldAutoScroll);
     generatedScrollEvent = true;
     if (shouldAutoScroll) contentEl.scrollIntoView({ block: "end" });
   },
