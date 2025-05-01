@@ -473,5 +473,7 @@ function broadcast(eventName) {
 }
 
 function clearLog() {
-  $.log.innerHTML = "";
+  document.querySelectorAll('.log-entry, .plain-log-entry').forEach((el) => {
+    el.remove();
+  });
 }
