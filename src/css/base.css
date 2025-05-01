@@ -1,6 +1,12 @@
 :root {
-    --bulma-primary: #3270ed;
     --controls-height: calc(2.5em + 8px);
+}
+
+:root, .theme-light, .theme-dark {
+    --bulma-primary: #3270ed;
+    --bulma-primary-h: 220deg;
+    --bulma-primary-s: 84%;
+    --bulma-primary-l: 56%;
 }
 
 body {
