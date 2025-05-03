@@ -1,8 +1,9 @@
 import mqtt from "mqtt";
 import QRCode from "qrcode";
 import { version } from "../package.json";
-import { initSettingsTabs, loadSettings } from "./settings";
+import { loadSettings } from "./settings";
 import { clearLog, createPlainLogEntry, createUsercodeLogEntry, initLog } from "./logs.mjs";
+import initUI from "./ui.mjs";
 
 const options = {
   keepalive: 30,
@@ -48,35 +49,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
     ),
   };
 
-  initSettingsTabs();
   loadSettings();
   initLog();
+  initUI();
 
   document.getElementById("info-kit-ui-version").textContent = version;
-
-  /// Modals
-  // Add a click event on modal triggers
-  document.querySelectorAll(".modal-trigger").forEach(($trigger) => {
-    const modal = $trigger.dataset.target;
-    const $target = document.getElementById(modal);
-
-    $trigger.addEventListener("click", () => {
-      $target.classList.add("is-active");
-    });
-  });
-
-  // Add a click event on various child elements to close the parent modal
-  document
-    .querySelectorAll(
-      ".modal-background-close, .modal-close, .modal-card-head .delete, .modal-card-foot .button",
-    )
-    .forEach(($close) => {
-      const $target = $close.closest(".modal");
-      if (!$target) return;
-      $close.addEventListener("click", () => {
-        $target.classList.remove("is-active");
-      });
-    });
 
   /// Buttons
   document.querySelectorAll("[data-action]").forEach((el) =>
@@ -325,5 +302,3 @@ function broadcast(eventName) {
     }),
   );
 }
-
-

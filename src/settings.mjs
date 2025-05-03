@@ -48,17 +48,3 @@ export function loadSettings() {
     }, { passive: true });
   }
 }
-
-export function initSettingsTabs() {
-  document.getElementById('settings-tab-strip').querySelectorAll('a').forEach((tab) => {
-    const target = tab.dataset.target;
-    tab.addEventListener('click', (e) => {
-      document.querySelectorAll('.settings-tab').forEach((content) => {
-        content.classList.add('is-hidden');
-      });
-      document.getElementById(`settings-${target}`).classList.remove('is-hidden');
-      document.querySelector('#settings-tab-strip li.is-active').classList.remove('is-active');
-      tab.parentElement.classList.add('is-active');
-    }, { passive: true });
-  });
-}
