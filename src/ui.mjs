@@ -67,7 +67,10 @@ export function updateServiceState(connectedServices) {
 
 export function updateMetadataFields(newMetadata) {
   if (newMetadata.wifi_ssid != null && newMetadata.wifi_enabled) {
+    document.body.classList.add("has-wifi-enabled");
     QRCode.toCanvas($wifiQRCode, `WIFI:T:WPA;S:${newMetadata.wifi_ssid};P:${newMetadata.wifi_psk};;`);
+  } else {
+    document.body.classList.remove("has-wifi-enabled");
   }
 
   for (let key in $metadataLabels) {

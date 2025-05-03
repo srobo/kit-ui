@@ -43,3 +43,12 @@
 #zone-3 {
     accent-color: var(--sr-zone-3);
 }
+
+body.has-wifi-enabled {
+    #wifi-info {
+        display: block !important;
+    }
+    #wifi-disabled {
+        display: none;
+    }
+}
