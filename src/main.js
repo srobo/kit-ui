@@ -134,15 +134,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
       sendMutateRequest(e.target.name, e.target.value);
     }),
   );
-
-  document.querySelectorAll("#mobile-metadata-toggle").forEach((el) =>
-    el.addEventListener("click", function (e) {
-      e.preventDefault();
-      document
-        .getElementById("mobile-metadata-controls")
-        .classList.toggle("is-active");
-    }),
-  );
 });
 
 function updateInformationModal(metadata) {
