@@ -133,54 +133,56 @@
           </div>
           <div class="settings-tabs">
             <div class="settings-tab" id="settings-metadata">
-              <div class="grid">
-                <div class="cell">
-                  <label class="label">Zone</label>
-                  <form class="zone-selector" id="zone_select">
-                    <div class="zone">
-                      <input class="sends-mutate-request" type="radio" name="zone" id="zone-0" value="0" />
-                      <label for="zone-0">0</label>
+              <form id="metadata">
+                <div class="grid">
+                  <div class="cell">
+                    <label class="label">Zone</label>
+                    <div class="zone-selector">
+                      <div class="zone">
+                        <input class="sends-mutate-request" type="radio" name="zone" id="zone-0" value="0" />
+                        <label for="zone-0">0</label>
+                      </div>
+                      <div class="zone">
+                        <label for="zone-1">1</label>
+                        <input class="sends-mutate-request" type="radio" name="zone" id="zone-1" value="1" />
+                      </div>
+                      <div class="zone">
+                        <input class="sends-mutate-request" type="radio" name="zone" id="zone-2" value="2" />
+                        <label for="zone-2">2</label>
+                      </div>
+                      <div class="zone">
+                        <label for="zone-3">3</label>
+                        <input class="sends-mutate-request" type="radio" name="zone" id="zone-3" value="3" />
+                      </div>
                     </div>
-                    <div class="zone">
-                      <label for="zone-1">1</label>
-                      <input class="sends-mutate-request" type="radio" name="zone" id="zone-1" value="1" />
-                    </div>
-                    <div class="zone">
-                      <input class="sends-mutate-request" type="radio" name="zone" id="zone-2" value="2" />
-                      <label for="zone-2">2</label>
-                    </div>
-                    <div class="zone">
-                      <label for="zone-3">3</label>
-                      <input class="sends-mutate-request" type="radio" name="zone" id="zone-3" value="3" />
-                    </div>
-                  </form>
+                  </div>
+                  <div class="cell">
+                    <label class="label">Mode</label>
+                    <ul class="radio-buttons">
+                      <li>
+                        <input
+                          type="radio"
+                          name="mode"
+                          id="mode-dev"
+                          value="DEV"
+                          class="sends-mutate-request"
+                        />
+                        <label for="mode-dev">Development</label>
+                      </li>
+                      <li>
+                        <input
+                          type="radio"
+                          name="mode"
+                          id="mode-comp"
+                          value="COMP"
+                          class="sends-mutate-request"
+                        />
+                        <label for="mode-comp">Competition</label>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="cell">
-                  <label class="label">Mode</label>
-                  <ul class="radio-buttons">
-                    <li>
-                      <input
-                        type="radio"
-                        name="mode"
-                        id="mode-dev"
-                        value="DEV"
-                        class="sends-mutate-request"
-                      />
-                      <label for="mode-dev">Development</label>
-                    </li>
-                    <li>
-                      <input
-                        type="radio"
-                        name="mode"
-                        id="mode-comp"
-                        value="COMP"
-                        class="sends-mutate-request"
-                      />
-                      <label for="mode-comp">Competition</label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              </form>
             </div>
             <div class="settings-tab is-hidden" id="settings-wifi">
               <p>Join other devices to the WiFi network by using the details below or scanning the QR Code</p>

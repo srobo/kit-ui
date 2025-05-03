@@ -1,3 +1,8 @@
+import QRCode from "qrcode";
+
+const $disconnectedModal = document.getElementById("modal-disconnected");
+const $wifiQRCode = document.getElementById("qrcode-wifi");
+
 function initModals() {
   // Add a click event on modal triggers
   document.querySelectorAll(".modal-trigger").forEach(($trigger) => {
@@ -37,7 +42,45 @@ function initSettingsTabs() {
   });
 }
 
-export default function() {
+export function initUI() {
   initModals();
   initSettingsTabs();
+}
+
+export function updateServiceState(connectedServices) {
+  const runningServiceCount = Object.values(connectedServices).filter(
+    (val) => val,
+  ).length;
+  if (runningServiceCount === Object.values(connectedServices).length) {
+    document.body.classList.add("is-connected");
+    $disconnectedModal.classList.remove("is-active");
+  } else {
+    document.getElementById("serviceProgress").value = runningServiceCount + 1;
+  }
+}
+
+export function updateInformationModal(metadata) {
+  let ssid, psk;
+  if (metadata.wifi_ssid != null && metadata.wifi_enabled) {
+    ssid = metadata.wifi_ssid;
+    psk = metadata.wifi_psk;
+    QRCode.toCanvas($wifiQRCode, `WIFI:T:WPA;S:${ssid};P:${psk};;`);
+  } else {
+    ssid = "Disabled";
+    psk = "Disabled";
+    $wifiQRCode
+      .getContext("2d")
+      .clearRect(0, 0, $wifiQRCode.width, $wifiQRCode.height);
+  }
+  document.getElementById("info-os-version").textContent =
+    metadata.os_pretty_name;
+  document.getElementById("info-python-version").textContent =
+    metadata.python_version;
+  document.getElementById("info-entrypoint").textContent =
+    metadata.usercode_entrypoint;
+  document.getElementById("info-wifi-ssid").textContent = ssid;
+  document.getElementById("info-wifi-secret").textContent = psk;
+  const metadataSettings = document.getElementById("metadata");
+  metadataSettings["zone"].value = metadata.zone;
+  metadataSettings["mode"].value = metadata.mode;
 }
