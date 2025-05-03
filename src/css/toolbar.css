@@ -28,24 +28,6 @@
         border-bottom: none;
         border-top: 1px solid var(--bulma-background-active);
 
-        .control-buttons {
-            flex-direction: row-reverse;
-
-            .field.has-addons {
-                .control:last-child {
-                    margin-right: -1px;
-                    .button {
-                        border-radius: 4px 0 0 4px;
-                    }
-                }
-                .control:first-child {
-                    .button {
-                        border-radius: 0 4px 4px 0;
-                    }
-                }
-            }
-        }
-
         #status {
             display: flex;
             justify-content: flex-end;
