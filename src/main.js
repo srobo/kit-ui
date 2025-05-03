@@ -2,7 +2,7 @@ import mqtt from "mqtt";
 import QRCode from "qrcode";
 import { version } from "../package.json";
 import { initSettingsTabs, loadSettings } from "./settings";
-import { createPlainLogEntry, createUsercodeLogEntry, initLog } from "./logs.mjs";
+import { clearLog, createPlainLogEntry, createUsercodeLogEntry, initLog } from "./logs.mjs";
 
 const options = {
   keepalive: 30,
@@ -326,8 +326,4 @@ function broadcast(eventName) {
   );
 }
 
-function clearLog() {
-  document.querySelectorAll('.log-entry, .plain-log-entry').forEach((el) => {
-    el.remove();
-  });
-}
+

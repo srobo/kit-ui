@@ -86,3 +86,9 @@ export function initLog() {
     $log.scrollTop = $log.scrollHeight;
   });
 }
+
+export function clearLog() {
+  document.querySelectorAll('.log-entry, .plain-log-entry').forEach((el) => {
+    el.remove();
+  });
+}
