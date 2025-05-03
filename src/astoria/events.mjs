@@ -1,6 +1,6 @@
 import { createPlainLogEntry, createUsercodeLogEntry } from "../logs.mjs";
 import { getClient } from "./connection.js";
-import { updateInformationModal, updateServiceState } from "../ui.mjs";
+import { updateMetadataFields, updateServiceState } from "../ui.mjs";
 
 const $disconnectedModal = document.getElementById("modal-disconnected");
 const $lastAnnotatedImage = document.getElementById("last-annotated-image");
@@ -67,7 +67,7 @@ const handlers = {
     if (!connectedServices["astmetad"]) disconnected(false);
 
     updateServiceState(connectedServices);
-    updateInformationModal(contents.metadata);
+    updateMetadataFields(contents.metadata);
   },
   "astoria/astprocd": (contents) => {
     connectedServices["astprocd"] = contents.status === "RUNNING";

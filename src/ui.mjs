@@ -2,6 +2,8 @@ import QRCode from "qrcode";
 
 const $disconnectedModal = document.getElementById("modal-disconnected");
 const $wifiQRCode = document.getElementById("qrcode-wifi");
+const $metadataForm = document.getElementById("metadata");
+const $metadataLabels = {};
 
 function initModals() {
   // Add a click event on modal triggers
@@ -45,6 +47,10 @@ function initSettingsTabs() {
 export function initUI() {
   initModals();
   initSettingsTabs();
+
+  document.querySelectorAll("[data-from-metadata]").forEach((el) => {
+    $metadataLabels[el.dataset.fromMetadata] = el;
+  });
 }
 
 export function updateServiceState(connectedServices) {
@@ -59,28 +65,15 @@ export function updateServiceState(connectedServices) {
   }
 }
 
-export function updateInformationModal(metadata) {
-  let ssid, psk;
-  if (metadata.wifi_ssid != null && metadata.wifi_enabled) {
-    ssid = metadata.wifi_ssid;
-    psk = metadata.wifi_psk;
-    QRCode.toCanvas($wifiQRCode, `WIFI:T:WPA;S:${ssid};P:${psk};;`);
-  } else {
-    ssid = "Disabled";
-    psk = "Disabled";
-    $wifiQRCode
-      .getContext("2d")
-      .clearRect(0, 0, $wifiQRCode.width, $wifiQRCode.height);
+export function updateMetadataFields(newMetadata) {
+  if (newMetadata.wifi_ssid != null && newMetadata.wifi_enabled) {
+    QRCode.toCanvas($wifiQRCode, `WIFI:T:WPA;S:${newMetadata.wifi_ssid};P:${newMetadata.wifi_psk};;`);
   }
-  document.getElementById("info-os-version").textContent =
-    metadata.os_pretty_name;
-  document.getElementById("info-python-version").textContent =
-    metadata.python_version;
-  document.getElementById("info-entrypoint").textContent =
-    metadata.usercode_entrypoint;
-  document.getElementById("info-wifi-ssid").textContent = ssid;
-  document.getElementById("info-wifi-secret").textContent = psk;
-  const metadataSettings = document.getElementById("metadata");
-  metadataSettings["zone"].value = metadata.zone;
-  metadataSettings["mode"].value = metadata.mode;
+
+  for (let key in $metadataLabels) {
+    $metadataLabels[key].textContent = newMetadata[key];
+    if (key in $metadataForm) {
+      $metadataForm[key].value = newMetadata[key];
+    }
+  }
 }

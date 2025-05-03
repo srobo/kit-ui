@@ -186,15 +186,18 @@
             </div>
             <div class="settings-tab is-hidden" id="settings-wifi">
               <p>Join other devices to the WiFi network by using the details below or scanning the QR Code</p>
-              <div class="grid">
+              <div class="grid" id="wifi-info">
                 <div class="cell has-text-centered-desktop is-align-content-center">
-                  <p>WiFi Network: <code id="info-wifi-ssid"></code></p>
-                  <p>WiFi Password: <code id="info-wifi-secret"></code></p>
+                  <p>WiFi Network: <code data-from-metadata="wifi_ssid"></code></p>
+                  <p>WiFi Password: <code data-from-metadata="wifi_psk"></code></p>
                   <p class="mt-3">These settings can be changed by editing <code>robot-settings.toml</code></p>
                 </div>
                 <div class="cell has-text-centered-desktop">
                   <canvas id="qrcode-wifi"></canvas>
                 </div>
+              </div>
+              <div id="wifi-disabled">
+                WiFi is disabled. You can enable it by editing <code>robot-settings.toml</code> and setting <code>wifi_enabled = true</code>.
               </div>
             </div>
             <div class="settings-tab is-hidden" id="settings-interface">
@@ -243,10 +246,10 @@
                   <img src="src/logo.svg" alt="Student Robotics logo" width="65%">
                 </div>
                 <div class="column is-align-content-center">
-                  <strong class="is-size-5 mb-2" id="info-os-version"></strong>
+                  <strong class="is-size-5 mb-2" data-from-metadata="os_pretty_name"></strong>
                   <p>Kit UI Version: <code id="info-kit-ui-version"></code></p>
-                  <p>Python Version: <code id="info-python-version"></code></p>
-                  <p>Entrypoint: <code id="info-entrypoint"></code></p>
+                  <p>Python Version: <code data-from-metadata="python_version"></code></p>
+                  <p>Entrypoint: <code data-from-metadata="usercode_entrypoint"></code></p>
                 </div>
               </div>
             </div>
