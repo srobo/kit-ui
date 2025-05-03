@@ -20,3 +20,9 @@
         }
     }
 }
+
+.modal-card-title {
+    .material-symbols-outlined {
+        vertical-align: sub;
+    }
+}

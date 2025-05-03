@@ -1,6 +1,7 @@
 import mqtt from "mqtt";
 import QRCode from "qrcode";
 import { version } from "../package.json";
+import { settings, initSettingsTabs, loadSettings } from "./settings";
 
 const options = {
   keepalive: 30,
@@ -43,14 +44,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     templates: {
       logEntry: document.getElementById("tpl-log-entry"),
     },
-    themeToggles: [
-      document.getElementById("theme-toggle"),
-      document.getElementById("mobile-theme-toggle"),
-    ],
-    themeToggleIcons: [
-      document.getElementById("toggle-theme-icon"),
-      document.getElementById("mobile-toggle-theme-icon"),
-    ],
     modals: {
       disconnected: document.getElementById("modal-disconnected"),
       info: document.getElementById("modal-info"),
@@ -61,6 +54,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
     ),
     scrollToBottom: document.getElementById("scroll-to-bottom"),
   };
+
+  initSettingsTabs();
+  loadSettings();
 
   /// Autoscroll
   $.log.addEventListener(
@@ -86,42 +82,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
   });
 
   document.getElementById("info-kit-ui-version").textContent = version;
-
-  /// Theme Toggle
-  const systemIsDark = window.matchMedia(
-    "(prefers-color-scheme: dark)",
-  ).matches;
-  const documentClassList = [...document.body.classList].filter((className) =>
-    className.startsWith("theme-"),
-  );
-  if (documentClassList.length === 0) {
-    const theme =
-      localStorage.getItem("theme") ?? (systemIsDark ? "dark" : "light");
-
-    document.body.classList.add(`theme-${theme}`);
-    localStorage.setItem("theme", theme);
-
-    $.themeToggles.forEach((el) => {
-      el.classList.remove('is-hidden');
-    });
-    $.themeToggleIcons.forEach((el) => {
-      el.textContent = `${theme}_mode`;
-    });
-  }
-
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (event) => {
-      const newTheme = event.matches ? "dark" : "light";
-
-      document.body.classList.remove("theme-dark", "theme-light");
-      document.body.classList.add(`theme-${newTheme}`);
-      localStorage.setItem("theme", newTheme);
-
-      $.themeToggleIcons.forEach((el) => {
-        el.textContent = `${newTheme}_mode`;
-      });
-    });
 
   /// Modals
 
@@ -171,25 +131,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   document.querySelectorAll(".sends-mutate-request").forEach((el) =>
     el.addEventListener("change", function (e) {
-      sendMutateRequest(e.target.dataset.property, e.target.value);
-    }),
-  );
-
-  $.themeToggles.forEach((el) =>
-    el.addEventListener("click", function (e) {
-      const currentTheme = localStorage.getItem("theme");
-      const newTheme = currentTheme === "light" ? "dark" : "light";
-
-      document.body.classList.remove("theme-dark", "theme-light");
-      document.body.classList.add(`theme-${newTheme}`);
-      localStorage.setItem("theme", newTheme);
-
-      $.themeToggleIcons.forEach((el) => {
-        el.classList.remove("mdi-weather-night", "mdi-white-balance-sunny");
-        el.classList.add(
-          newTheme === "dark" ? "mdi-white-balance-sunny" : "mdi-weather-night",
-        );
-      });
+      sendMutateRequest(e.target.name, e.target.value);
     }),
   );
 
@@ -265,8 +207,16 @@ client.on("error", function (err) {
 
 client.on("close", disconnected);
 
+function checkScrollbackLimit() {
+  if (settings.scrollbackLimit.value !== -1 && $.log.childElementCount > settings.scrollbackLimit.value) {
+    $.log.firstElementChild.remove();
+  }
+}
+
 const handlers = {
   "astoria/broadcast/usercode_log": (contents) => {
+    checkScrollbackLimit();
+
     const template = $.templates.logEntry;
     const entryFragment = template.content.cloneNode(true);
     const [_, ts, message] = contents.content.match(logMessageRegex);
@@ -313,7 +263,6 @@ const handlers = {
 
     updateServiceState();
     updateInformationModal(contents.metadata);
-    document.getElementById("mode_select").value = contents.metadata.mode;
     document.getElementById("zone_select").value = contents.metadata.zone;
 
     document.getElementById(
@@ -388,6 +337,7 @@ function uuid4() {
 }
 
 function createPlainLogEntry(text, icon = null, icon_class = null, ...classes) {
+  checkScrollbackLimit();
   const entry = document.createElement("div");
   entry.classList.add("plain-log-entry", ...classes);
   entry.textContent = text;

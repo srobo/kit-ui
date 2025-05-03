@@ -14,51 +14,37 @@
   <body>
     <div class="controls" id="controls">
       <div class="field has-addons control-buttons">
-        <p class="control">
+        <div class="control">
           <button class="button" data-action="start" title="Start">
             <span class="icon has-text-success">
               <span class="material-symbols-outlined">play_arrow</span>
             </span>
           </button>
-        </p>
-        <p class="control">
+        </div>
+        <div class="control">
           <button class="button" data-action="restart" title="Restart">
             <span class="icon has-text-success">
               <span class="material-symbols-outlined">restart_alt</span>
             </span>
           </button>
-        </p>
-        <p class="control">
+        </div>
+        <div class="control">
           <button class="button" data-action="kill" title="Kill">
             <span class="icon has-text-danger">
               <span class="material-symbols-outlined">dangerous</span>
             </span>
           </button>
-        </p>
-        <p class="control">
+        </div>
+        <div class="control">
           <button class="button" data-action="clearLog" title="Clear log">
             <span class="icon has-text-link">
               <span class="material-symbols-outlined">delete_sweep</span>
             </span>
           </button>
-        </p>
+        </div>
       </div>
       <p id="status"></p>
-      <div class="field is-grouped metadata-selectors">
-        <div class="control">
-          <span
-            id="theme-toggle"
-            tabindex="0"
-            class="button is-hidden"
-          >
-            <span class="icon has-text-link">
-              <span
-                id="toggle-theme-icon"
-                class="material-symbols-outlined"
-              ></span>
-            </span>
-          </span>
-        </div>
+      <div class="field has-addons metadata-selectors">
         <div class="control">
           <span
             tabindex="0"
@@ -73,169 +59,18 @@
         <div class="control">
           <span
             class="modal-trigger button"
-            data-target="modal-info"
+            data-target="modal-settings"
             tabindex="0"
           >
-            <span class="icon has-text-link">
-              <span class="material-symbols-outlined">info</span>
-            </span>
-          </span>
-        </div>
-        <div class="control">
-          <div class="select">
-            <select
-              id="mode_select"
-              data-property="mode"
-              class="sends-mutate-request"
-            >
-              <option value="DEV">Development mode</option>
-              <option value="COMP">Competition mode</option>
-            </select>
-          </div>
-        </div>
-        <div class="control">
-          <div class="select">
-            <select
-              id="zone_select"
-              data-property="zone"
-              class="sends-mutate-request"
-            >
-              <option value="0">Zone 0</option>
-              <option value="1">Zone 1</option>
-              <option value="2">Zone 2</option>
-              <option value="3">Zone 3</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="mobile-metadata-toggle">
-        <div class="control">
-          <span id="mobile-metadata-toggle" tabindex="0" class="button">
             <span class="icon has-text-link">
               <span class="material-symbols-outlined">settings</span>
             </span>
           </span>
         </div>
-        <div class="control">
-          <span
-            tabindex="0"
-            class="button modal-trigger"
-            data-target="modal-info"
-          >
-            <span class="icon has-text-link">
-              <span class="material-symbols-outlined">info</span>
-            </span>
-          </span>
-        </div>
-        <div class="control">
-          <span
-            tabindex="0"
-            class="button modal-trigger"
-            data-target="modal-camera"
-          >
-            <span class="icon has-text-link">
-              <span class="material-symbols-outlined">camera</span>
-            </span>
-          </span>
-        </div>
-        <div class="control">
-          <span
-            id="mobile-theme-toggle"
-            tabindex="0"
-            class="button is-hidden"
-          >
-            <span class="icon has-text-link">
-              <span
-                id="mobile-toggle-theme-icon"
-                class="material-symbols-outlined"
-              ></span>
-            </span>
-          </span>
-        </div>
-      </div>
-      <div id="mobile-metadata-controls">
-        <div class="mobile-control">
-          <span class="mobile-control-label">Mode</span>
-          <ul class="radio-buttons">
-            <li>
-              <input
-                type="radio"
-                data-property="mode"
-                name="mode"
-                id="mode-dev"
-                value="DEV"
-                class="sends-mutate-request"
-              />
-              <label for="mode-dev">Development</label>
-            </li>
-            <li>
-              <input
-                type="radio"
-                data-property="mode"
-                name="mode"
-                id="mode-comp"
-                value="COMP"
-                class="sends-mutate-request"
-              />
-              <label for="mode-comp">Competition</label>
-            </li>
-          </ul>
-        </div>
-        <div class="mobile-control">
-          <span class="mobile-control-label" style="margin-right: 0.85rem"
-            >Zone</span
-          >
-          <ul class="radio-buttons">
-            <li class="compact">
-              <input
-                type="radio"
-                data-property="zone"
-                name="zone"
-                id="zone-0"
-                value="0"
-                class="sends-mutate-request"
-              />
-              <label for="zone-0">0</label>
-            </li>
-            <li class="compact">
-              <input
-                type="radio"
-                data-property="zone"
-                name="zone"
-                id="zone-1"
-                value="1"
-                class="sends-mutate-request"
-              />
-              <label for="zone-1">1</label>
-            </li>
-            <li class="compact">
-              <input
-                type="radio"
-                data-property="zone"
-                name="zone"
-                id="zone-2"
-                value="2"
-                class="sends-mutate-request"
-              />
-              <label for="zone-2">2</label>
-            </li>
-            <li class="compact">
-              <input
-                type="radio"
-                data-property="zone"
-                name="zone"
-                id="zone-3"
-                value="3"
-                class="sends-mutate-request"
-              />
-              <label for="zone-3">3</label>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
     <div class="log-list" id="log" data-autoscroll="true">
-      <button class="button is-primary is-rounded log-list-scroll" id="scroll-to-bottom">
+      <button class="button is-primary log-list-scroll" id="scroll-to-bottom" title="Scroll to bottom">
         <span class="material-symbols-outlined">arrow_downward</span>
       </button>
     </div>
@@ -260,27 +95,158 @@
       </div>
     </div>
 
-    <div class="modal" id="modal-info">
+    <div class="modal" id="modal-settings">
       <div class="modal-background modal-background-close"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title" id="info-os-version"></p>
+          <p class="modal-card-title"><span class="material-symbols-outlined">settings</span> Robot Settings</p>
           <button class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
-          <div class="grid">
-            <div class="cell">
-              <p>Kit UI Version: <code id="info-kit-ui-version"></code></p>
-              <p>Python Version: <code id="info-python-version"></code></p>
-              <p>Entrypoint: <code id="info-entrypoint"></code></p>
-              <p>WiFi Network: <code id="info-wifi-ssid"></code></p>
-              <p>WiFi Password: <code id="info-wifi-secret"></code></p>
+          <div class="tabs is-centered is-toggle" id="settings-tab-strip">
+            <ul>
+              <li class="is-active">
+                <a data-target="metadata">
+                  <span class="icon is-small"><span class="material-symbols-outlined">robot_2</span></span>
+                  Mode & Zone
+                </a>
+              </li>
+              <li>
+                <a data-target="wifi">
+                  <span class="icon is-small"><span class="material-symbols-outlined">wifi</span></span>
+                  WiFi
+                </a>
+              </li>
+              <li>
+                <a data-target="interface">
+                  <span class="icon is-small"><span class="material-symbols-outlined">palette</span></span>
+                  Interface
+                </a>
+              </li>
+              <li>
+                <a data-target="about">
+                  <span class="icon is-small"><span class="material-symbols-outlined">info</span></span>
+                  About
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="settings-tabs">
+            <div class="settings-tab" id="settings-metadata">
+              <div class="grid">
+                <div class="cell">
+                  <label class="label">Zone</label>
+                  <form class="zone-selector" id="zone_select">
+                    <div class="zone">
+                      <input class="sends-mutate-request" type="radio" name="zone" id="zone-0" value="0" />
+                      <label for="zone-0">0</label>
+                    </div>
+                    <div class="zone">
+                      <label for="zone-1">1</label>
+                      <input class="sends-mutate-request" type="radio" name="zone" id="zone-1" value="1" />
+                    </div>
+                    <div class="zone">
+                      <input class="sends-mutate-request" type="radio" name="zone" id="zone-2" value="2" />
+                      <label for="zone-2">2</label>
+                    </div>
+                    <div class="zone">
+                      <label for="zone-3">3</label>
+                      <input class="sends-mutate-request" type="radio" name="zone" id="zone-3" value="3" />
+                    </div>
+                  </form>
+                </div>
+                <div class="cell">
+                  <label class="label">Mode</label>
+                  <ul class="radio-buttons">
+                    <li>
+                      <input
+                        type="radio"
+                        name="mode"
+                        id="mode-dev"
+                        value="DEV"
+                        class="sends-mutate-request"
+                      />
+                      <label for="mode-dev">Development</label>
+                    </li>
+                    <li>
+                      <input
+                        type="radio"
+                        name="mode"
+                        id="mode-comp"
+                        value="COMP"
+                        class="sends-mutate-request"
+                      />
+                      <label for="mode-comp">Competition</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div class="cell wifi-details">
-              <p>
-                Join other devices to the WiFi network by scanning the QR Code
-              </p>
-              <canvas id="qrcode-wifi"></canvas>
+            <div class="settings-tab is-hidden" id="settings-wifi">
+              <p>Join other devices to the WiFi network by using the details below or scanning the QR Code</p>
+              <div class="grid">
+                <div class="cell has-text-centered-desktop is-align-content-center">
+                  <p>WiFi Network: <code id="info-wifi-ssid"></code></p>
+                  <p>WiFi Password: <code id="info-wifi-secret"></code></p>
+                  <p class="mt-3">These settings can be changed by editing <code>robot-settings.toml</code></p>
+                </div>
+                <div class="cell has-text-centered-desktop">
+                  <canvas id="qrcode-wifi"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="settings-tab is-hidden" id="settings-interface">
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label" for="theme_select">Theme</label>
+                </div>
+                <div class="field-body">
+                  <div class="field is-narrow">
+                    <div class="control">
+                      <div class="select">
+                        <select id="theme_select" data-setting="theme">
+                          <option value="auto">Automatic</option>
+                          <option value="light">Light</option>
+                          <option value="dark">Dark</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label for="scrollback_limit" class="label">Scrollback limit</label>
+                </div>
+                <div class="field-body">
+                  <div class="field is-narrow">
+                    <div class="control">
+                      <div class="select">
+                        <select id="scrollback_limit" data-setting="scrollbackLimit">
+                          <option value="-1">Unlimited</option>
+                          <option value="1000">1,000 lines</option>
+                          <option value="2000">2,000 lines</option>
+                          <option value="5000">5,000 lines</option>
+                          <option value="10000">10,000 lines (default)</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="settings-tab is-hidden" id="settings-about">
+              <div class="columns">
+                <div class="column has-text-centered">
+                  <img src="src/logo.svg" alt="Student Robotics logo" width="65%">
+                </div>
+                <div class="column is-align-content-center">
+                  <strong class="is-size-5 mb-2" id="info-os-version"></strong>
+                  <p>Kit UI Version: <code id="info-kit-ui-version"></code></p>
+                  <p>Python Version: <code id="info-python-version"></code></p>
+                  <p>Entrypoint: <code id="info-entrypoint"></code></p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -291,7 +257,7 @@
       <div class="modal-background modal-background-close"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">Last Image Captured</p>
+          <p class="modal-card-title"><span class="material-symbols-outlined">camera</span> Last Image Captured</p>
           <button class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">

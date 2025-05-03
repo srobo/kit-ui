@@ -125,10 +125,3 @@
         }
     }
 }
-
-.metadata-selectors {
-    @media screen and (max-width: 640px) {
-        display: none !important; /* Override Bulma .field.is-grouped */
-    }
-    display: initial;
-}

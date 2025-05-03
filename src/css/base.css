@@ -1,5 +1,9 @@
 :root {
     --controls-height: calc(2.5em + 8px);
+    --sr-zone-0: #01ff00;
+    --sr-zone-1: #ff6600;
+    --sr-zone-2: #f3ff21;
+    --sr-zone-3: #ed61ff;
 }
 
 :root, .theme-light, .theme-dark {

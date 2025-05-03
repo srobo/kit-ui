@@ -1,0 +1,64 @@
+export const settings = {
+  theme: {
+    default: "auto",
+    value: undefined,
+    apply: (value) => {
+      document.body.classList.remove("theme-dark", "theme-light");
+      if (value !== "auto") {
+        document.body.classList.add(`theme-${value}`);
+      }
+    },
+  },
+  scrollbackLimit: {
+    default: 10_000,
+    load: (value) => parseInt(value, 10),
+    value: undefined,
+    apply: (value) => {
+      const scrollbackLimit = parseInt(value, 10);
+      if (scrollbackLimit !== -1) {
+        const log = document.getElementById("log");
+        // Remove the first scrollbackLimit lines
+        const lines = log.querySelectorAll(".log-entry");
+        const linesToRemove = lines.length - scrollbackLimit;
+        for (let i = 0; i < linesToRemove; i++) {
+          log.removeChild(lines[i]);
+        }
+      }
+    },
+  }
+};
+
+const noop = (v) => v;
+
+export function loadSettings() {
+  for (const key in settings) {
+    const setting = settings[key];
+    const value = localStorage.getItem(key);
+    const load = setting.load || noop;
+    setting.value = value !== null ? load(value) : setting.default;
+    setting.apply(setting.value);
+
+    const el = document.querySelector(`[data-setting="${key}"]`);
+    el.value = setting.value;
+    el.addEventListener("change", (e) => {
+      const newValue = e.target.value;
+      setting.value = newValue;
+      setting.apply(newValue);
+      localStorage.setItem(key, newValue);
+    }, { passive: true });
+  }
+}
+
+export function initSettingsTabs() {
+  document.getElementById('settings-tab-strip').querySelectorAll('a').forEach((tab) => {
+    const target = tab.dataset.target;
+    tab.addEventListener('click', (e) => {
+      document.querySelectorAll('.settings-tab').forEach((content) => {
+        content.classList.add('is-hidden');
+      });
+      document.getElementById(`settings-${target}`).classList.remove('is-hidden');
+      document.querySelector('#settings-tab-strip li.is-active').classList.remove('is-active');
+      tab.parentElement.classList.add('is-active');
+    }, { passive: true });
+  });
+}
