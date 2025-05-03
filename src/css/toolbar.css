@@ -27,42 +27,6 @@
 
         border-bottom: none;
         border-top: 1px solid var(--bulma-background-active);
-
-        #status {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .mobile-metadata-toggle {
-            display: flex;
-            flex-basis: 100%;
-            height: 0;
-        }
-
-        #mobile-metadata-controls {
-            .is-active {
-                display: flex;
-                padding-bottom: 0.5rem;
-                flex-direction: column;
-            }
-        }
-
-        .mobile-control {
-            display: flex;
-            align-items: center;
-
-            :not(:last-child) {
-                margin-bottom: 0.25rem;
-            }
-
-            .mobile-control-label {
-                font-weight: bold;
-                margin-right: 0.5rem;
-                :after {
-                    content: ":";
-                }
-            }
-        }
     }
 
     > .field {
