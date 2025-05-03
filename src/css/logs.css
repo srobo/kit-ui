@@ -48,6 +48,14 @@
         bottom: 2rem;
         right: 2rem;
         z-index: 2;
+        border-radius: 50%;
+        width: 56px;
+        height: 56px;
+
+        @media screen and (max-width: 640px) {
+            bottom: calc(1rem + var(--controls-height));
+            right: 1rem;
+        }
     }
 
     &[data-autoscroll="true"] .log-list-scroll {
