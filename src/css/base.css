@@ -12,7 +12,7 @@
 body {
     background: var(--bulma-background);
     color: var(--bulma-text);
-    block-size: 100lvb;
+    block-size: 100dvb;
     display: grid;
     grid-template:
             "controls" auto
