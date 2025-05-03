@@ -7,6 +7,10 @@
     border-bottom: 1px solid var(--bulma-background-active);
     grid-area: controls;
 
+    .icon {
+        pointer-events: none;
+    }
+
     .mobile-metadata-toggle {
         display: none;
     }
