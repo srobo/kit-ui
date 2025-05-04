@@ -1,5 +1,5 @@
 import mqtt from "mqtt";
-import { disconnected, handleMqttMessage } from "./events.mjs";
+import { disconnected, handleMqttMessage } from "./events.js";
 
 const options = {
   // Keep connection alive for 5 seconds after a disconnect

@@ -1,4 +1,4 @@
-import { settings } from "./settings.mjs";
+import { settings } from "./settings.js";
 
 const logMessageRegex = /\[(\d+:\d{2}:\d{2}\.?\d*)] (.*)/;
 const $log = document.getElementById("log");

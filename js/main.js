@@ -1,7 +1,7 @@
 import { version } from "../package.json";
-import { loadSettings } from "./settings";
-import { initLog } from "./logs.mjs";
-import { initUI } from "./ui.mjs";
+import { loadSettings } from "./settings.js";
+import { initLog } from "./logs.js";
+import { initUI } from "./ui.js";
 
 window.addEventListener("DOMContentLoaded", (event) => {
   loadSettings();

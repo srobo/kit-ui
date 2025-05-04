@@ -1,6 +1,6 @@
-import { createPlainLogEntry, createUsercodeLogEntry } from "../logs.mjs";
+import { createPlainLogEntry, createUsercodeLogEntry } from "../logs.js";
 import { getClient } from "./connection.js";
-import { updateMetadataFields, updateServiceState } from "../ui.mjs";
+import { updateMetadataFields, updateServiceState } from "../ui.js";
 
 const $lastAnnotatedImage = document.getElementById("last-annotated-image");
 const $noAnnotatedImageInstructions = document.getElementById(

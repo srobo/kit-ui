@@ -1,5 +1,5 @@
-import { createPlainLogEntry } from "../logs.mjs";
-import { ack, registerHandler, unregisterHandler } from "./events.mjs";
+import { createPlainLogEntry } from "../logs.js";
+import { ack, registerHandler, unregisterHandler } from "./events.js";
 import { getClient } from "./connection.js";
 
 const client = getClient();

@@ -3,8 +3,8 @@ import {
   broadcast,
   sendMutateRequest,
   sendProcessRequest,
-} from "./astoria/request.mjs";
-import { clearLog } from "./logs.mjs";
+} from "./astoria/request.js";
+import { clearLog } from "./logs.js";
 
 const $serviceProgress = document.getElementById("service-progress");
 const $wifiQRCode = document.getElementById("qrcode-wifi");
