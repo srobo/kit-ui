@@ -3,8 +3,8 @@ import { settings } from "./settings.mjs";
 const logMessageRegex = /\[(\d+:\d{2}:\d{2}\.?\d*)] (.*)/;
 const $log = document.getElementById("log");
 const $template = document.getElementById("tpl-log-entry");
-let _shouldAutoScroll = true;
-let _generatedScrollEvent = false;
+let shouldAutoScroll = true;
+let generatedScrollEvent = false;
 
 function checkScrollbackLimit() {
   if (
@@ -40,8 +40,8 @@ export function createPlainLogEntry(
 
   $log.appendChild(entry);
 
-  if (_shouldAutoScroll) {
-    _generatedScrollEvent = true;
+  if (shouldAutoScroll) {
+    generatedScrollEvent = true;
     entry.scrollIntoView();
   }
 
@@ -71,18 +71,18 @@ export function createUsercodeLogEntry(contents) {
   }
 
   $log.appendChild(entryFragment);
-  _generatedScrollEvent = true;
-  if (_shouldAutoScroll) contentEl.scrollIntoView({ block: "end" });
+  generatedScrollEvent = true;
+  if (shouldAutoScroll) contentEl.scrollIntoView({ block: "end" });
 }
 
 export function initLog() {
   $log.addEventListener(
     "scroll",
     function (e) {
-      if (_generatedScrollEvent) {
-        _generatedScrollEvent = false;
+      if (generatedScrollEvent) {
+        generatedScrollEvent = false;
       } else {
-        _shouldAutoScroll = false;
+        shouldAutoScroll = false;
         e.target.dataset.autoscroll = "false";
       }
     },
@@ -94,8 +94,8 @@ export function initLog() {
   document
     .getElementById("scroll-to-bottom")
     .addEventListener("click", function (e) {
-      _shouldAutoScroll = true;
-      _generatedScrollEvent = true;
+      shouldAutoScroll = true;
+      generatedScrollEvent = true;
       $log.dataset.autoscroll = "true";
       $log.scrollTop = $log.scrollHeight;
     });
