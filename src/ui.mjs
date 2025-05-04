@@ -41,7 +41,7 @@ function initModals() {
         $modal.classList.remove("is-active");
       });
     }
-  })
+  });
 }
 
 function initControls() {
