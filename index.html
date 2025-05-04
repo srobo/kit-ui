@@ -44,6 +44,10 @@
         </div>
       </div>
       <p id="status"></p>
+      <p id="disconnected">
+        Connecting&hellip;
+        <progress id="service-progress" class="progress is-primary" max="100"></progress>
+      </p>
       <div class="field has-addons metadata-selectors">
         <div class="control">
           <span
@@ -73,26 +77,6 @@
       <button class="button is-primary log-list-scroll" id="scroll-to-bottom" title="Scroll to bottom">
         <span class="material-symbols-outlined">arrow_downward</span>
       </button>
-    </div>
-
-    <div class="modal is-active" id="modal-disconnected">
-      <div class="modal-background"></div>
-      <div class="modal-card">
-        <section class="modal-card-body">
-          <h1 class="title">Connecting to robot&hellip;</h1>
-          <p>
-            If you find this is taking longer than a minute to connect, try
-            refreshing the page or power cycling your robot. If issues persist,
-            send us a message in the support forum in Discord under the Kit tag.
-          </p>
-
-          <progress
-            id="serviceProgress"
-            class="progress is-primary"
-            max="4"
-          ></progress>
-        </section>
-      </div>
     </div>
 
     <div class="modal" id="modal-settings">

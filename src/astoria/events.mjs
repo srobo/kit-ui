@@ -2,9 +2,9 @@ import { createPlainLogEntry, createUsercodeLogEntry } from "../logs.mjs";
 import { getClient } from "./connection.js";
 import { updateMetadataFields, updateServiceState } from "../ui.mjs";
 
-const $disconnectedModal = document.getElementById("modal-disconnected");
 const $lastAnnotatedImage = document.getElementById("last-annotated-image");
 const $noAnnotatedImageInstructions = document.getElementById("no-annotated-image-instructions");
+const $serviceProgress = document.getElementById("service-progress");
 
 const status_labels = {
   code_crashed: "Crashed",
@@ -86,9 +86,8 @@ const handlers = {
 
 export function disconnected(reset = true) {
   document.title = "Robot";
-  document.getElementById("serviceProgress").removeAttribute("value");
+  $serviceProgress.removeAttribute("value");
   document.body.classList.remove("is-connected");
-  $disconnectedModal.classList.add("is-active");
 
   // Reset the state of all services if needed.
   if (reset) {

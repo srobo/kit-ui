@@ -19,7 +19,7 @@ export function getClient() {
 }
 
 client.on("connect", function () {
-  document.getElementById("serviceProgress").value = 1;
+  document.getElementById("service-progress").value = 1;
   console.log("Connected!");
   client.subscribe("astoria/#");
   client.subscribe("camera/#");

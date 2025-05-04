@@ -89,3 +89,31 @@
         }
     }
 }
+
+#status {
+    display: none;
+}
+
+#disconnected {
+    text-align: center;
+    progress {
+        height: 0.5rem;
+        width: 100px;
+    }
+}
+
+body.is-connected {
+    #disconnected {
+        display: none;
+    }
+
+    #status {
+        display: block;
+    }
+}
+
+body.is-disconnected {
+    #controls button {
+        pointer-events: none;
+    }
+}

@@ -1,6 +1,6 @@
 import QRCode from "qrcode";
 
-const $disconnectedModal = document.getElementById("modal-disconnected");
+const $serviceProgress = document.getElementById("service-progress");
 const $wifiQRCode = document.getElementById("qrcode-wifi");
 const $metadataForm = document.getElementById("metadata");
 const $metadataLabels = {};
@@ -59,9 +59,8 @@ export function updateServiceState(connectedServices) {
   ).length;
   if (runningServiceCount === Object.values(connectedServices).length) {
     document.body.classList.add("is-connected");
-    $disconnectedModal.classList.remove("is-active");
   } else {
-    document.getElementById("serviceProgress").value = runningServiceCount + 1;
+    $serviceProgress.value = runningServiceCount + 1;
   }
 }
 
