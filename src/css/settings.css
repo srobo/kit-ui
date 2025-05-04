@@ -44,9 +44,13 @@
   accent-color: var(--sr-zone-3);
 }
 
+#wifi-info {
+  display: none;
+}
+
 body.has-wifi-enabled {
   #wifi-info {
-    display: block !important;
+    display: grid;
   }
   #wifi-disabled {
     display: none;
