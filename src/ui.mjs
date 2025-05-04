@@ -72,10 +72,11 @@ export function updateMetadataFields(newMetadata) {
     document.body.classList.remove("has-wifi-enabled");
   }
 
-  for (let key in $metadataLabels) {
-    $metadataLabels[key].textContent = newMetadata[key];
+  for (let key in newMetadata) {
     if (key in $metadataForm) {
       $metadataForm[key].value = newMetadata[key];
+    } else if (key in $metadataLabels) {
+      $metadataLabels[key].textContent = newMetadata[key];
     }
   }
 }
