@@ -34,6 +34,14 @@ function initModals() {
         $target.classList.remove("is-active");
       });
     });
+
+  document.addEventListener("keyup", (e) => {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".modal.is-active").forEach(($modal) => {
+        $modal.classList.remove("is-active");
+      });
+    }
+  })
 }
 
 function initControls() {
