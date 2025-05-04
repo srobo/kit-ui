@@ -46,7 +46,11 @@
       <p id="status"></p>
       <p id="disconnected">
         Connecting&hellip;
-        <progress id="service-progress" class="progress is-primary" max="100"></progress>
+        <progress
+          id="service-progress"
+          class="progress is-primary"
+          max="100"
+        ></progress>
       </p>
       <div class="field has-addons metadata-selectors">
         <div class="control">
@@ -74,7 +78,11 @@
       </div>
     </div>
     <div class="log-list" id="log" data-autoscroll="true">
-      <button class="button is-primary log-list-scroll" id="scroll-to-bottom" title="Scroll to bottom">
+      <button
+        class="button is-primary log-list-scroll"
+        id="scroll-to-bottom"
+        title="Scroll to bottom"
+      >
         <span class="material-symbols-outlined">arrow_downward</span>
       </button>
     </div>
@@ -83,7 +91,10 @@
       <div class="modal-background modal-background-close"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title"><span class="material-symbols-outlined">settings</span> Robot Settings</p>
+          <p class="modal-card-title">
+            <span class="material-symbols-outlined">settings</span> Robot
+            Settings
+          </p>
           <button class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
@@ -91,25 +102,37 @@
             <ul>
               <li class="is-active">
                 <a data-target="metadata">
-                  <span class="icon is-small"><span class="material-symbols-outlined">robot_2</span></span>
+                  <span class="icon is-small"
+                    ><span class="material-symbols-outlined"
+                      >robot_2</span
+                    ></span
+                  >
                   Mode & Zone
                 </a>
               </li>
               <li>
                 <a data-target="wifi">
-                  <span class="icon is-small"><span class="material-symbols-outlined">wifi</span></span>
+                  <span class="icon is-small"
+                    ><span class="material-symbols-outlined">wifi</span></span
+                  >
                   WiFi
                 </a>
               </li>
               <li>
                 <a data-target="interface">
-                  <span class="icon is-small"><span class="material-symbols-outlined">palette</span></span>
+                  <span class="icon is-small"
+                    ><span class="material-symbols-outlined"
+                      >palette</span
+                    ></span
+                  >
                   Interface
                 </a>
               </li>
               <li>
                 <a data-target="about">
-                  <span class="icon is-small"><span class="material-symbols-outlined">info</span></span>
+                  <span class="icon is-small"
+                    ><span class="material-symbols-outlined">info</span></span
+                  >
                   About
                 </a>
               </li>
@@ -123,20 +146,44 @@
                     <label class="label">Zone</label>
                     <div class="zone-selector">
                       <div class="zone">
-                        <input class="sends-mutate-request" type="radio" name="zone" id="zone-0" value="0" />
+                        <input
+                          class="sends-mutate-request"
+                          type="radio"
+                          name="zone"
+                          id="zone-0"
+                          value="0"
+                        />
                         <label for="zone-0">0</label>
                       </div>
                       <div class="zone">
                         <label for="zone-1">1</label>
-                        <input class="sends-mutate-request" type="radio" name="zone" id="zone-1" value="1" />
+                        <input
+                          class="sends-mutate-request"
+                          type="radio"
+                          name="zone"
+                          id="zone-1"
+                          value="1"
+                        />
                       </div>
                       <div class="zone">
-                        <input class="sends-mutate-request" type="radio" name="zone" id="zone-2" value="2" />
+                        <input
+                          class="sends-mutate-request"
+                          type="radio"
+                          name="zone"
+                          id="zone-2"
+                          value="2"
+                        />
                         <label for="zone-2">2</label>
                       </div>
                       <div class="zone">
                         <label for="zone-3">3</label>
-                        <input class="sends-mutate-request" type="radio" name="zone" id="zone-3" value="3" />
+                        <input
+                          class="sends-mutate-request"
+                          type="radio"
+                          name="zone"
+                          id="zone-3"
+                          value="3"
+                        />
                       </div>
                     </div>
                   </div>
@@ -170,18 +217,32 @@
             </div>
             <div class="settings-tab is-hidden" id="settings-wifi">
               <div class="grid" id="wifi-info">
-                <div class="cell has-text-centered-desktop is-align-content-center">
-                  <p>Join other devices to the WiFi network by using the details below or scanning the QR Code</p>
-                  <p>WiFi Network: <code data-from-metadata="wifi_ssid"></code></p>
-                  <p>WiFi Password: <code data-from-metadata="wifi_psk"></code></p>
-                  <p class="mt-3">These settings can be changed by editing <code>robot-settings.toml</code></p>
+                <div
+                  class="cell has-text-centered-desktop is-align-content-center"
+                >
+                  <p>
+                    Join other devices to the WiFi network by using the details
+                    below or scanning the QR Code
+                  </p>
+                  <p>
+                    WiFi Network: <code data-from-metadata="wifi_ssid"></code>
+                  </p>
+                  <p>
+                    WiFi Password: <code data-from-metadata="wifi_psk"></code>
+                  </p>
+                  <p class="mt-3">
+                    These settings can be changed by editing
+                    <code>robot-settings.toml</code>
+                  </p>
                 </div>
                 <div class="cell has-text-centered-desktop">
                   <canvas id="qrcode-wifi"></canvas>
                 </div>
               </div>
               <div id="wifi-disabled">
-                WiFi is disabled. You can enable it by editing <code>robot-settings.toml</code> and setting <code>wifi_enabled = true</code>.
+                WiFi is disabled. You can enable it by editing
+                <code>robot-settings.toml</code> and setting
+                <code>wifi_enabled = true</code>.
               </div>
             </div>
             <div class="settings-tab is-hidden" id="settings-interface">
@@ -205,13 +266,18 @@
               </div>
               <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                  <label for="scrollback_limit" class="label">Scrollback limit</label>
+                  <label for="scrollback_limit" class="label"
+                    >Scrollback limit</label
+                  >
                 </div>
                 <div class="field-body">
                   <div class="field is-narrow">
                     <div class="control">
                       <div class="select">
-                        <select id="scrollback_limit" data-setting="scrollbackLimit">
+                        <select
+                          id="scrollback_limit"
+                          data-setting="scrollbackLimit"
+                        >
                           <option value="-1">Unlimited</option>
                           <option value="1000">1,000 lines</option>
                           <option value="2000">2,000 lines</option>
@@ -227,13 +293,26 @@
             <div class="settings-tab is-hidden" id="settings-about">
               <div class="columns">
                 <div class="column has-text-centered">
-                  <img src="images/logo.svg" alt="Student Robotics logo" width="65%">
+                  <img
+                    src="images/logo.svg"
+                    alt="Student Robotics logo"
+                    width="65%"
+                  />
                 </div>
                 <div class="column is-align-content-center">
-                  <strong class="is-size-5 mb-2" data-from-metadata="os_pretty_name"></strong>
+                  <strong
+                    class="is-size-5 mb-2"
+                    data-from-metadata="os_pretty_name"
+                  ></strong>
                   <p>Kit UI Version: <code id="info-kit-ui-version"></code></p>
-                  <p>Python Version: <code data-from-metadata="python_version"></code></p>
-                  <p>Entrypoint: <code data-from-metadata="usercode_entrypoint"></code></p>
+                  <p>
+                    Python Version:
+                    <code data-from-metadata="python_version"></code>
+                  </p>
+                  <p>
+                    Entrypoint:
+                    <code data-from-metadata="usercode_entrypoint"></code>
+                  </p>
                 </div>
               </div>
             </div>
@@ -246,7 +325,10 @@
       <div class="modal-background modal-background-close"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title"><span class="material-symbols-outlined">camera</span> Last Image Captured</p>
+          <p class="modal-card-title">
+            <span class="material-symbols-outlined">camera</span> Last Image
+            Captured
+          </p>
           <button class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
