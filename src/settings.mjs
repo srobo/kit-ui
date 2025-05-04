@@ -25,7 +25,7 @@ export const settings = {
         }
       }
     },
-  }
+  },
 };
 
 const noop = (v) => v;
@@ -40,11 +40,15 @@ export function loadSettings() {
 
     const el = document.querySelector(`[data-setting="${key}"]`);
     el.value = setting.value;
-    el.addEventListener("change", (e) => {
-      const newValue = e.target.value;
-      setting.value = newValue;
-      setting.apply(newValue);
-      localStorage.setItem(key, newValue);
-    }, { passive: true });
+    el.addEventListener(
+      "change",
+      (e) => {
+        const newValue = e.target.value;
+        setting.value = newValue;
+        setting.apply(newValue);
+        localStorage.setItem(key, newValue);
+      },
+      { passive: true },
+    );
   }
 }

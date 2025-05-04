@@ -34,17 +34,20 @@ export function sendProcessRequest(type) {
 
 export function sendMutateRequest(attr, value) {
   const requestUuid = uuid4();
-  registerHandler(`astoria/astmetad/request/mutate/${requestUuid}`, (payload) => {
-    if (!payload.success) {
-      createPlainLogEntry(
-        payload.reason,
-        "warning",
-        "has-text-warning",
-        "text-d-orange",
-        "text-bold",
-      );
-    }
-  });
+  registerHandler(
+    `astoria/astmetad/request/mutate/${requestUuid}`,
+    (payload) => {
+      if (!payload.success) {
+        createPlainLogEntry(
+          payload.reason,
+          "warning",
+          "has-text-warning",
+          "text-d-orange",
+          "text-bold",
+        );
+      }
+    },
+  );
   client.publish(
     "astoria/astmetad/request/mutate",
     JSON.stringify({

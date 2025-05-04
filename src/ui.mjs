@@ -1,5 +1,9 @@
 import QRCode from "qrcode";
-import { broadcast, sendMutateRequest, sendProcessRequest } from "./astoria/request.mjs";
+import {
+  broadcast,
+  sendMutateRequest,
+  sendProcessRequest,
+} from "./astoria/request.mjs";
 import { clearLog } from "./logs.mjs";
 
 const $serviceProgress = document.getElementById("service-progress");
@@ -61,17 +65,28 @@ function initControls() {
 }
 
 function initSettingsTabs() {
-  document.getElementById('settings-tab-strip').querySelectorAll('a').forEach((tab) => {
-    const target = tab.dataset.target;
-    tab.addEventListener('click', (e) => {
-      document.querySelectorAll('.settings-tab').forEach((content) => {
-        content.classList.add('is-hidden');
-      });
-      document.getElementById(`settings-${target}`).classList.remove('is-hidden');
-      document.querySelector('#settings-tab-strip li.is-active').classList.remove('is-active');
-      tab.parentElement.classList.add('is-active');
-    }, { passive: true });
-  });
+  document
+    .getElementById("settings-tab-strip")
+    .querySelectorAll("a")
+    .forEach((tab) => {
+      const target = tab.dataset.target;
+      tab.addEventListener(
+        "click",
+        (e) => {
+          document.querySelectorAll(".settings-tab").forEach((content) => {
+            content.classList.add("is-hidden");
+          });
+          document
+            .getElementById(`settings-${target}`)
+            .classList.remove("is-hidden");
+          document
+            .querySelector("#settings-tab-strip li.is-active")
+            .classList.remove("is-active");
+          tab.parentElement.classList.add("is-active");
+        },
+        { passive: true },
+      );
+    });
 }
 
 export function initUI() {
@@ -98,7 +113,10 @@ export function updateServiceState(connectedServices) {
 export function updateMetadataFields(newMetadata) {
   if (newMetadata.wifi_ssid != null && newMetadata.wifi_enabled) {
     document.body.classList.add("has-wifi-enabled");
-    QRCode.toCanvas($wifiQRCode, `WIFI:T:WPA;S:${newMetadata.wifi_ssid};P:${newMetadata.wifi_psk};;`);
+    QRCode.toCanvas(
+      $wifiQRCode,
+      `WIFI:T:WPA;S:${newMetadata.wifi_ssid};P:${newMetadata.wifi_psk};;`,
+    );
   } else {
     document.body.classList.remove("has-wifi-enabled");
   }

@@ -3,7 +3,9 @@ import { getClient } from "./connection.js";
 import { updateMetadataFields, updateServiceState } from "../ui.mjs";
 
 const $lastAnnotatedImage = document.getElementById("last-annotated-image");
-const $noAnnotatedImageInstructions = document.getElementById("no-annotated-image-instructions");
+const $noAnnotatedImageInstructions = document.getElementById(
+  "no-annotated-image-instructions",
+);
 const $serviceProgress = document.getElementById("service-progress");
 
 const status_labels = {

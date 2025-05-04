@@ -7,7 +7,10 @@ let _shouldAutoScroll = true;
 let _generatedScrollEvent = false;
 
 function checkScrollbackLimit() {
-  if (settings.scrollbackLimit.value !== -1 && $log.childElementCount >= settings.scrollbackLimit.value) {
+  if (
+    settings.scrollbackLimit.value !== -1 &&
+    $log.childElementCount >= settings.scrollbackLimit.value
+  ) {
     const scrollbackLimit = settings.scrollbackLimit.value;
     const scrollbackCount = $log.childElementCount - scrollbackLimit;
     for (let i = 0; i <= scrollbackCount; i++) {
@@ -16,7 +19,12 @@ function checkScrollbackLimit() {
   }
 }
 
-export function createPlainLogEntry(text, icon = null, icon_class = null, ...classes) {
+export function createPlainLogEntry(
+  text,
+  icon = null,
+  icon_class = null,
+  ...classes
+) {
   checkScrollbackLimit();
   const entry = document.createElement("div");
   entry.classList.add("plain-log-entry", ...classes);
@@ -83,16 +91,18 @@ export function initLog() {
     },
   );
 
-  document.getElementById("scroll-to-bottom").addEventListener("click", function (e) {
-    _shouldAutoScroll = true;
-    _generatedScrollEvent = true;
-    $log.dataset.autoscroll = "true";
-    $log.scrollTop = $log.scrollHeight;
-  });
+  document
+    .getElementById("scroll-to-bottom")
+    .addEventListener("click", function (e) {
+      _shouldAutoScroll = true;
+      _generatedScrollEvent = true;
+      $log.dataset.autoscroll = "true";
+      $log.scrollTop = $log.scrollHeight;
+    });
 }
 
 export function clearLog() {
-  document.querySelectorAll('.log-entry, .plain-log-entry').forEach((el) => {
+  document.querySelectorAll(".log-entry, .plain-log-entry").forEach((el) => {
     el.remove();
   });
 }

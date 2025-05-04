@@ -1,32 +1,34 @@
 :root {
-    --controls-height: calc(2.5em + 8px);
-    --sr-zone-0: #01ff00;
-    --sr-zone-1: #ff6600;
-    --sr-zone-2: #f3ff21;
-    --sr-zone-3: #ed61ff;
+  --controls-height: calc(2.5em + 8px);
+  --sr-zone-0: #01ff00;
+  --sr-zone-1: #ff6600;
+  --sr-zone-2: #f3ff21;
+  --sr-zone-3: #ed61ff;
 }
 
-:root, .theme-light, .theme-dark {
-    --bulma-primary: #3270ed;
-    --bulma-primary-h: 220deg;
-    --bulma-primary-s: 84%;
-    --bulma-primary-l: 56%;
+:root,
+.theme-light,
+.theme-dark {
+  --bulma-primary: #3270ed;
+  --bulma-primary-h: 220deg;
+  --bulma-primary-s: 84%;
+  --bulma-primary-l: 56%;
 }
 
 body {
-    background: var(--bulma-background);
-    color: var(--bulma-text);
-    block-size: 100dvb;
-    display: grid;
-    grid-template:
-            "controls" auto
-            "logs" 1fr / 1fr;
+  background: var(--bulma-background);
+  color: var(--bulma-text);
+  block-size: 100dvb;
+  display: grid;
+  grid-template:
+    "controls" auto
+    "logs" 1fr / 1fr;
 }
 
 @media screen and (max-width: 640px) {
-    body {
-        grid-template:
-            "logs" 1fr
-            "controls" auto / 1fr;
-    }
+  body {
+    grid-template:
+      "logs" 1fr
+      "controls" auto / 1fr;
+  }
 }
