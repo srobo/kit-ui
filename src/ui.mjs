@@ -1,4 +1,6 @@
 import QRCode from "qrcode";
+import { broadcast, sendMutateRequest, sendProcessRequest } from "./astoria/request.mjs";
+import { clearLog } from "./logs.mjs";
 
 const $serviceProgress = document.getElementById("service-progress");
 const $wifiQRCode = document.getElementById("qrcode-wifi");
@@ -30,6 +32,34 @@ function initModals() {
     });
 }
 
+function initControls() {
+  document.querySelectorAll("[data-action]").forEach((el) =>
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      switch (e.target.dataset.action) {
+        case "start":
+          broadcast("start_button");
+          break;
+        case "restart":
+          sendProcessRequest("restart");
+          break;
+        case "kill":
+          sendProcessRequest("kill");
+          break;
+        case "clearLog":
+          clearLog();
+          break;
+      }
+    }),
+  );
+
+  document.querySelectorAll(".sends-mutate-request").forEach((el) =>
+    el.addEventListener("change", function (e) {
+      sendMutateRequest(e.target.name, e.target.value);
+    }),
+  );
+}
+
 function initSettingsTabs() {
   document.getElementById('settings-tab-strip').querySelectorAll('a').forEach((tab) => {
     const target = tab.dataset.target;
@@ -47,6 +77,7 @@ function initSettingsTabs() {
 export function initUI() {
   initModals();
   initSettingsTabs();
+  initControls();
 
   document.querySelectorAll("[data-from-metadata]").forEach((el) => {
     $metadataLabels[el.dataset.fromMetadata] = el;
