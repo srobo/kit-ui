@@ -7,7 +7,7 @@ let _shouldAutoScroll = true;
 let _generatedScrollEvent = false;
 
 function checkScrollbackLimit() {
-  if (settings.scrollbackLimit.value !== -1 && $log.childElementCount > settings.scrollbackLimit.value) {
+  if (settings.scrollbackLimit.value !== -1 && $log.childElementCount === settings.scrollbackLimit.value) {
     $log.firstElementChild.remove();
   }
 }
