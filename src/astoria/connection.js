@@ -2,12 +2,10 @@ import mqtt from "mqtt";
 import { disconnected, handleMqttMessage } from "./events.mjs";
 
 const options = {
-  keepalive: 30,
-  clientId: "mqttjs_" + Math.random().toString(16).substring(2, 8),
-  protocolId: "MQTT",
-  protocolVersion: 4,
-  clean: true,
-  connectTimeout: 60 * 1000,
+  // Keep connection alive for 5 seconds after a disconnect
+  keepalive: 5,
+  // Once disconnected, wait up to 10 minutes before closing the connection
+  connectTimeout: 600 * 1000,
   rejectUnauthorized: false,
 };
 
@@ -29,6 +27,7 @@ client.on("error", function (err) {
   disconnected();
   console.error(err);
   client.end();
+  client.reconnect();
 });
 
 client.on("close", disconnected);
