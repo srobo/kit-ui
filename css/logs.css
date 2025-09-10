@@ -18,11 +18,10 @@
 
   .log-entry {
     display: grid;
-    contain: strict;
+    contain: layout style paint;
     content-visibility: auto;
     height: 1.4rlh;
     grid-template-columns: 5fr 95fr;
-    overflow: scroll;
 
     &:nth-child(even) {
       div {
