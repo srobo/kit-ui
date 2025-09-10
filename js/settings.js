@@ -26,6 +26,19 @@ export const settings = {
       }
     },
   },
+  wrapLines: {
+    default: true,
+    load: (value) => value === "true",
+    value: true,
+    apply: (value) => {
+      console.log(value);
+      if (!value) {
+        document.body.classList.add("no-wrap");
+      } else {
+        document.body.classList.remove("no-wrap");
+      }
+    }
+  }
 };
 
 const noop = (v) => v;
@@ -39,11 +52,16 @@ export function loadSettings() {
     setting.apply(setting.value);
 
     const el = document.querySelector(`[data-setting="${key}"]`);
-    el.value = setting.value;
+    if (el.getAttribute('type') === 'checkbox') {
+      el.checked = setting.value;
+    } else {
+      el.value = setting.value;
+    }
     el.addEventListener(
       "change",
       (e) => {
-        const newValue = e.target.value;
+        const isCheckbox = e.target.getAttribute('type') === 'checkbox';
+        const newValue = isCheckbox ? e.target.checked : e.target.value;
         setting.value = newValue;
         setting.apply(newValue);
         localStorage.setItem(key, newValue);
