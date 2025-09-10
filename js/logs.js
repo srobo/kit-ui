@@ -61,7 +61,7 @@ export function createUsercodeLogEntry(contents) {
   if (contents.source === "astoria") {
     contentEl.classList.add(
       "has-text-weight-bold",
-      "has-text-centered",
+      "pl-6",
       "is-family-sans-serif",
     );
   } else if (contents.source === "stderr") {
