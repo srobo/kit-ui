@@ -37,8 +37,8 @@ export const settings = {
       } else {
         document.body.classList.remove("no-wrap");
       }
-    }
-  }
+    },
+  },
 };
 
 const noop = (v) => v;
@@ -52,7 +52,7 @@ export function loadSettings() {
     setting.apply(setting.value);
 
     const el = document.querySelector(`[data-setting="${key}"]`);
-    if (el.getAttribute('type') === 'checkbox') {
+    if (el.getAttribute("type") === "checkbox") {
       el.checked = setting.value;
     } else {
       el.value = setting.value;
@@ -60,7 +60,7 @@ export function loadSettings() {
     el.addEventListener(
       "change",
       (e) => {
-        const isCheckbox = e.target.getAttribute('type') === 'checkbox';
+        const isCheckbox = e.target.getAttribute("type") === "checkbox";
         const newValue = isCheckbox ? e.target.checked : e.target.value;
         setting.value = newValue;
         setting.apply(newValue);
