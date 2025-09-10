@@ -1,0 +1,119 @@
+.controls {
+  display: flex;
+  padding: 4px;
+  background: var(--bulma-background);
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--bulma-background-active);
+  grid-area: controls;
+
+  .icon {
+    pointer-events: none;
+  }
+
+  .mobile-metadata-toggle {
+    display: none;
+  }
+
+  #mobile-metadata-controls {
+    display: none;
+  }
+
+  @media screen and (max-width: 640px) {
+    order: 1;
+    flex-direction: row-reverse;
+    flex-wrap: wrap-reverse;
+    margin-top: auto;
+
+    border-bottom: none;
+    border-top: 1px solid var(--bulma-background-active);
+  }
+
+  > .field {
+    margin-bottom: 0;
+  }
+
+  .radio-buttons {
+    list-style-type: none;
+
+    li {
+      float: left;
+      width: 128px;
+      height: 2rem;
+      position: relative;
+      margin-right: 0;
+      padding-right: 0;
+
+      .compact {
+        width: 64px;
+      }
+
+      :first-child {
+        label {
+          border-radius: 4px 0 0 4px;
+        }
+      }
+
+      :last-child {
+        label {
+          border-radius: 0 4px 4px 0;
+        }
+      }
+    }
+
+    label,
+    input {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    input[type="radio"] {
+      opacity: 0;
+      z-index: 1;
+      cursor: pointer;
+
+      :checked + label {
+        background-color: var(--bulma-primary);
+        color: var(--bulma-text);
+      }
+    }
+
+    label {
+      color: var(--bulma-text);
+      text-align: center;
+      line-height: 2rem;
+    }
+  }
+}
+
+#status {
+  display: none;
+}
+
+#disconnected {
+  text-align: center;
+  progress {
+    height: 0.5rem;
+    width: 100px;
+  }
+}
+
+body.is-connected {
+  #disconnected {
+    display: none;
+  }
+
+  #status {
+    display: block;
+  }
+}
+
+body.is-disconnected {
+  #controls button {
+    pointer-events: none;
+  }
+}

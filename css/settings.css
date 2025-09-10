@@ -1,0 +1,58 @@
+.settings-tab {
+  padding: 2rem;
+}
+
+.zone-selector {
+  width: 100px;
+  height: 100px;
+  border: 4px solid var(--bulma-primary);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  justify-content: space-between;
+
+  .zone {
+    padding: 4px;
+
+    &:nth-child(even) {
+      text-align: right;
+    }
+
+    &:nth-child(n + 3) {
+      align-self: end;
+    }
+
+    &:last-child {
+      justify-self: end;
+    }
+  }
+}
+
+#zone-0 {
+  accent-color: var(--sr-zone-0);
+}
+
+#zone-1 {
+  accent-color: var(--sr-zone-1);
+}
+
+#zone-2 {
+  accent-color: var(--sr-zone-2);
+}
+
+#zone-3 {
+  accent-color: var(--sr-zone-3);
+}
+
+#wifi-info {
+  display: none;
+}
+
+body.has-wifi-enabled {
+  #wifi-info {
+    display: grid;
+  }
+  #wifi-disabled {
+    display: none;
+  }
+}

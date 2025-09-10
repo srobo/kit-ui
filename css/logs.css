@@ -1,0 +1,82 @@
+.log-list {
+  font-family: monospace;
+  display: grid;
+  font-size: 1rem;
+  color: var(--bulma-text);
+  overflow: auto;
+  grid-area: logs;
+  align-content: start;
+  height: 100%;
+
+  @media screen and (max-width: 640px) {
+    margin-bottom: var(
+      --controls-height
+    ) !important; /* Override Bulma .table:not(:last-child) */
+    margin-top: 0;
+  }
+
+  .log-entry {
+    display: grid;
+    contain: layout style paint;
+    content-visibility: auto;
+    height: 1.4rlh;
+    grid-template-columns: 16ch 1fr;
+    min-width: max-content;
+
+    &:nth-child(even) {
+      div {
+        background-color: color-mix(
+          in oklab,
+          var(--bulma-background),
+          currentColor 10%
+        );
+      }
+    }
+
+    &:last-child {
+      /* Without this, the autoscroll will not work */
+      content-visibility: visible;
+    }
+
+    .log-entry__ts {
+      grid-column: 1;
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+    }
+
+    .log-entry__content {
+      grid-column: 2;
+      white-space: pre;
+    }
+  }
+
+  .log-list-scroll {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 2;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+
+    @media screen and (max-width: 640px) {
+      bottom: calc(1rem + var(--controls-height));
+      right: 1rem;
+    }
+  }
+
+  &[data-autoscroll="true"] .log-list-scroll {
+    display: none;
+  }
+
+  .plain-log-entry {
+    text-align: center;
+    font-family: var(--bulma-body-family), sans-serif;
+    width: 100vw;
+
+    .material-symbols-outlined {
+      vertical-align: middle;
+      margin-right: 0.3ch;
+    }
+  }
+}

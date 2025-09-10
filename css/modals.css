@@ -1,0 +1,28 @@
+#modal-info {
+  .modal-card-body {
+    font-size: 1.25rem;
+    white-space: nowrap;
+
+    .wifi-details {
+      text-align: center;
+      font-size: 1rem;
+      white-space: initial;
+    }
+
+    @media screen and (max-width: 640px) {
+      flex-direction: column;
+      .wifi-details {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 1rem;
+      }
+    }
+  }
+}
+
+.modal-card-title {
+  .material-symbols-outlined {
+    vertical-align: sub;
+  }
+}

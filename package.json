@@ -2,12 +2,13 @@
   "name": "kit-ui-basic",
   "version": "2024.0.1",
   "description": "",
-  "source": "src/index.html",
   "scripts": {
-    "start": "parcel",
-    "build": "parcel build",
-    "format": "npx prettier --write src/",
-    "lint": "npx prettier --check src/"
+    "start": "vite --open",
+    "start:lan": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write js/ css/ index.html",
+    "lint": "prettier --check js/ css/ index.html"
   },
   "repository": {
     "type": "git",
@@ -20,27 +21,20 @@
   },
   "homepage": "https://github.com/srobo/kit-ui#readme",
   "devDependencies": {
-    "@parcel/transformer-sass": "2.9.3",
+    "@parcel/transformer-sass": "2.14.4",
     "events": "3.3.0",
-    "parcel": "2.9.3",
     "prettier": "3.0.3",
     "process": "0.11.10",
     "punycode": "1.4.1",
     "querystring-es3": "0.2.1",
-    "url": "0.11.1"
-  },
-  "optionalDependencies": {
-    "@parcel/watcher-linux-x64-glibc": "2.3.0",
-    "@lmdb/lmdb-darwin-arm64": "2.8.5",
-    "lightningcss-darwin-arm64": "1.21.7",
-    "lightningcss-linux-x64-gnu": "1.21.7",
-    "lightningcss-win32-x64-msvc": "1.21.7",
-    "lightningcss-linux-arm64-gnu": "1.21.7"
+    "sass": "^1.87.0",
+    "url": "0.11.1",
+    "vite": "^6.3.3"
   },
   "dependencies": {
-    "@mdi/font": "7.2.96",
-    "bulma": "0.9.4",
-    "mqtt": "4.3.7",
+    "bulma": "^1.0.4",
+    "material-symbols": "^0.31.2",
+    "mqtt": "^5.12.0",
     "qrcode": "1.5.3"
   }
 }

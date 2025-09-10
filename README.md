@@ -26,6 +26,11 @@ A browser based interface for [Astoria](https://github.com/srobo/astoria) based 
         sleep(1)
    ```
 
+### Developing locally with a brain board
+
+The Kit UI can be used to connect to a different MQTT broker, such as one running on a brain board.
+This can be set by running `localStorage.setItem('brokerHost', '<brain board IP here>');` in the browser console.
+
 ### kit-ui Setup
 
 Run `npm install`
@@ -34,4 +39,4 @@ Run `git config blame.ignorerevsfile .git-blame-ignore-revs` to get a better exp
 
 ### Development
 
-Run `npm start` to start the development server. You will then be able to navigate to [http://localhost:1234](http://localhost:1234) to see the UI.
+Run `npm start` to start the development server. You will then be able to navigate to [http://localhost:5173](http://localhost:5173) to see the UI.
