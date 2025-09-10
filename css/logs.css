@@ -17,11 +17,8 @@
 
   .log-entry {
     display: grid;
-    contain: layout style paint;
-    content-visibility: auto;
-    height: 1.4rlh;
+    line-height: 1.6;
     grid-template-columns: 16ch 1fr;
-    min-width: max-content;
 
     &:nth-child(even) {
       div {
@@ -46,7 +43,7 @@
 
     .log-entry__content {
       grid-column: 2;
-      white-space: pre;
+      word-break: break-word;
     }
   }
 
@@ -78,5 +75,21 @@
       vertical-align: middle;
       margin-right: 0.3ch;
     }
+  }
+}
+
+
+body.no-wrap {
+  .log-entry {
+    contain: layout style paint;
+    content-visibility: auto;
+    height: 1.4rlh;
+    line-height: unset;
+    min-width: max-content;
+  }
+
+  .log-entry__content {
+    white-space: pre;
+    word-break: normal;
   }
 }
