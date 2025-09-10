@@ -72,5 +72,6 @@
   .plain-log-entry {
     text-align: center;
     font-family: var(--bulma-body-family), sans-serif;
+    width: 100vw;
   }
 }
