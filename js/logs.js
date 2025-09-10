@@ -72,7 +72,7 @@ export function createUsercodeLogEntry(contents) {
 
   $log.appendChild(entryFragment);
   generatedScrollEvent = true;
-  if (shouldAutoScroll) contentEl.scrollIntoView({ block: "end" });
+  if (shouldAutoScroll) contentEl.parentElement.scrollIntoView({ block: "end" });
 }
 
 export function initLog() {

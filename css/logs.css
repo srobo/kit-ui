@@ -20,8 +20,8 @@
     contain: layout style paint;
     content-visibility: auto;
     height: 1.4rlh;
-    grid-template-columns: 5fr 95fr;
-    width: max-content;
+    grid-template-columns: 16ch 1fr;
+    min-width: max-content;
 
     &:nth-child(even) {
       div {
